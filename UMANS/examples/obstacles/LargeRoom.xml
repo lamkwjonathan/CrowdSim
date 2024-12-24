@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Obstacles>
+	<Obstacle>
+		<Point x="-101" y="100"/>
+		<Point x="101" y="100"/>
+		<Point x="101" y="101"/>
+		<Point x="-101" y="101"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-101" y="100"/>
+		<Point x="-101" y="-47.5"/>
+		<Point x="-100" y="-47.5"/>
+		<Point x="-100" y="100"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-101" y="-52.5"/>
+		<Point x="-101" y="-100"/>
+		<Point x="-100" y="-100"/>
+		<Point x="-100" y="-52.5"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-101" y="-100"/>
+		<Point x="-52.5" y="-100"/>
+		<Point x="-52.5" y="-101"/>
+		<Point x="-101" y="-101"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-47.5" y="-100"/>
+		<Point x="47.5" y="-100"/>
+		<Point x="47.5" y="-101"/>
+		<Point x="-47.5" y="-101"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="52.5" y="-100"/>
+		<Point x="101" y="-100"/>
+		<Point x="101" y="-101"/>
+		<Point x="52.5" y="-101"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="101" y="100"/>
+		<Point x="101" y="-47.5"/>
+		<Point x="100" y="-47.5"/>
+		<Point x="100" y="100"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="101" y="-52.5"/>
+		<Point x="101" y="-100"/>
+		<Point x="100" y="-100"/>
+		<Point x="100" y="-52.5"/>
+	</Obstacle>
+</Obstacles>

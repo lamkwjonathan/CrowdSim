@@ -1,0 +1,2003 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Agents>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-9.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-8.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-7.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-6.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-5.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-4.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-3.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-2.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-1.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="-0.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="0.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="1.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="2.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="3.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="4.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="5.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="6.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="7.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="8.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="-0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="0.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="1.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="2.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="3.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="4.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="5.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="6.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="7.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="8.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+	<Agent rad="0.3" pref_speed="1.2" max_speed="1.6" remove_at_goal="true">
+		<pos x="9.5" y="9.5"/>
+		<goal x="12.0" y="0.0"/>
+		<Policy id="0"/>
+	</Agent>
+</Agents>

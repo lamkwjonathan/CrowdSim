@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XMLObstacles xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Rectangles>
+    <Rectangle Width="1">
+      <A X="-11" Y="10.5" />
+      <B X="11" Y="10.5" />
+    </Rectangle>
+    <Rectangle Width="1">
+      <A X="10.5" Y="10" />
+      <B X="10.5" Y="-10" />
+    </Rectangle>
+	<Rectangle Width="1">
+      <A X="-11" Y="-10.5" />
+      <B X="11" Y="-10.5" />
+    </Rectangle>
+	<Rectangle Width="1">
+	  <A X="-10.5" Y="10" />
+	  <B X="-10.5" Y="0.4" />
+	</Rectangle>
+	<Rectangle Width="1">
+	  <A X="-10.5" Y="-0.4" />
+	  <B X="-10.5" Y="-10" />
+	</Rectangle>
+  </Rectangles>
+</XMLObstacles>

@@ -1,0 +1,45 @@
+// This file is a version.h template use by ./CMakeLists.txt file
+// ./CMakeLists.txt file generate a version.h in : ${CMAKE_BINARY_DIR}/generated/version.h
+// Extra info here : http://xit0.org/2013/04/cmake-use-git-branch-and-commit-details-in-project/
+
+#ifndef VERSION_H
+#define VERSION_H
+
+#define GIT_BRANCH "@GIT_BRANCH@"
+#define GIT_COMMIT_HASH "@GIT_COMMIT_HASH@"
+#define GIT_COMMIT_TAG_VERSION "@GIT_COMMIT_TAG_VERSION@"
+#define GIT_COMMIT_REMOTE "@GIT_COMMIT_REMOTE@"
+#define GIT_COMMIT_REMOTE_URL "@GIT_COMMIT_REMOTE_URL@"
+
+#define BUILD_DATE "@BUILD_DATE@"
+#define BUILD_DATE_YEAR "@BUILD_DATE_YEAR@"
+#endif
+
+#include <iostream>
+#include <string>
+#include <sstream>  
+
+namespace version{
+
+	std::string version_getInfo()
+	{
+		std::stringstream buffer;
+
+		// General software presentation
+		buffer 
+			<< "-----------------------------------------------------" << std::endl
+			<< "UMANS: Unified Microscopic Agent Navigation Simulator" << std::endl
+			<< "Copyright(C) 2018 - " << BUILD_DATE_YEAR << " Inria Rennes Bretagne Atlantique - VirtUS - Julien Pettre" << std::endl
+			<< "-----------------------------------------------------" << std::endl;
+		
+		// This provide the git info's and script status when compiled
+		buffer 
+			<< "Version : " << GIT_COMMIT_TAG_VERSION << std::endl
+			<< "Compiled on : " << BUILD_DATE << std::endl
+			<< "Commit hash : " << GIT_COMMIT_HASH << "  Remote : " << GIT_COMMIT_REMOTE << "  URL : " << GIT_COMMIT_REMOTE_URL << std::endl;
+
+		buffer << "-----------------------------------------------------" << std::endl << std::endl;
+		
+		return buffer.str();
+	}
+}

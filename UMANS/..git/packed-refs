@@ -1,0 +1,8 @@
+# pack-refs with: peeled fully-peeled sorted 
+9e5e5776b4729718e51a7f6375d1252a88fef133 refs/remotes/origin/master
+d2b0b8ec341bae3035985cf6cde461d67e7915de refs/remotes/origin/proxemy_ellipse
+d2a408f90d7a98b2e3a983280c28566e7e64dfdd refs/remotes/origin/trajectory_generator
+462742a6aa2fd853330aee10924373e539bd5a0a refs/tags/v1.0
+86e92847c79c9b444e90b0f97d8a9409c9f58ade refs/tags/v1.0.1
+57580b151b00f26787d8c71d687fe77e9588e227 refs/tags/v1.1
+^52bf49286dd694d01dcbbee738852057cdc1a529

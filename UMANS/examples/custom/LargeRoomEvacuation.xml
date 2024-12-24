@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.1" end_time="1200">
+	<World type="Infinite">
+		<Obstacles file="../obstacles/LargeRoom.xml"/>
+	</World>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/LargeRoom20000.xml" />
+</Simulation>
