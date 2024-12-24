@@ -7,7 +7,7 @@ The UMANS code is taken and adapted from: https://gitlab.inria.fr/OCSR/UMANS (Ac
 
 The ChAOS code is taken and adapted from: https://gitlab.inria.fr/OCSR/chaos.
 
-Code in the `initial commit` of the `UMANS` and `ChAOS` folders are almost entirely by the original authors and all credit goes to them. For full references and accreditation, visit the above `GitLab` links.
+Code in the `Initial Commit` of the `UMANS` and `ChAOS` folders are almost entirely by the original authors and all credit goes to them. For full references and accreditation, visit the above `GitLab` links.
 
 My own additions can be found in the future commits.
 
