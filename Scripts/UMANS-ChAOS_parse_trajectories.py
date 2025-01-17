@@ -17,4 +17,4 @@ def clean(directory):
             f.close()
             
 
-clean(r"C:\Users\imjon\Documents\School\FYP\Sim\chaos\Scenarios\LargeRoomEvacuation10000_2")
+clean(r"C:\Users\imjon\Documents\School\FYP\CrowdSim\ChAOS\Scenarios\UTownGreenEvacuationPerfTest")

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ConfigData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <env_filesPath>./Scenarios/RoomEvacuationTest/</env_filesPath>
-  <env_obstFile>./Scenarios/Decor/obstRoomEvacuationTest.xml</env_obstFile>
+  <env_obstFile>./Scenarios/Decor/obstEmpty.xml</env_obstFile>
   <env_stageInfos stageName="">
     <file />
     <position x="0" y="0" z="0" />

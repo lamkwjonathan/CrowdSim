@@ -46,6 +46,8 @@
 #include <Engine/core/worldToric.h>
 #include <Engine/core/policy.h>
 
+#include <omp.h>
+
 // Vertex shader: calculates the position of a vertex in the OpenGL view, and passes a color onto the fragment shader.
 static const char *vertexShaderSource =
 "attribute vec3 vertex;\n"
@@ -140,6 +142,7 @@ void UMANSOpenGLWidget::startNewSimulation(const std::string& scenarioFilename)
 		setActiveAgent(nullptr);
 
 		simulator = newSimulator;
+		simulator->GetWorld()->SetNumberOfThreads(15);
 
 		// Prepare a timer for update events, using the current value of playbackMultiplier.
 		// This works for the very first simulation, because playbackMultiplier=1 by default.

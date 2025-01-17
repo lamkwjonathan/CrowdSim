@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.1" end_time="30">
+	<World type="Infinite">
+		<Obstacles file="../obstacles/UTownGreen.xml"/>
+	</World>
+	<Policies file="../policies/ORCA.xml" />
+	<Agents file="../agents/UTownGreen30000.xml" />
+</Simulation>

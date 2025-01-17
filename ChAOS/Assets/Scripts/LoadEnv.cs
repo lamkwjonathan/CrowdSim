@@ -169,7 +169,7 @@ public class LoadEnv : MonoBehaviour
             //Anime.runtimeAnimatorController = Resources.Load(PathAnimeController) as RuntimeAnimatorController;
             //Anime.applyRootMotion = false;
             // make sure that object on the floor (height 0)
-            character.transform.position = new Vector3(character.transform.position.x, 0.0f, character.transform.position.z);
+            character.transform.position = new Vector3(character.transform.position.x, 3.0f, character.transform.position.z);
 
             i++;
         }

@@ -100,30 +100,70 @@ void WorldBase::DoStep()
 
 	int n = (int)agents_.size();
 
+//#pragma omp parallel num_threads(2)
+//	{
+//		#pragma omp sections
+//		{
+//			#pragma omp section
+//			{
+//				#pragma omp parallel for 
+//				// 2. compute nearest neighbors for each agent
+//				for (int i = 0; i < n; ++i)
+//					agents_[i]->ComputeNeighbors(this);
+//			}
+//			
+//			#pragma omp section
+//			{
+//				#pragma omp parallel for 
+//				// 3. compute a preferred velocity for each agent
+//				for (int i = 0; i < n; ++i)
+//					agents_[i]->ComputePreferredVelocity();
+//			}
+//		}
+//
+//		#pragma omp sections
+//		{
+//			#pragma omp section
+//			{
+//				#pragma omp parallel for 
+//				// 4. perform local navigation for each agent, to compute an acceleration vector for them
+//				for (int i = 0; i < n; ++i)
+//					agents_[i]->ComputeAcceleration(this);
+//			}
+//			
+//			#pragma omp section
+//			{
+//				#pragma omp parallel for 
+//				// 5. compute contact forces for all agents
+//				for (int i = 0; i < n; ++i)
+//					agents_[i]->ComputeContactForces(this);
+//			}
+//		}
+
 	// 2. compute nearest neighbors for each agent
-#pragma omp parallel for
+#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputeNeighbors(this);
 
 	// 3. compute a preferred velocity for each agent
-#pragma omp parallel for
+#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputePreferredVelocity();
 
 	// 4. perform local navigation for each agent, to compute an acceleration vector for them
-#pragma omp parallel for
+#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputeAcceleration(this);
 
 	// 5. compute contact forces for all agents
-#pragma omp parallel for
+#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputeContactForces(this);
 
 	// 6. move all agents to their new positions
 	DoStep_MoveAllAgents();
 	
-	// --- End of main simulation tasks.
+	// --- End of main simulation tasks.	
 
 	// increase the time that has passed
 	time_ += delta_time_;
@@ -136,7 +176,7 @@ void WorldBase::DoStep()
 
 void WorldBase::DoStep_MoveAllAgents()
 {
-#pragma omp parallel for
+#pragma omp parallel for 
 	for (int i = 0; i < (int)agents_.size(); i++)
 		agents_[i]->UpdateVelocityAndPosition(this);
 }

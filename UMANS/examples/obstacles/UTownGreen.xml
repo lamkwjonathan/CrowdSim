@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Obstacles>
+	<Obstacle>
+		<Point x="13.7" y="112.5"/>
+		<Point x="-73.2" y="89.3"/>
+		<Point x="-59.5" y="38.1"/>
+		<Point x="27.4" y="61.3"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-49.0" y="12.8"/>
+		<Point x="-78.9" y="15.5"/>
+		<Point x="-81.6" y="-14.4"/>
+		<Point x="-51.7" y="-17.1"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-61.2" y="-16.3"/>
+		<Point x="-71.1" y="-15.4"/>
+		<Point x="-71.6" y="-20.9"/>
+		<Point x="-61.7" y="-21.8"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-56.3" y="-25.2"/>
+		<Point x="-85.3" y="-17.4"/>
+		<Point x="-95.7" y="-56.0"/>
+		<Point x="-66.7" y="-63.8"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-64.2" y="-91.1"/>
+		<Point x="-104.2" y="-91.1"/>
+		<Point x="-104.2" y="-131.1"/>
+		<Point x="-64.2" y="-131.1"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="-10.1" y="-79.2"/>
+		<Point x="-49.8" y="-84.1"/>
+		<Point x="-44.9" y="-123.8"/>
+		<Point x="-5.2" y="-118.9"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="4.3" y="-61.9"/>
+		<Point x="-11.2" y="-77.4"/>
+		<Point x="2.9" y="-91.5"/>
+		<Point x="18.4" y="-76.0"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="19.8" y="-33.6"/>
+		<Point x="2.4" y="-60.4"/>
+		<Point x="36.0" y="-82.2"/>
+		<Point x="53.4" y="-55.4"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="51.0" y="7.4"/>
+		<Point x="24.0" y="-35.9"/>
+		<Point x="49.4" y="-51.8"/>
+		<Point x="76.4" y="-8.5"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="92.7" y="65.8"/>
+		<Point x="66.8" y="17.2"/>
+		<Point x="102.1" y="-1.6"/>
+		<Point x="128.0" y="47.0"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="53.2" y="131.6"/>
+		<Point x="37.2" y="125.6"/>
+		<Point x="58.2" y="69.4"/>
+		<Point x="74.2" y="75.4"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="69.5" y="131.1"/>
+		<Point x="55.9" y="126.1"/>
+		<Point x="64.7" y="102.7"/>
+		<Point x="78.3" y="107.7"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="71.8" y="159.9"/>
+		<Point x="60.6" y="155.7"/>
+		<Point x="84.8" y="91.1"/>
+		<Point x="96.0" y="95.3"/>
+	</Obstacle>
+</Obstacles>

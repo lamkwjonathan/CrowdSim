@@ -28,8 +28,12 @@
 
 #include <tools/TrajectoryCSVWriter.h>
 #include <tools/HelperFunctions.h>
+#include <omp.h>
 
+#include <iostream>
 #include <fstream>
+
+using namespace std;
 
 bool TrajectoryCSVWriter::SetOutputDirectory(const std::string &dirname)
 {
@@ -54,22 +58,38 @@ bool TrajectoryCSVWriter::Flush()
     pos_log_.clear();
     mtx_.unlock();
 
-    for (auto& data : pos_log_copy)
+#pragma omp parallel for
+	for (int i = 0; i < pos_log_copy.size(); i++)
 	{
-        std::fstream file_i;
-        size_t id = data.first;
-        std::string file_name = dirname_ + "output_" + std::to_string(id) + ".csv";
-        file_i.open(file_name, std::ios::app);
-		for (const TrajectoryPoint& record : data.second)
+		std::fstream file_i;
+		std::string file_name = dirname_ + "output_" + std::to_string(i) + ".csv";
+		file_i.open(file_name, std::ios::app);
+		for (const TrajectoryPoint& record : pos_log_copy.at(i))
 		{
 			file_i << record.time << ","
 				<< record.position.x << "," << record.position.y << ","
 				<< record.orientation.x << "," << record.orientation.y << "\n";
 		}
-        file_i.close();
-        data.second.clear();
-    }
+		file_i.close();
+		pos_log_copy.at(i).clear();
+	}
 
+	//for (auto& data : pos_log_copy)
+	//{
+ //       std::fstream file_i;
+ //       size_t id = data.first;
+ //       std::string file_name = dirname_ + "output_" + std::to_string(id) + ".csv";
+ //       file_i.open(file_name, std::ios::app);
+	//	for (const TrajectoryPoint& record : data.second)
+	//	{
+	//		file_i << record.time << ","
+	//			<< record.position.x << "," << record.position.y << ","
+	//			<< record.orientation.x << "," << record.orientation.y << "\n";
+	//	}
+ //       file_i.close();
+ //       data.second.clear();
+ //   }
+	
 	return true;
 }
 void TrajectoryCSVWriter::AppendAgentData(const AgentTrajectoryPoints& data)
