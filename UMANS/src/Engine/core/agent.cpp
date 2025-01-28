@@ -110,10 +110,11 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 #pragma endregion
 
 #pragma region [Advanced getters]
+int goal_size = 10;
 
 bool Agent::hasReachedGoal() const
 {
-	return (goal_ - position_).sqrMagnitude() <= getRadius() * getRadius();
+	return (goal_ - position_).sqrMagnitude() <= getRadius() * getRadius() * goal_size * goal_size;
 }
 
 #pragma endregion

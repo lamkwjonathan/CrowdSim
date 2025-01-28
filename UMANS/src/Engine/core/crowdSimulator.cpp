@@ -37,6 +37,8 @@
 #include <clocale>
 #include <filesystem>
 
+#include <omp.h>
+
 CrowdSimulator::CrowdSimulator()
 {
 	CostFunctionFactory::RegisterAllCostFunctions();
@@ -96,6 +98,13 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 			const auto& agents = world_->GetAgents();
 
 			AgentTrajectoryPoints data;
+			//#pragma omp parallel for
+			//for (int j = 0; j < agents.size(); j++)
+			//{
+			//	Agent* agent = agents[j];
+			//	data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
+			//}
+
 			for (const Agent* agent : agents)
 				data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
 

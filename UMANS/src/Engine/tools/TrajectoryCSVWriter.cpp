@@ -58,7 +58,9 @@ bool TrajectoryCSVWriter::Flush()
     pos_log_.clear();
     mtx_.unlock();
 
-#pragma omp parallel for
+	//Speed ups are limited due to hardware (SSD) chokepoint 
+	//Check if multiple flushes work
+	#pragma omp parallel for 
 	for (int i = 0; i < pos_log_copy.size(); i++)
 	{
 		std::fstream file_i;
