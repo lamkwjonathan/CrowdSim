@@ -13,3 +13,11 @@ My own additions can be found in the future commits.
 
 ## Getting Started
 To be filled in.
+
+## UMANS Details
+Basic unoptimized SPH has been implemented for the UMANS system according to the method described in [SPH crowds: Agent-based crowd simulation up to
+extreme densities using fluid dynamics](https://inria.hal.science/hal-03270915/file/CAG2021-SPHCrowds%20-%20Author%20version.pdf). 
+
+To activate, add `<SPH max_density = "#.0" />` to the simulation `.xml` file, where `#` is any desired non-zero number. Setting `#` to zero results in SPH being unused. (See `RoomEvacuationTest.xml` for an example).
+
+Running simulations with a `delta_time` of 0.02 seconds currently produces best results.
