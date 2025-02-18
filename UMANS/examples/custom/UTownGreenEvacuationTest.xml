@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Simulation delta_time="0.1" end_time="180">
-	<World type="Infinite">
+	<World type="Infinite" goal_radius="10.0">
 		<Obstacles file="../obstacles/UTownGreen.xml"/>
 	</World>
 	<Policies file="../policies/ORCA.xml" />

@@ -116,6 +116,8 @@ public:
 	static bool OptimizationMethodFromString(const std::string &method, OptimizationMethod& result);
 
 private:
+	/// <summary>A name identifier for this Policy.</summary>
+	std::string name_;
 	/// <summary>A weighted list of cost functions used by this Policy.</summary>
 	CostFunctionList cost_functions_;
 	/// <summary>The optimization method used by this Policy.</summary>
@@ -126,16 +128,24 @@ private:
 	/// The Policy itself only uses it if the optimization method is *not* OptimizationMethod::GRADIENT.
 	/// In addition, specific cost functions may choose to use it (regardless of the optimization method).</summary>
 	float relaxationTime_ = 0;
-	/// <summary>A scaling factor to apply to contact forces. Use 0 to disable these forces completely.</summary>
-	float contactForceScale_ = 5000.f / 80.f; // A constant of 5000 is often used, but in combination with an agent mass of 80 kg.
+
+	/// <summary>A scaling factor to apply to contact forces for agents when SPH is active. Use 0 to disable these forces completely.</summary>
+	float contactForceAgsSPHScale_ = 50.f;
+	/// <summary>A scaling factor to apply to contact forces for obstacles when SPH is active. Use 0 to disable these forces completely.</summary>
+	float contactForceObsSPHScale_ = 200.f;
+
+	/// <summary>A scaling factor to apply to contact forces for agents when SPH is inactive. Use 0 to disable these forces completely.</summary>
+	float contactForceAgsScale_ = 50.f;
+	/// <summary>A scaling factor to apply to contact forces for obstacles when SPH is inactive. Use 0 to disable these forces completely.</summary>
+	float contactForceObsScale_ = 200.f;
 
 public:
 	/// <summary>Creates a Policy with the given details.</summary>
 	/// <param name="method">The optimization method that this policy should use.</param>
 	/// <param name="params">The sampling parameters that this policy should use. 
 	/// Only used if the optimization method is OptimizationMethod::SAMPLING.</param>
-	Policy(OptimizationMethod method, SamplingParameters params)
-		: optimizationMethod_(method), samplingParameters_(params) {}
+	Policy(std::string name, OptimizationMethod method, SamplingParameters params)
+		: name_(name), optimizationMethod_(method), samplingParameters_(params) {}
 
 	/// <summary>Destroys this Policy and all cost functions inside it.</summary>
 	~Policy();
@@ -178,8 +188,12 @@ public:
 	inline void setRelaxationTime(float t) { relaxationTime_ = t; }
 	/// <summary>Returns the relaxation time of this Policy.</summary>
 	inline float getRelaxationTime() const { return relaxationTime_; }
+
 	/// <summary>Sets the scaling factor to apply to contact forces. Use 0 to ignore contact forces completely.</summary>
-	inline void setContactForceScale(float s) { contactForceScale_ = s; }
+	//inline void setContactForceScale(float s) { contactForceScale_ = s; }
+	
+	/// <summary>Returns the string name of this Policy.</summary>
+	inline std::string GetName() { return name_; }
 
 private:
 	/// <summary>Computes an acceleration vector for an agent by following the gradient of this Policy's cost functions.</summary>

@@ -33,11 +33,13 @@
 #include <core/worldInfinite.h>
 #include <core/worldToric.h>
 #include <core/costFunctionFactory.h>
+#include <core/sph.h>
 #include <memory>
 #include <clocale>
 #include <filesystem>
 
 #include <omp.h>
+#include <stdexcept>
 
 CrowdSimulator::CrowdSimulator()
 {
@@ -92,7 +94,7 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 	{
 		world_->DoStep();
 
-		if (writer_ != nullptr)
+		if (writer_ != nullptr && write_time_ == 0.0f)
 		{
 			double t = world_->GetCurrentTime();
 			const auto& agents = world_->GetAgents();
@@ -110,6 +112,10 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 
 			writer_->AppendAgentData(data);
 		}
+
+		write_time_ += world_->GetFineDeltaTime();
+		if (write_time_ >= write_interval_)
+			write_time_ = 0.0f;
 	}
 }
 
@@ -122,7 +128,7 @@ void CrowdSimulator::RunSimulationUntilEnd(bool showProgressBar, bool measureTim
 		return;
 	}
 
-	const int nrIterations_ = (int)ceilf(end_time_ / world_->GetDeltaTime());
+	const int nrIterations_ = (int)ceilf(end_time_ / world_->GetFineDeltaTime());
 
 	// get the current system time; useful for time measurements later on
 	const auto& startTime = HelperFunctions::GetCurrentTime();
@@ -224,6 +230,68 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 		}
 	}
 
+	const char* goalRadius = worldElement->Attribute("goal_radius");
+	std::string goalRadius_str;
+	float goalRadius_float = 1.0;
+
+	if (goalRadius != nullptr)
+	{
+		goalRadius_str = (std::string) goalRadius;
+		try
+		{
+			goalRadius_float = stof(goalRadius_str);
+		}
+		catch (std::logic_error& e)
+		{
+			std::cerr << "Error initializing goal radius. Default value of 1.0 will be initialized." << std::endl;
+		}
+
+		if (goalRadius_float <= 0.0f)
+		{
+			goalRadius_float = 1.0;
+			std::cerr << "Error initializing goal radius. Ensure a goal radius larger than 0. Default value of 1.0 will be initialized." << std::endl;
+		}
+	}
+	
+	world_->SetGoalRadius(goalRadius_float);
+	return true;
+}
+
+bool CrowdSimulator::FromConfigFile_loadSPH(const tinyxml2::XMLElement* SPHElement)
+{
+	// load SPH settings if specified
+	const char* maxDensity = SPHElement->Attribute("max_density");
+	std::string maxDensity_str(maxDensity);
+	float maxDensity_float = 0.0;
+
+	try 
+	{
+		 maxDensity_float = stof(maxDensity_str);
+	}
+	catch (std::logic_error& e)
+	{
+		std::cerr << "Error initializing SPH max density. Ensure a float value between 0.0 and 100.0 is entered." << std::endl;
+		return false;
+	}
+	
+	if (maxDensity_float < 0.0f || maxDensity_float > 100.0f)
+	{
+		std::cerr << "Error initializing SPH max density. Ensure a float value between 0.0 and 100.0 is entered." << std::endl;
+		return false;
+	}
+
+	if (maxDensity_float == 0.0f)
+	{
+		std::cout << "Initialized simulation without SPH." << std::endl;
+		return true;
+	}
+
+	if (maxDensity_float != 0.0f)
+	{
+		world_->GetSPH()->setMaxRestDensity(maxDensity_float);
+		world_->SetIsActiveSPH(true);
+		std::cout << "Successfully initialized SPH with SPH max density of " << maxDensity_str << "." << std::endl;
+	}
 	return true;
 }
 
@@ -352,6 +420,8 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 	int policyID;
 	policyElement->QueryIntAttribute("id", &policyID);
 
+	auto name = policyElement->Attribute("name");
+
 	// Optimization method
 	auto methodName = policyElement->Attribute("OptimizationMethod");
 	Policy::OptimizationMethod method;
@@ -394,7 +464,7 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 
 	// --- Create the policy
 
-	Policy* pl = new Policy(method, params);
+	Policy* pl = new Policy(name, method, params);
 
 	// --- Read optional parameters
 
@@ -404,9 +474,9 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 		pl->setRelaxationTime(relaxationTime);
 
 	// Force scale
-	float contactForceScale = 0;
-	if (policyElement->QueryFloatAttribute("ContactForceScale", &contactForceScale) == tinyxml2::XMLError::XML_SUCCESS)
-		pl->setContactForceScale(contactForceScale);
+	//float contactForceScale = 0;
+	//if (policyElement->QueryFloatAttribute("ContactForceScale", &contactForceScale) == tinyxml2::XMLError::XML_SUCCESS)
+	//	pl->setContactForceScale(contactForceScale);
 
 	// --- Read and create cost functions
 
@@ -453,7 +523,8 @@ bool CrowdSimulator::FromConfigFile_loadSingleAgent(const tinyxml2::XMLElement* 
 	agentElement->QueryFloatAttribute("pref_speed", &settings.preferred_speed_);
 	agentElement->QueryFloatAttribute("max_speed", &settings.max_speed_);
 	agentElement->QueryFloatAttribute("max_acceleration", &settings.max_acceleration_);
-	agentElement->QueryFloatAttribute("mass", &settings.mass_);
+	//agentElement->QueryFloatAttribute("mass", &settings.mass_);
+	settings.mass_ = pow(settings.radius_ / 0.24, 2); // Set mass based on radius with a mean radius of 0.24
 	agentElement->QueryBoolAttribute("remove_at_goal", &settings.remove_at_goal_);
 
 	// optional color
@@ -602,6 +673,25 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 	}
 
 	//
+	// --- Read the SPH parameters
+	//
+
+	tinyxml2::XMLElement* SPHElement = simulationElement->FirstChildElement("SPH");
+	if (SPHElement == nullptr)
+	{
+		std::cerr << "Error: No SPH element in the XML file. Initializing simulation without SPH." << std::endl;
+		//delete crowdsimulator;
+		//return nullptr;
+	}
+	else if (!crowdsimulator->FromConfigFile_loadSPH(SPHElement))
+	{
+		std::cerr << "Error in loading SPH. Initializing simulation without SPH." << std::endl;
+		//delete crowdsimulator;
+		//return nullptr;
+	}
+
+
+	//
 	// --- Read the simulation parameters
 	//
 
@@ -615,7 +705,16 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 		delete crowdsimulator;
 		return nullptr;
 	}
-	crowdsimulator->GetWorld()->SetDeltaTime(delta_time);
+	crowdsimulator->GetWorld()->SetCoarseDeltaTime(delta_time);
+
+	float write_interval = -1;
+	simulationElement->QueryFloatAttribute("write_interval", &write_interval);
+	if (write_interval <= 0)
+	{
+		std::cerr << "Error: No valid value for write_interval found in the XML file." << std::endl
+			<< "This attribute of Simulation is mandatory and should be positive. Default value of 0.2 will be used." << std::endl;
+	}
+	crowdsimulator->write_interval_ = write_interval;
 
 	// the total simulation time (optional)
 	float end_time = -1;

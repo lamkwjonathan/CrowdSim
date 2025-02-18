@@ -28,6 +28,8 @@
 
 #include <core/agent.h>
 #include <core/worldBase.h>
+#include <stdio.h>
+#include <iostream>
 
 Agent::Agent(size_t id, const Agent::Settings& settings) :
 	id_(id), settings_(settings),
@@ -39,7 +41,18 @@ Agent::Agent(size_t id, const Agent::Settings& settings) :
 	goal_(0, 0),
 	viewing_direction_(0, 0),
 	next_acceleration_(0, 0),
-	next_contact_forces_(0, 0)
+	next_contact_forces_(0, 0),
+	sph_density_(0),
+	personal_rest_density_(0),
+	pressure_(0),
+	pressure_force_(0, 0),
+	viscosity_force_(0, 0),
+	sph_acceleration_(0, 0),
+	next_sph_density_(0),
+	next_personal_rest_density_(0),
+	next_pressure_force_(0, 0),
+	next_viscosity_force_(0, 0)
+	
 {
 	// set the seed for random-number generation
 	RNGengine_.seed((unsigned int)id);
@@ -59,9 +72,70 @@ void Agent::ComputeNeighbors(WorldBase* world)
 	neighbors_ = world->ComputeNeighbors(position_, range, this);
 }
 
-void Agent::ComputePreferredVelocity()
+void Agent::ComputeBaseSPH(WorldBase* world)
 {
-	if (hasReachedGoal())
+	next_sph_density_ = getMass() * world->GetSPH()->poly6_kernel(Vector2D(0,0)); // Lowest density at the agent's position is just his own mass multiplied by the smoothing kernel.
+
+	// check all neighboring agents to tally SPH density
+	for (const auto& neighborAgent : neighbors_.first)
+	{
+		next_sph_density_ += neighborAgent.GetMass() * world->GetSPH()->poly6_kernel(position_ - neighborAgent.GetPosition());
+	}
+	sph_density_ = next_sph_density_;
+
+	// calculate personal rest density
+	float ratio = world->GetFineDeltaTime() / world->GetSPH()->getDensityTimeWindow();
+	next_personal_rest_density_ = (1 - ratio) * personal_rest_density_ + ratio * sph_density_;
+	personal_rest_density_ = world->GetSPH()->clampPersonalRestDensity(next_personal_rest_density_);
+
+	// calculate pressure
+	pressure_ = world->GetSPH()->getGasConstant() * (sph_density_ - personal_rest_density_);
+}
+
+void Agent::ComputeDerivedSPH(WorldBase* world)
+{
+	// check all neighboring agents to calculate pressure force (only done if density of agent > current rest density).
+	// no pressure from self since self results in magnitude of 0. Spiky kernel has division by magnitude.
+	if (sph_density_ >= personal_rest_density_)
+	{
+		next_pressure_force_.x = 0;
+		next_pressure_force_.y = 0;
+		
+		for (const auto& neighborAgent : neighbors_.first)
+		{
+			next_pressure_force_ += (neighborAgent.GetMass() * (pressure_ + neighborAgent.GetPressure()) * world->GetSPH()->spiky_kernel(position_ - neighborAgent.GetPosition()))
+				/ (2 * neighborAgent.GetDensity());
+		}
+		pressure_force_ = next_pressure_force_;
+	}
+	else
+	{
+		pressure_force_.x = 0;
+		pressure_force_.y = 0;
+	}
+
+	// check all neighboring agents to calculate pressure force (only done if viscosity constant != 0)
+	// no viscosity from self since velocity_ - velocity_ results in zero.
+	if (world->GetSPH()->getViscosityConstant() != 0) 
+	{
+		next_viscosity_force_.x = 0;
+		next_viscosity_force_.y = 0;
+
+		for (const auto& neighborAgent : neighbors_.first)
+		{
+			next_viscosity_force_ += (neighborAgent.GetMass() * (neighborAgent.GetVelocity() - velocity_) * world->GetSPH()->mullers_kernel(position_ - neighborAgent.GetPosition()))
+				/ (neighborAgent.GetDensity());
+		}
+		viscosity_force_ = world->GetSPH()->getViscosityConstant() * next_viscosity_force_; 
+	}
+	
+	// compute SPH acceleration
+	sph_acceleration_ = (-pressure_force_ + viscosity_force_) / sph_density_;
+}
+
+void Agent::ComputePreferredVelocity(WorldBase* world)
+{
+	if (hasReachedGoal(world->GetGoalRadius()))
 		preferred_velocity_ = Vector2D(0, 0);
 
 	else
@@ -70,7 +144,8 @@ void Agent::ComputePreferredVelocity()
 
 void Agent::ComputeAcceleration(WorldBase* world)
 {
-	next_acceleration_ = getPolicy()->ComputeAcceleration(this, world);
+	if (!(getPolicy()->GetName() == "RVO" && world->GetCurrentCoarseTime() != 0.0f))
+		next_acceleration_ = getPolicy()->ComputeAcceleration(this, world);
 }
 
 void Agent::ComputeContactForces(WorldBase* world)
@@ -89,13 +164,26 @@ void Agent::updateViewingDirection()
 
 void Agent::UpdateVelocityAndPosition(WorldBase* world)
 {
-	const float dt = world->GetDeltaTime();
+	const float dt = world->GetFineDeltaTime();
+	
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
 
-	// clamp the acceleration
-	acceleration_ = clampVector(next_acceleration_, getMaximumAcceleration());
+	// add and clamp the acceleration
+	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_ + contact_forces_ / settings_.mass_), getMaximumAcceleration());
 
 	// integrate the velocity; clamp to a maximum speed
-	velocity_ = clampVector(velocity_ + (acceleration_*dt), getMaximumSpeed());
+	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
+
+	// update the position
+	position_ += velocity_ * dt;
+
+	/*
+	// clamp the acceleration
+	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_), getMaximumAcceleration());
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
 
 	// add contact forces
 	contact_forces_ = next_contact_forces_;
@@ -103,18 +191,25 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 
 	// update the position
 	position_ += velocity_ * dt;
-
+	*/
 	updateViewingDirection();
 }
 
 #pragma endregion
 
 #pragma region [Advanced getters]
-int goal_size = 10;
 
-bool Agent::hasReachedGoal() const
+bool Agent::hasReachedGoal(float range_multiplier) const
 {
-	return (goal_ - position_).sqrMagnitude() <= getRadius() * getRadius() * goal_size * goal_size;
+	return (goal_ - position_).sqrMagnitude() <= getRadius() * getRadius() * range_multiplier * range_multiplier;
+}
+
+float Agent::getDeltaTime(const WorldBase* world)
+{
+	if (getPolicy()->GetName() == "RVO")
+		return world->GetCoarseDeltaTime();
+	else
+		return world->GetFineDeltaTime();
 }
 
 #pragma endregion

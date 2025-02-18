@@ -89,8 +89,9 @@ Vector2D CostFunction::ApproximateGlobalMinimumBySampling(Agent* agent, const Wo
 	float radius;
 	if (params.radius == SamplingParameters::Radius::PREFERRED_SPEED) radius = agent->getPreferredSpeed();
 	else if (params.radius == SamplingParameters::Radius::MAXIMUM_SPEED) radius = agent->getMaximumSpeed();
-	else if (params.radius == SamplingParameters::Radius::MAXIMUM_ACCELERATION) 
-		radius = std::min(2.0f*agent->getMaximumSpeed(), agent->getMaximumAcceleration() * world->GetDeltaTime());
+	else if (params.radius == SamplingParameters::Radius::MAXIMUM_ACCELERATION)
+		radius = std::min(2.0f * agent->getMaximumSpeed(), agent->getMaximumAcceleration() * agent->getDeltaTime(world));
+		
 
 	// compute the base direction (a unit vector)
 	Vector2D baseDirection(1, 0);

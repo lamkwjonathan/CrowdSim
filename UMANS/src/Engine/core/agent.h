@@ -53,7 +53,7 @@ public:
 		/// <summary>The maximum acceleration of the agent (in meters per second squared).</summary>
 		/// <remarks>To allow abrupt changes in velocity, use a high value, 
 		/// combined with a low relaxation time in the agent's Policy.</remarks>
-		float max_acceleration_ = 5.0f;
+		float max_acceleration_ = MaxFloat;
 
 		/// <summary>A pointer to the policy that describes the agent's navigation behavior.</summary>
 		Policy* policy_ = nullptr;
@@ -62,7 +62,7 @@ public:
 		bool remove_at_goal_ = false;
 
 		/// <summary>The mass of the agent, used when applying an acceleration vector. A commonly used value is 1, so this is not a mass in kilograms.</summary>
-		float mass_ = 1.0f;
+		float mass_ = 1;
 
 		/// <summary>The visualization color of the agent, used by the UMANS GUI when applicable.</summary>
 		Color color_ = Color(255, 180, 0);
@@ -85,6 +85,18 @@ private:
 	Vector2D next_acceleration_;
 	Vector2D next_contact_forces_;
 
+	float sph_density_;
+	float personal_rest_density_;
+	float pressure_;
+	Vector2D pressure_force_;
+	Vector2D viscosity_force_;
+	Vector2D sph_acceleration_;
+	float next_sph_density_;
+	float next_personal_rest_density_;
+	Vector2D next_pressure_force_;
+	Vector2D next_viscosity_force_;
+
+	
 	NeighborList neighbors_;
 
 	// Private constructor; only the world should create agents
@@ -114,11 +126,22 @@ public:
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void ComputeNeighbors(WorldBase* world);
 
+	/// <summary>Computes the SPH density, personal rest density, and pressure for the agent.</summary>
+	/// <remarks></remarks>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void ComputeBaseSPH(WorldBase* world);
+
+	/// <summary>Computes the SPH pressure force and viscosity force. Requires pressure and velocity of all neighboring agents to be calculated first.</summary>
+	/// <remarks></remarks>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void ComputeDerivedSPH(WorldBase* world);
+
 	/// <summary>Computes a preferred velocity for the agent.</summary>
 	/// <remarks>Because this framework only considers local navigation, 
 	/// the preferred velocity is always the vector that points straight towards the goal, 
 	/// with a length equal to the agent's preferred speed.</remarks>
-	void ComputePreferredVelocity();
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void ComputePreferredVelocity(WorldBase* world);
 
 	/// <summary>Uses this agent's Policy to compute a new acceleration vector for the agent.</summary>
 	/// <remarks>The result will be stored internally in the agent.</remarks>
@@ -173,6 +196,10 @@ public:
 	/// <summary>Returns the (most recently computed) list of neighbors for this agent.</summary>
 	/// <returns>A non-mutable reference to the list of neighbors that this agent has last computed.</returns>
 	inline const NeighborList& getNeighbors() const { return neighbors_; }
+	/// <summary>Returns the agent's SPH density.</summary>
+	inline float getDensity() const { return sph_density_; };
+	/// <summary>Returns the agent's SPH pressure.</summary>
+	inline float getPressure() const { return pressure_; };
 
 	/// @}
 #pragma endregion
@@ -183,8 +210,11 @@ public:
 	/// @{
 
 	/// <summary>Checks and returns whether the agent has reached its goal position.</summary>
+	/// <param name="range_multiplier">A float value denoting a multiplier on the agent radius resulting in a range within which agents are considered to have reached their goal.</param>
 	/// <returns>true if the agent's current position is sufficiently close to its goal; false otherwise.</returns>
-	bool hasReachedGoal() const;
+	bool hasReachedGoal(float range_multiplier) const;
+
+	float getDeltaTime(const WorldBase* world);
 
 	/// @}
 #pragma endregion

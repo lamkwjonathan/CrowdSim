@@ -67,8 +67,8 @@ private:
 	float dt = 2;
 	float V0 = 2.1f;
 	float sigma = 0.3f;
-	float U0 = 10;
-	float R = 0.2f;
+	float U0 = 2.1;
+	float R = 0.1f;
 
 	float ViewingAngleHalf = (float)(100.0 * PI / 180.0);
 	float ScaleOutsideView = 0.5f;

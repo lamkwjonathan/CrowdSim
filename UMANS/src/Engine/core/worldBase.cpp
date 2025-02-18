@@ -45,6 +45,7 @@ WorldBase::Type WorldBase::StringToWorldType(const std::string& type)
 WorldBase::WorldBase(WorldBase::Type type) : type_(type)
 {
 	time_ = 0;
+	coarse_time_ = 0;
 	agentKDTree = nullptr;
 	SetNumberOfThreads(1);
 	nextUnusedAgentID = 0;
@@ -85,32 +86,49 @@ void WorldBase::computeNeighboringObstacles_Flat(const Vector2D& position, float
 
 void WorldBase::DoStep()
 {
-	// Before the simulation frame begins, add agents that need to be added now
-	while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
+	// Before the simulation frame begins, add agents that need to be added now (once every coarse time step)
+	int n = (int)agents_.size();
+	if (coarse_time_ == 0.0f)
 	{
-		addAgentToList(agentsToAdd.top().first);
-		agentsToAdd.pop();
+		while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
+		{
+			addAgentToList(agentsToAdd.top().first);
+			agentsToAdd.pop();
+		}
+
+	// --- Main simulation tasks:
+		// 1. build the KD tree for nearest-neighbor computations (once every coarse time step)
+		if (agentKDTree != nullptr)
+			delete agentKDTree;
+		agentKDTree = new AgentKDTree(agents_);
+
+		n = (int)agents_.size();
+
+		// 2. compute nearest neighbors for each agent (once every coarse time step)
+		// Seems to be inefficient to step into agent only to step out again (might want to refactor)
+		#pragma omp parallel for 
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeNeighbors(this);
+	}
+
+	// compute SPH parameters if required
+	if (GetIsActiveSPH()) 
+	{
+		#pragma omp parallel for
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeBaseSPH(this);
+
+		#pragma omp parallel for
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeDerivedSPH(this);
 	}
 	
-	// --- Main simulation tasks:
-	// 1. build the KD tree for nearest-neighbor computations
-	if (agentKDTree != nullptr)
-		delete agentKDTree;
-	agentKDTree = new AgentKDTree(agents_);
-
-	int n = (int)agents_.size();
-
-	// 2. compute nearest neighbors for each agent
-	#pragma omp parallel for 
-	for (int i = 0; i < n; ++i)
-		agents_[i]->ComputeNeighbors(this);
-
 	// 3. compute a preferred velocity for each agent
 	#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
-		agents_[i]->ComputePreferredVelocity();
+		agents_[i]->ComputePreferredVelocity(this);
 
-	// 4. perform local navigation for each agent, to compute an acceleration vector for them
+	// 4. perform local navigation for each agent, to compute an acceleration vector for them (once every coarse time step for velocity-based methods)
 	#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputeAcceleration(this);
@@ -126,12 +144,15 @@ void WorldBase::DoStep()
 	// --- End of main simulation tasks.	
 
 	// increase the time that has passed
-	time_ += delta_time_;
+	time_ += fine_delta_time_;
+	coarse_time_ += fine_delta_time_;
+	if (coarse_time_ >= coarse_delta_time_)
+		coarse_time_ = 0.0f;
 
 	// remove agents who have reached their goal
 	// cannot parallelize without causing loop error
 	for (int i = n - 1; i >= 0; --i)
-		if (agents_[i]->getRemoveAtGoal() && agents_[i]->hasReachedGoal())
+		if (agents_[i]->getRemoveAtGoal() && agents_[i]->hasReachedGoal(GetGoalRadius()))
 			removeAgentAtListIndex(i);
 }
 

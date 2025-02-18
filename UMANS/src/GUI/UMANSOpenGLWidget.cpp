@@ -229,7 +229,7 @@ void UMANSOpenGLWidget::SetPlaybackMultiplier(int value)
 	}
 
 	// determine how many milliseconds should be between two simulation updates
-	int desiredRefreshTime = (int)(1000 * simulator->GetWorld()->GetDeltaTime() / playbackMultiplier);
+	int desiredRefreshTime = (int)(1000 * simulator->GetWorld()->GetFineDeltaTime() / playbackMultiplier);
 
 	// schedule a Qt timer for periodically updating the simulation
 	simulationTimer->setInterval(desiredRefreshTime);

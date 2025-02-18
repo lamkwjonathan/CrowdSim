@@ -47,6 +47,12 @@ private:
   /// <summary>A pointer to an optional TrajectoryCSVWriter that can write the simulation output to CSV files.</summary>
   TrajectoryCSVWriter* writer_;
 
+  /// <summary>The time interval (in seconds) in which agent positions are recorded for writing to csv. Defaults to 0.2 if unspecified.</summary>
+  float write_interval_ = 0.2;
+
+  /// <summary>The time (in seconds) that has passed since the previous agent position record.</summary>
+  float write_time_;
+
   /// <summary>An optional time at which the simulation should end.
   /// Only used if this number is set in a configuration file.</summary>
   float end_time_;
@@ -105,10 +111,25 @@ public:
 
   inline bool HasPolicies() const { return !policies_.empty(); }
 
+  ///// <summary>Returns the csv output time interval (in seconds).</summary>
+  ///// <returns>The csv output time interval (in seconds).</summary>
+  //inline float GetWriteInterval() const { return write_interval_; }
+
+  ///// <summary>Returns the time (in seconds) since the last agent position for csv output was stored.</summary>
+  ///// <returns>The time since last agent position was stored.</summary>
+  //inline float GetWriteTime() const { return write_time_; }
+
+  ///// <summary>Sets the csv output time interval (in seconds).</summary>
+  //inline void SetWriteInterval(float write_interval) { write_interval_ = write_interval; }
+
+  ///// <summary>Sets the time (in seconds) since the last agent position for csv output was stored.</summary>
+  //inline void SetWriteTime(float write_time) { write_time_ = write_time; }
+
 private:
 	CrowdSimulator();
 
 	bool FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldElement);
+	bool FromConfigFile_loadSPH(const tinyxml2::XMLElement* SPHElement);
 
 	bool FromConfigFile_loadPoliciesBlock_ExternallyOrNot(const tinyxml2::XMLElement* policiesBlock, const std::string& fileFolder);
 	bool FromConfigFile_loadPoliciesBlock(const tinyxml2::XMLElement* policiesBlock);

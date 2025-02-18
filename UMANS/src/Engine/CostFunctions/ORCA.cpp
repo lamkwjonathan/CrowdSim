@@ -38,7 +38,7 @@ const ORCALibrary::Solution& ORCA::GetOrcaSolutionForAgent(Agent* agent, const W
 	{
 		// run ORCA and store the solution in the agent
 		ORCALibrary::Solver solver;
-		solver.solveOrcaProgram(*agent, timeHorizon, (float)world->GetCurrentTime(), world->GetDeltaTime(), agent->getNeighbors(), range_, agent->GetOrcaSolution());
+		solver.solveOrcaProgram(*agent, timeHorizon, (float)world->GetCurrentTime(), agent->getDeltaTime(world), agent->getNeighbors(), range_, agent->GetOrcaSolution());
 	}
 
 	// return the result
