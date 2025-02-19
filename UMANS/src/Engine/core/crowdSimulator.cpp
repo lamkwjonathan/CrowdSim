@@ -291,8 +291,27 @@ bool CrowdSimulator::FromConfigFile_loadSPH(const tinyxml2::XMLElement* SPHEleme
 		world_->GetSPH()->setMaxRestDensity(maxDensity_float);
 		world_->SetIsActiveSPH(true);
 		std::cout << "Successfully initialized SPH with SPH max density of " << maxDensity_str << "." << std::endl;
+		const char* useDensityBlending = SPHElement->Attribute("density_blending");
+		std::string useDensityBlending_str(useDensityBlending);
+		if (useDensityBlending_str == "true")
+		{
+			world_->SetIsActiveDensityBlending(true);
+			std::cout << "Initialized SPH with density-based blending active." << std::endl;
+			return true;
+		}
+		else if (useDensityBlending_str == "false")
+		{
+			world_->SetIsActiveDensityBlending(false);
+			std::cout << "Initialized SPH without density-based blending active." << std::endl;
+			return true;
+		}
+		else
+		{
+			world_->SetIsActiveDensityBlending(false);
+			std::cerr << "\'density_blending\' parameter expects either true or false. Initializing SPH without density-based blending." << std::endl;
+			return false;
+		}
 	}
-	return true;
 }
 
 bool CrowdSimulator::FromConfigFile_loadPoliciesBlock_ExternallyOrNot(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)

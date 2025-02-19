@@ -91,9 +91,11 @@ private:
 	Vector2D pressure_force_;
 	Vector2D viscosity_force_;
 	Vector2D sph_acceleration_;
-	float next_sph_density_;
+	float next_sph_density_ags_;
+	float next_sph_density_obs_;
 	float next_personal_rest_density_;
-	Vector2D next_pressure_force_;
+	Vector2D next_pressure_force_ags_;
+	Vector2D next_pressure_force_obs_;
 	Vector2D next_viscosity_force_;
 
 	
@@ -249,6 +251,18 @@ public:
 	/// <summary>Sets the visualization color of this agent to the given value.</summary>
 	/// <param name="newColor">The new color to use.</param>
 	inline void setColor(const Color& newColor) { settings_.color_ = newColor; }
+
+	/// @}
+#pragma endregion
+
+#pragma region [Advanced setters]
+	/// @name Advanced setters
+	/// Methods that set a parameter based on the agent's internal state.
+	/// @{
+
+	/// <summary>Sets the color of the agent by its current SPH density.</summary>
+	/// <param name="density">A float value denoting the number of agents per m^2 around that agent.</param>
+	void setColorByDensity(float density);
 
 	/// @}
 #pragma endregion

@@ -90,6 +90,18 @@ public:
 	/// @}
 #pragma endregion
 
+	/// <summary>Method that calculates and returns the representative point of a given line segment obstacle with respect to an agent's position.</summary>
+	/// <param name="pos">The position of agent in question.</param>
+	/// <param name="nearest_point">The position of the nearest point on the line segment obstacle in question.</param>
+	/// <returns>The representative point of the given line segment.</returns>
+	Vector2D calcRepresentativePoint(Vector2D pos, Vector2D nearest_point);
+
+	/// <summary>Method that calculates and returns surface area of line segment obstacle within 1 meter of agent.</summary>
+	/// <param name="pos">The position of agent in question.</param>
+	/// <param name="line">The line segment obstacle in question.</param>
+	/// <returns>Surface area of line segment obstacle within 1 meter of agent.</returns>
+	float calcObstacleArea(Vector2D pos, LineSegment2D line);
+
 	/// <summary>Method that clamps personal rest density between min_rest_density and max_rest_density</summary>
 	/// <param name="rest_density">The pre-clamped rest density calculated for an agent.</param>
 	/// <returns>Clamped personal rest density</returns>

@@ -48,9 +48,11 @@ Agent::Agent(size_t id, const Agent::Settings& settings) :
 	pressure_force_(0, 0),
 	viscosity_force_(0, 0),
 	sph_acceleration_(0, 0),
-	next_sph_density_(0),
+	next_sph_density_ags_(0),
+	next_sph_density_obs_(0),
 	next_personal_rest_density_(0),
-	next_pressure_force_(0, 0),
+	next_pressure_force_ags_(0, 0),
+	next_pressure_force_obs_(0, 0),
 	next_viscosity_force_(0, 0)
 	
 {
@@ -74,14 +76,29 @@ void Agent::ComputeNeighbors(WorldBase* world)
 
 void Agent::ComputeBaseSPH(WorldBase* world)
 {
-	next_sph_density_ = getMass() * world->GetSPH()->poly6_kernel(Vector2D(0,0)); // Lowest density at the agent's position is just his own mass multiplied by the smoothing kernel.
+	next_sph_density_ags_ = getMass() * world->GetSPH()->poly6_kernel(Vector2D(0,0)); // Lowest density at the agent's position is just his own mass multiplied by the smoothing kernel.
 
-	// check all neighboring agents to tally SPH density
+	// check all neighboring agents and walls to tally SPH density
 	for (const auto& neighborAgent : neighbors_.first)
 	{
-		next_sph_density_ += neighborAgent.GetMass() * world->GetSPH()->poly6_kernel(position_ - neighborAgent.GetPosition());
+		next_sph_density_ags_ += neighborAgent.GetMass() * world->GetSPH()->poly6_kernel(position_ - neighborAgent.GetPosition());
 	}
-	sph_density_ = next_sph_density_;
+	setColorByDensity(next_sph_density_ags_);
+
+	next_sph_density_obs_ = 0;
+
+	for (const auto& neighborObstacle : neighbors_.second)
+	{
+		float distToAgent = distanceToLine(position_, neighborObstacle.first, neighborObstacle.second, true);
+		if (distToAgent <= 1)
+		{
+			Vector2D nearestPoint = nearestPointOnLine(position_, neighborObstacle.first, neighborObstacle.second, true);
+			Vector2D representativePoint = world->GetSPH()->calcRepresentativePoint(position_, nearestPoint);
+			next_sph_density_obs_ += personal_rest_density_ * world->GetSPH()->calcObstacleArea(position_, neighborObstacle) * world->GetSPH()->poly6_kernel(position_ - representativePoint);
+		}
+
+	}
+	sph_density_ = next_sph_density_ags_ + next_sph_density_obs_;
 
 	// calculate personal rest density
 	float ratio = world->GetFineDeltaTime() / world->GetSPH()->getDensityTimeWindow();
@@ -98,15 +115,25 @@ void Agent::ComputeDerivedSPH(WorldBase* world)
 	// no pressure from self since self results in magnitude of 0. Spiky kernel has division by magnitude.
 	if (sph_density_ >= personal_rest_density_)
 	{
-		next_pressure_force_.x = 0;
-		next_pressure_force_.y = 0;
+		next_pressure_force_ags_.x = 0;
+		next_pressure_force_ags_.y = 0;
 		
 		for (const auto& neighborAgent : neighbors_.first)
 		{
-			next_pressure_force_ += (neighborAgent.GetMass() * (pressure_ + neighborAgent.GetPressure()) * world->GetSPH()->spiky_kernel(position_ - neighborAgent.GetPosition()))
+			next_pressure_force_ags_ += (neighborAgent.GetMass() * (pressure_ + neighborAgent.GetPressure()) * world->GetSPH()->spiky_kernel(position_ - neighborAgent.GetPosition()))
 				/ (2 * neighborAgent.GetDensity());
 		}
-		pressure_force_ = next_pressure_force_;
+
+		next_pressure_force_obs_.x = 0;
+		next_pressure_force_obs_.y = 0;
+
+		for (const auto& neighborObstacle : neighbors_.second)
+		{
+			Vector2D nearestPoint = nearestPointOnLine(position_, neighborObstacle.first, neighborObstacle.second, true);
+			Vector2D representativePoint = world->GetSPH()->calcRepresentativePoint(position_, nearestPoint);
+			next_pressure_force_obs_ += pressure_ * world->GetSPH()->calcObstacleArea(position_, neighborObstacle) * world->GetSPH()->spiky_kernel(position_ - representativePoint);
+		}
+		pressure_force_ = next_pressure_force_ags_ + next_pressure_force_obs_;
 	}
 	else
 	{
@@ -169,8 +196,43 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 	// add contact forces
 	contact_forces_ = next_contact_forces_;
 
-	// add and clamp the acceleration
-	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_ + contact_forces_ / settings_.mass_), getMaximumAcceleration());
+	// add and clamp the acceleration if SPH enabled
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+			if (sph_density_ < 2.f)
+			{
+				acceleration_ = next_acceleration_;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(getPolicy()->getRelaxationTime(), getDeltaTime(world)) / getMass(); 
+				if (sph_density_ > 4.f)
+				{
+					acceleration_ = goalReachingAcceleration + sph_acceleration_;
+				}
+				else
+				{
+					acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (goalReachingAcceleration + sph_acceleration_);
+				}
+			}
+		}
+		else
+		{
+			acceleration_ = next_acceleration_ + sph_acceleration_;
+		}
+	}
+	else
+	{
+		acceleration_ = next_acceleration_;
+	}
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
 
 	// integrate the velocity; clamp to a maximum speed
 	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
@@ -239,6 +301,48 @@ void Agent::setGoal(const Vector2D &goal)
 void Agent::setPolicy(Policy* policy)
 {
 	settings_.policy_ = policy;
+}
+
+#pragma endregion
+
+#pragma region [Advanced setters]
+
+void Agent::setColorByDensity(float density)
+{
+	Color color;
+	short r, g, b;
+	float slider;
+	float densityLimit = 6.f;
+	float densityRatio = density / densityLimit;
+
+	if (densityRatio < 0)
+		densityRatio = 0;
+	else if (densityRatio > 1)
+		densityRatio = 1;
+	
+	if (densityRatio <= 0.33f) // transition from blue(0, 102, 204) to green(0, 204, 102)
+	{
+		slider = densityRatio / 0.33f;
+		r = 0;
+		g = 102 + (short)(102 * slider);
+		b = 204 - (short)(102 * slider);
+	}
+	else if (densityRatio <= 0.66f) // transition from green(0, 204, 102) to yellow(204, 204, 0)
+	{
+		slider = (densityRatio - 0.33f) / 0.33f;
+		r = (short)(204 * slider);
+		g = 204;
+		b = 102 - (short)(102 * slider);
+	}
+	else // transition from yellow(204, 204, 0) to red(204, 0, 0)
+	{
+		slider = (densityRatio - 0.66f) / 0.34f;
+		r = 204;
+		g = 204 - (short)(204 * slider);
+		b = 0;
+	}
+	color = Color(r, g, b);
+	setColor(color);
 }
 
 #pragma endregion

@@ -152,6 +152,9 @@ protected:
 	/// <summary>Boolean value indicating whether to use SPH in this simulation.</summary>
 	bool isActiveSPH_ = false;
 
+	/// <summary>Boolean value indicating whether to use density-based blending along with SPH in this simulation.</summary>
+	bool isActiveDensityBlending_ = false;
+
 	/// <summary>Float value indicating radius around goal point (as multiplier of agent radius) that results in deletion of agent provided agent.remove_at_goal_ is set.</summary>
 	float goalRadius_ = 1.0;
 	
@@ -194,9 +197,13 @@ public:
 	/// <returns>A reference to the SPH instance.</returns>
 	inline SPH* GetSPH() { return &sph_; }
 
-	/// <summary>Returns the boolean useSPH that indicates whether SPH is used in this simulation.</summary>
+	/// <summary>Returns the boolean isActiveSPH that indicates whether SPH is used in this simulation.</summary>
 	/// <returns>A boolean denoting whether SPH is to be used.</returns>
 	inline bool GetIsActiveSPH() { return isActiveSPH_; }
+
+	/// <summary>Returns the boolean isActiveDensityBlending that indicates whether density-based blending is used along with SPH in this simulation.</summary>
+	/// <returns>A boolean denoting whether density-based blending is to be used.</returns>
+	inline bool GetIsActiveDensityBlending() { return isActiveDensityBlending_; }
 
 	/// <summary>Returns the goal radius of this world.</summary>
 	/// <returns>A float value indicating the radius around the goal point (as a multiplier of agent radius) where agent will be removed upon arriving at.</returns>
@@ -226,6 +233,10 @@ public:
 	/// <summary>Sets whether SPH is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether SPH is used.</param>
 	inline void SetIsActiveSPH(bool b) { isActiveSPH_ = b; }
+
+	/// <summary>Sets whether density-based blending is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether density-based blending is used.</param>
+	inline void SetIsActiveDensityBlending(bool b) { isActiveDensityBlending_ = b; }
 
 	/// <summary>Sets the goal radius of this world.</summary>
 	/// <param name="b">The radius around goal point (as a multiplier of agent radius) where agent will be removed upon arriving at.</param>
