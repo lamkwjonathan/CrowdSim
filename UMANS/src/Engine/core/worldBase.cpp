@@ -112,7 +112,6 @@ void WorldBase::DoStep()
 			agents_[i]->ComputeNeighbors(this);
 	}
 
-	
 	// compute SPH parameters if required
 	if (GetIsActiveSPH()) 
 	{
