@@ -1,8 +1,10 @@
 # Crowd Simulation for Digital Twin Applications
+
 This is a final year project focusing on the development of crowd simulation functionality for large-scale crowds. It heavily references the methods in [SPH crowds: Agent-based crowd simulation up to
 extreme densities using fluid dynamics](https://inria.hal.science/hal-03270915/file/CAG2021-SPHCrowds%20-%20Author%20version.pdf).
 
 ## References
+
 The UMANS code is taken and adapted from: https://gitlab.inria.fr/OCSR/UMANS (Accompanying paper: [Generalized Microscopic Crowd Simulation using Costs in Velocity Space](https://project.inria.fr/crowdscience/generalized-microscopic-crowd-simulation-using-costs-in-velocity-space-i3d-2020/)).
 
 The ChAOS code is taken and adapted from: https://gitlab.inria.fr/OCSR/chaos.
@@ -12,12 +14,14 @@ Code in the `Initial Commit` of the `UMANS` and `ChAOS` folders are almost entir
 My own additions can be found in the future commits.
 
 ## Getting Started
+
 To be filled in.
 
 ## UMANS Details
+
 Basic unoptimized SPH with SPH obstacle handling and density-based blending has been implemented for the UMANS system according to the method described in [SPH crowds: Agent-based crowd simulation up to
 extreme densities using fluid dynamics](https://inria.hal.science/hal-03270915/file/CAG2021-SPHCrowds%20-%20Author%20version.pdf). 
 
 To activate, add `<SPH max_density = "#.0" density_blending = "true" />` to the simulation `.xml` file, where `#` is any desired non-zero number. Setting `#` to zero results in SPH being unused. Setting `density_blending` to `"false"` results in SPH without density-based blending. (See `RoomEvacuationTest.xml` for an example).
 
-Running simulations with a `delta_time` of 0.02 seconds currently produces best results.
+Running simulations with a unified `delta_time` of 0.02 seconds currently produces best results. A maximum `delta_time` of 0.065 yields satisfactory results visually.
