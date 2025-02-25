@@ -65,12 +65,27 @@ Vector2D CostFunction::GetGradientFromCurrentVelocity(Agent* agent, const WorldB
 	return GetGradient(agent->getVelocity(), agent, world);
 }
 
+Vector2D CostFunction::GetGradientFromCurrentVelocity_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const
+{
+	return GetGradient(velocity, agent, world);
+}
+
 Vector2D CostFunction::GetGlobalMinimum(Agent* agent, const WorldBase* world) const
 {
 	// By default, we approximate the global optimum via sampling.
 	return ApproximateGlobalMinimumBySampling(
 		agent, world, 
 		SamplingParameters::ApproximateGlobalOptimization(), 
+		{ { this, 1.0f } }
+	);
+}
+
+Vector2D CostFunction::GetGlobalMinimum_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const
+{
+	// By default, we approximate the global optimum via sampling.
+	return ApproximateGlobalMinimumBySampling_RK4(
+		agent, velocity, world,
+		SamplingParameters::ApproximateGlobalOptimization(),
 		{ { this, 1.0f } }
 	);
 }
@@ -144,6 +159,107 @@ Vector2D CostFunction::ApproximateGlobalMinimumBySampling(Agent* agent, const Wo
 		for (int s = 1; s <= params.speedSamples; ++s)
 		{
 			const float candidateLength = deltaLength * (params.includeBaseAsSample ? s-1 : s);
+			float candidateAngle = startAngle;
+
+			// angle samples
+			for (int a = 0; a < params.angleSamples; ++a, candidateAngle += deltaAngle)
+			{
+				// construct the candidate velocity
+				const Vector2D& velocity = base + rotateCounterClockwise(baseDirection, candidateAngle) * candidateLength;
+
+				// compute the cost for this velocity
+				float totalCost = 0;
+				for (auto& costFunction : costFunctions)
+					totalCost += costFunction.second * costFunction.first->GetCost(velocity, agent, world);
+
+				// check if this cost is better than the minimum so far
+				if (totalCost < bestCost)
+				{
+					bestVelocity = velocity;
+					bestCost = totalCost;
+				}
+
+				// if we are currently checking the base velocity, we don't have to sample any more angles
+				if (params.includeBaseAsSample && s == 1)
+					break;
+			}
+		}
+	}
+
+	// --- Return the velocity with the lowest cost
+
+	return bestVelocity;
+}
+
+Vector2D CostFunction::ApproximateGlobalMinimumBySampling_RK4(Agent* agent, Vector2D vel, const WorldBase* world,
+	const SamplingParameters& params, const CostFunctionList& costFunctions)
+{
+	// --- Compute the range in which samples will be taken.
+
+	// compute the base of the cone, or center of the circle
+	Vector2D base(0, 0);
+	if (params.base == SamplingParameters::Base::ZERO) base = Vector2D(0, 0);
+	else if (params.base == SamplingParameters::Base::CURRENT_VELOCITY) base = vel;
+
+	// compute the radius of the cone/circle
+	float radius;
+	if (params.radius == SamplingParameters::Radius::PREFERRED_SPEED) radius = agent->getPreferredSpeed();
+	else if (params.radius == SamplingParameters::Radius::MAXIMUM_SPEED) radius = agent->getMaximumSpeed();
+	else if (params.radius == SamplingParameters::Radius::MAXIMUM_ACCELERATION)
+		radius = std::min(2.0f * agent->getMaximumSpeed(), agent->getMaximumAcceleration() * world->GetCoarseDeltaTime());
+
+
+	// compute the base direction (a unit vector)
+	Vector2D baseDirection(1, 0);
+	if (params.baseDirection == SamplingParameters::BaseDirection::UNIT) baseDirection = Vector2D(1, 0);
+	else if (params.baseDirection == SamplingParameters::BaseDirection::CURRENT_VELOCITY) baseDirection = vel.getnormalized();
+	else if (params.baseDirection == SamplingParameters::BaseDirection::PREFERRED_VELOCITY) baseDirection = agent->getPreferredVelocity().getnormalized();
+
+	// compute the maximum angle to the base direction, in radians
+	float maxAngle = (float)(params.angle / 360.0 * PI); // params.angle stores the full range (in deg); we want half of it (in rad)
+
+	// --- Option 1: Random sampling
+
+	Vector2D bestVelocity(0, 0);
+	float bestCost = MaxFloat;
+
+	if (params.type == SamplingParameters::Type::RANDOM)
+	{
+		for (int i = 0; i < params.randomSamples; ++i)
+		{
+			// create a random velocity in the cone/circle
+			float randomAngle = agent->ComputeRandomNumber(-maxAngle, maxAngle);
+			float randomLength = agent->ComputeRandomNumber(0, radius);
+			const Vector2D& velocity = base + rotateCounterClockwise(baseDirection, randomAngle) * randomLength;
+
+			// compute the cost for this velocity
+			float totalCost = 0;
+			for (auto& costFunction : costFunctions)
+				totalCost += costFunction.second * costFunction.first->GetCost(velocity, agent, world);
+
+			// check if this cost is better than the minimum so far
+			if (totalCost < bestCost)
+			{
+				bestVelocity = velocity;
+				bestCost = totalCost;
+			}
+		}
+	}
+
+	// --- Option 2: Regular sampling
+
+	else if (params.type == SamplingParameters::Type::REGULAR)
+	{
+		// compute the difference in angle and length per iteration
+		const float startAngle = -maxAngle;
+		const float endAngle = maxAngle;
+		const float deltaAngle = (endAngle - startAngle) / (params.angle == 360 ? params.angleSamples : (params.angleSamples - 1));
+		const float deltaLength = radius / (params.includeBaseAsSample ? (params.speedSamples - 1) : params.speedSamples);
+
+		// speed samples
+		for (int s = 1; s <= params.speedSamples; ++s)
+		{
+			const float candidateLength = deltaLength * (params.includeBaseAsSample ? s - 1 : s);
 			float candidateAngle = startAngle;
 
 			// angle samples

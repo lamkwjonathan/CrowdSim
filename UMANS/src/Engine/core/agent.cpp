@@ -42,8 +42,8 @@ Agent::Agent(size_t id, const Agent::Settings& settings) :
 	viewing_direction_(0, 0),
 	next_acceleration_(0, 0),
 	next_contact_forces_(0, 0),
-	sph_density_(0),
-	personal_rest_density_(0),
+	sph_density_(1),
+	personal_rest_density_(1),
 	pressure_(0),
 	pressure_force_(0, 0),
 	viscosity_force_(0, 0),
@@ -175,6 +175,11 @@ void Agent::ComputeAcceleration(WorldBase* world)
 		next_acceleration_ = getPolicy()->ComputeAcceleration(this, world);
 }
 
+Vector2D Agent::ComputeAcceleration_RK4(Vector2D velocity, WorldBase* world)
+{
+	return getPolicy()->ComputeAcceleration_RK4(this, velocity, world);
+}
+
 void Agent::ComputeContactForces(WorldBase* world)
 {
 	next_contact_forces_ = getPolicy()->ComputeContactForces(this, world);
@@ -210,14 +215,17 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 			else
 			{
 				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
-				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(getPolicy()->getRelaxationTime(), getDeltaTime(world)) / getMass(); 
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(0.5f, getDeltaTime(world)) / getMass(); 
+				//Vector2D goalReachingAcceleration = Vector2D(0, 0);
 				if (sph_density_ > 4.f)
 				{
 					acceleration_ = goalReachingAcceleration + sph_acceleration_;
+					//acceleration_ = sph_acceleration_;
 				}
 				else
 				{
 					acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (goalReachingAcceleration + sph_acceleration_);
+					//acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (sph_acceleration_);
 				}
 			}
 		}
@@ -229,6 +237,91 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 	else
 	{
 		acceleration_ = next_acceleration_;
+	}
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
+
+	// update the position
+	position_ += velocity_ * dt;
+
+	/*
+	// clamp the acceleration
+	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_), getMaximumAcceleration());
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
+
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
+	velocity_ += contact_forces_ / settings_.mass_ * dt;
+
+	// update the position
+	position_ += velocity_ * dt;
+	*/
+	updateViewingDirection();
+}
+
+void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
+{
+	const float dt = world->GetCoarseDeltaTime();
+
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
+
+	// add and clamp the acceleration if SPH enabled
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+			if (sph_density_ < 2.f)
+			{
+				k1_ = next_acceleration_;
+				k2_ = ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world);
+				k3_ = ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world);
+				k4_ = ComputeAcceleration_RK4(velocity_ + dt * k3_, world);
+				acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				//Vector2D goalReachingAcceleration = (getPreferredVelocity() - velocity_) / std::max(0.5f, getDeltaTime(world)) / getMass();
+				//Vector2D goalReachingAcceleration = Vector2D(0, 0);
+				if (sph_density_ > 4.f)
+				{
+					k1_ = (getPreferredVelocity() - velocity_) / std::max(0.5f, dt) / getMass();
+					k2_ = (getPreferredVelocity() - (velocity_ + dt * k1_ / 2)) / std::max(0.5f, dt) / getMass();
+					k3_ = (getPreferredVelocity() - (velocity_ + dt * k2_ / 2)) / std::max(0.5f, dt) / getMass();
+					k4_ = (getPreferredVelocity() - (velocity_ + dt * k3_)) / std::max(0.5f, dt) / getMass();
+					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6 + sph_acceleration_;
+				}
+				else
+				{
+					k1_ = (1 - kappa) * (next_acceleration_) + kappa * ((getPreferredVelocity() - velocity_) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
+					k2_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k1_ / 2)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
+					k3_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k2_ / 2)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
+					k4_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k3_)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
+					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
+				}
+			}
+		}
+		else
+		{
+			acceleration_ = next_acceleration_ + sph_acceleration_;
+		}
+	}
+	else
+	{
+		k1_ = next_acceleration_;
+		k2_ = ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world);
+		k3_ = ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world);
+		k4_ = ComputeAcceleration_RK4(velocity_ + dt * k3_, world);
+		acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
 	}
 
 	// add contact forces to acceleration

@@ -171,6 +171,15 @@ public:
 	/// <returns>The gradient of the cost function, derived from the result of ComputeForce().</param>
 	virtual Vector2D GetGradientFromCurrentVelocity(Agent* agent, const WorldBase * world) const;
 
+	/// <summary>Computes the gradient of the cost at the agent's current intermediate velocity.</summary>
+	/// <remarks>By default, this function simply calls GetGradient(), 
+	/// but a subclass might have a more efficient implementation that computes the same result.</remarks>
+	/// <param name="agent">An agent in the simulation.</param>
+	/// <param name="velocity">The intermediate velocity of the agent.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>The gradient of the cost function, derived from the result of ComputeForce().</param>
+	virtual Vector2D GetGradientFromCurrentVelocity_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const;
+
 	/// <summary>Computes the global minimum of the cost function, i.e. the velocity with minimum cost.</summary>
 	/// <remarks>By default, this method uses sampling to approximate the global minimum.
 	/// Subclasses of CostFunction may choose to implement a better (e.g. closed-form) solution.</remarks>
@@ -178,6 +187,15 @@ public:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	/// <returns>The velocity with minimum cost (or an approximation thereof) for the given agent.</param>
 	virtual Vector2D GetGlobalMinimum(Agent* agent, const WorldBase* world) const;
+
+	/// <summary>Computes the global minimum of the cost function, i.e. the intermediate velocity with minimum cost.</summary>
+	/// <remarks>By default, this method uses sampling to approximate the global minimum.
+	/// Subclasses of CostFunction may choose to implement a better (e.g. closed-form) solution.</remarks>
+	/// <param name="agent">The agent for which the optimal velocity is requested.</param>
+	/// <param name="velocity">The intermediate velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>The velocity with minimum cost (or an approximation thereof) for the given agent.</param>
+	virtual Vector2D GetGlobalMinimum_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const;
 
 	/// @}
 #pragma endregion
@@ -192,6 +210,19 @@ public:
 	/// <param name="costFunctions">A list of cost functions to evaluate.</param>
 	/// <returns>The sample velocity for which the sum of all cost-function values is lowest.</param>
 	static Vector2D ApproximateGlobalMinimumBySampling(Agent* agent, const WorldBase* world, 
+		const SamplingParameters& params, const CostFunctionList& costFunctions);
+
+	/// <summary>Uses sampling to approximate the global minimum of a list of cost functions.
+	/// <remarks>This method tries out several candidate velocities (sampled according to 'params'), 
+	/// computes the total cost for each candidate (combining all functions in 'costFunctions'), 
+	/// and returns the velocity with the lowest cost.</remarks>
+	/// <param name="agent">The agent for which the optimal velocity is requested.</param>
+	/// <param name="velocity">The intermediate velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <param name="params">Parameters for sampling the velocity space.</param>
+	/// <param name="costFunctions">A list of cost functions to evaluate.</param>
+	/// <returns>The sample velocity for which the sum of all cost-function values is lowest.</param>
+	static Vector2D ApproximateGlobalMinimumBySampling_RK4(Agent* agent, Vector2D velocity, const WorldBase* world,
 		const SamplingParameters& params, const CostFunctionList& costFunctions);
 
 	/// <summary>Parses the parameters of the cost function.</summary>

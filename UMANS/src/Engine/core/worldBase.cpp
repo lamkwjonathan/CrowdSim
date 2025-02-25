@@ -87,22 +87,23 @@ void WorldBase::computeNeighboringObstacles_Flat(const Vector2D& position, float
 void WorldBase::DoStep()
 {
 	// Before the simulation frame begins, add agents that need to be added now (once every coarse time step)
+
 	int n = (int)agents_.size();
-	if (coarse_time_ == 0.0f)
+
+	if (coarse_time_ == 0.f)
 	{
 		while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
 		{
 			addAgentToList(agentsToAdd.top().first);
 			agentsToAdd.pop();
 		}
+		n = (int)agents_.size();
 
-	// --- Main simulation tasks:
+		// --- Main simulation tasks:
 		// 1. build the KD tree for nearest-neighbor computations (once every coarse time step)
 		if (agentKDTree != nullptr)
 			delete agentKDTree;
 		agentKDTree = new AgentKDTree(agents_);
-
-		n = (int)agents_.size();
 
 		// 2. compute nearest neighbors for each agent (once every coarse time step)
 		// Seems to be inefficient to step into agent only to step out again (might want to refactor)
@@ -111,6 +112,7 @@ void WorldBase::DoStep()
 			agents_[i]->ComputeNeighbors(this);
 	}
 
+	
 	// compute SPH parameters if required
 	if (GetIsActiveSPH()) 
 	{
@@ -140,7 +142,7 @@ void WorldBase::DoStep()
 
 	// 6. move all agents to their new positions
 	DoStep_MoveAllAgents();
-
+	
 	// --- End of main simulation tasks.	
 
 	// increase the time that has passed

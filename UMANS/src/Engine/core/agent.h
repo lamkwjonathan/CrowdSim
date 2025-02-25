@@ -65,7 +65,8 @@ public:
 		float mass_ = 1;
 
 		/// <summary>The visualization color of the agent, used by the UMANS GUI when applicable.</summary>
-		Color color_ = Color(255, 180, 0);
+		//Color color_ = Color(255, 180, 0);
+		Color color_ = Color(0, 104, 204);
 	};
 
 private:
@@ -98,7 +99,11 @@ private:
 	Vector2D next_pressure_force_obs_;
 	Vector2D next_viscosity_force_;
 
-	
+	Vector2D k1_;
+	Vector2D k2_;
+	Vector2D k3_;
+	Vector2D k4_;
+
 	NeighborList neighbors_;
 
 	// Private constructor; only the world should create agents
@@ -150,6 +155,12 @@ public:
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void ComputeAcceleration(WorldBase* world);
 
+	/// <summary>Uses this agent's Policy and intermediate velocity to compute a new acceleration vector for the agent by the RK4 method.</summary>
+	/// <param name="velocity">The intermediate velocity used for calculation.</param>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	/// <returns>A Vector2D containing the intermediate acceleration of the agent.</returns>
+	Vector2D ComputeAcceleration_RK4(Vector2D velocity, WorldBase* world);
+
 	/// <summary>Computes forces with neighboring agents that are currently colliding with this agent.</summary>
 	/// <remarks>The result will be stored internally in the agent.</remarks>
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
@@ -158,6 +169,10 @@ public:
 	/// <summary>Updates the velocity and position of this Agent via Euler integration, using the last computed acceleration and contact forces.</summary>
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void UpdateVelocityAndPosition(WorldBase* world);
+
+	/// <summary>Updates the velocity and position of this Agent via Runge-Kutta method, using the last computed acceleration and contact forces.</summary>
+/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void UpdateVelocityAndPosition_RK4(WorldBase* world);
 
 	/// @}
 #pragma endregion

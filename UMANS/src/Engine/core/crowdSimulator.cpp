@@ -725,6 +725,7 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 		return nullptr;
 	}
 	crowdsimulator->GetWorld()->SetCoarseDeltaTime(delta_time);
+	//crowdsimulator->GetWorld()->SetFineDeltaTime(delta_time); // temporary setting for unified delta_time
 
 	float write_interval = -1;
 	simulationElement->QueryFloatAttribute("write_interval", &write_interval);

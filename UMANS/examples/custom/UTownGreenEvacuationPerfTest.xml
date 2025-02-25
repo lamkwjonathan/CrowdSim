@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Simulation delta_time="0.1" write_interval = "0.2" end_time="30">
+<Simulation delta_time="0.05" write_interval = "0.2" end_time="30">
 	<World type="Infinite" goal_radius="10.0">
 		<Obstacles file="../obstacles/UTownGreen.xml"/>
 	</World>
-	<SPH max_density = "4.0" />
+	<SPH max_density = "4.0" density_blending = "true" />
 	<Policies file="../policies/ORCA.xml" />
 	<Agents file="../agents/UTownGreen100000.xml" />
 </Simulation>

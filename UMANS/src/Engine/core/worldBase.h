@@ -135,7 +135,7 @@ protected:
 	AgentKDTree* agentKDTree;
 
 	/// <summary>The length (in seconds) of a fine (physics) simulation step.</summary>
-	float fine_delta_time_ = 0.02;
+	float fine_delta_time_ = 0.05; // lambda * radius / max_speed = 0.4 * 0.24 / 1.8 = 0.053333 (CFL Stability Criteria)
 
 	/// <summary>The length (in seconds) of a coarse (regular) simulation step.</summary>
 	float coarse_delta_time_;
