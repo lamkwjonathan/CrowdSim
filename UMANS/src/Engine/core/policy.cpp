@@ -77,7 +77,7 @@ Vector2D Policy::ComputeAcceleration(Agent* agent, WorldBase * world)
 Vector2D Policy::ComputeAcceleration_RK4(Agent* agent, Vector2D velocity, WorldBase* world)
 {
 	const Vector2D& currentVelocity = velocity;
-	float dt = world->GetCoarseDeltaTime();
+	float dt = world->GetFineDeltaTime();
 
 	// if the agent does not want to move, return a deceleration vector
 	if (agent->getPreferredVelocity().isZero())

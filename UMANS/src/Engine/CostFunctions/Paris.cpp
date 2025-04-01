@@ -47,6 +47,21 @@ float Paris::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * w
 	return 1000 * directionCost + speedDeviationCost + 0.001f * diffToPreferred;
 }
 
+float Paris::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	const Vector2D& direction = velocity.getnormalized();
+
+	// Compute t1 and t2 for each neighbor, as defined in this paper:
+	// the agent will avoid a neighbor by passing in front of it (before t1) or behind it (after t2).
+	const auto& neighborAvoidanceTimes = ComputeAllNeighborAvoidanceRanges(direction, agent);
+
+	float directionCost = GetDirectionCost(direction, agent, neighborAvoidanceTimes);
+	float speedDeviationCost = GetSpeedDeviationCost(velocity.magnitude(), direction, agent, neighborAvoidanceTimes);
+	float diffToPreferred = (velocity - agent->getPreferredVelocity()).magnitude();
+
+	return 1000 * directionCost + speedDeviationCost + 0.001f * diffToPreferred;
+}
+
 std::pair<float, float> Paris::ComputeT1andT2(const Vector2D& origin, const Vector2D& velocity, const Vector2D& point, const float radius) const
 {
 	// t1 and t2 are the times at which the neighboring agent starts and stops touching 'point', a position on the neighbor's predicted trajectory.

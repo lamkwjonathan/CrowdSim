@@ -70,6 +70,43 @@ float VanToll::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase *
 	return candidateCost;
 }
 
+float VanToll::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	const Vector2D& currentPos = agent->getPosition();
+	const Vector2D& currentVel = velocity;
+	const Vector2D& prefVel = agent->getPreferredVelocity();
+	const float prefSpeed = prefVel.magnitude();
+	const float speed = velocity.magnitude();
+
+	// compute the time to collision
+	const float candidateTTC = ComputeTimeToFirstCollision(currentPos, velocity, agent->getRadius(), agent->getNeighbors(), range_, false);
+
+	// compute the distance to collision, bounded by the viewing distance
+	float distanceToCollision = (candidateTTC == MaxFloat ? MaxFloat : candidateTTC * speed);
+	if (distanceToCollision > max_distance)
+		distanceToCollision = max_distance;
+
+	const float distanceToCollisionFrac = (max_distance - distanceToCollision) / max_distance;
+
+	const float deviationFromPreferredAngle = angle(velocity, prefVel);
+	const float deviationFromPreferredSpeed = abs(speed - prefSpeed) / prefSpeed;
+	const float deviationFromCurrentAngle = angle(velocity, currentVel);
+
+	// The cost of this velocity is a weighted sum of various factors
+	const float Weight_DistanceToCollision = 1;
+	const float Weight_DeviationFromPreferredAngle = 1;
+	const float Weight_DeviationFromPreferredSpeed = 1;
+	const float Weight_DeviationFromCurrentAngle = 1;
+
+	const float candidateCost =
+		Weight_DistanceToCollision * (max_distance - distanceToCollision) +
+		Weight_DeviationFromPreferredAngle * deviationFromPreferredAngle +
+		Weight_DeviationFromPreferredSpeed * deviationFromPreferredSpeed +
+		Weight_DeviationFromCurrentAngle * deviationFromCurrentAngle;
+
+	return candidateCost;
+}
+
 void VanToll::parseParameters(const CostFunctionParameters & params)
 {
 	CostFunction::parseParameters(params);

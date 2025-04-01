@@ -153,6 +153,16 @@ public:
 	/// <returns>A floating-point cost indicating the (un)attractiveness of the given velocity for the given agent.</param>
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase* world) const = 0;
 
+	/// <summary>Computes the cost of a given velocity. Used for RK4 calculations.</summary>
+	/// <remarks>The cost can be thought of as the (un)attractiveness of the given velocity for the given agent. 
+	/// A lower cost implies that the velocity is better for the agent.
+	/// Note: Every (non-abstract) child class of CostFunction must implement this method.</remarks>
+	/// <param name="velocity">The velocity for which the cost is requested.</param>
+	/// <param name="agent">The agent that would use the requested velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A floating-point cost indicating the (un)attractiveness of the given velocity for the given agent.</param>
+	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const = 0;
+
 	/// <summary>Computes the gradient of the cost function at a given velocity.</summary>
 	/// <remarks>The gradient is a 2D vector that points in the direction of steepest ascent, i.e. the direction in which the cost increases the most. 
 	/// By default, this method uses sampling to approximate the gradient.
@@ -162,6 +172,16 @@ public:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	/// <returns>A 2D vector denoting the gradient of the cost function at the given velocity.</param>
 	virtual Vector2D GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase* world) const;
+
+	/// <summary>Computes the gradient of the cost function at a given velocity. Used for RK4 calculations.</summary>
+	/// <remarks>The gradient is a 2D vector that points in the direction of steepest ascent, i.e. the direction in which the cost increases the most. 
+	/// By default, this method uses sampling to approximate the gradient.
+	/// Subclasses of CostFunction may choose to implement something more specific (e.g. a closed-form gradient).</remarks>
+	/// <param name="velocity">The velocity for which the gradient is requested.</param>
+	/// <param name="agent">The agent that would use the requested velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A 2D vector denoting the gradient of the cost function at the given velocity.</param>
+	virtual Vector2D GetGradient_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const;
 
 	/// <summary>Computes the gradient of the cost at the agent's current velocity.</summary>
 	/// <remarks>By default, this function simply calls GetGradient(), 

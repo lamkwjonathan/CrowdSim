@@ -52,6 +52,12 @@ protected:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	/// <returns>A force vector that steers the agent towards its preferred velocity.</returns>
 	virtual Vector2D ComputeForce(Agent* agent, const WorldBase* world) const override;
+
+	/// <summary>Computes a 2D force vector that steers the agent towards its preferred velocity.</summary>
+	/// <param name="agent">The agent for which a force is requested.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A force vector that steers the agent towards its preferred velocity.</returns>
+	virtual Vector2D ComputeForce_RK4(Agent* agent, const Vector2D velocity, const WorldBase* world) const override;
 };
 
 #endif //LIB_GOAL_REACHING_H

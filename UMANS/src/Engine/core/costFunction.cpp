@@ -60,6 +60,26 @@ Vector2D CostFunction::GetGradient(const Vector2D& velocity, Agent* agent, const
 	return Vector2D(gradientX, gradientY);
 }
 
+Vector2D CostFunction::GetGradient_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	// Default implementation of the gradient: a numerical approximation
+
+	float delta = 0.1f;
+	Vector2D deltaX(delta, 0), deltaY(0, delta);
+
+	// approximate gradient in x direction
+	float costLeft = GetCost_RK4(velocity - deltaX, agent, world);
+	float costRight = GetCost_RK4(velocity + deltaX, agent, world);
+	float gradientX = (costRight - costLeft) / (2 * delta);
+
+	// approximate gradient in y direction
+	float costBottom = GetCost_RK4(velocity - deltaY, agent, world);
+	float costTop = GetCost_RK4(velocity + deltaY, agent, world);
+	float gradientY = (costTop - costBottom) / (2 * delta);
+
+	return Vector2D(gradientX, gradientY);
+}
+
 Vector2D CostFunction::GetGradientFromCurrentVelocity(Agent* agent, const WorldBase* world) const
 {
 	return GetGradient(agent->getVelocity(), agent, world);
@@ -67,7 +87,7 @@ Vector2D CostFunction::GetGradientFromCurrentVelocity(Agent* agent, const WorldB
 
 Vector2D CostFunction::GetGradientFromCurrentVelocity_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const
 {
-	return GetGradient(velocity, agent, world);
+	return GetGradient_RK4(velocity, agent, world);
 }
 
 Vector2D CostFunction::GetGlobalMinimum(Agent* agent, const WorldBase* world) const
@@ -206,7 +226,7 @@ Vector2D CostFunction::ApproximateGlobalMinimumBySampling_RK4(Agent* agent, Vect
 	if (params.radius == SamplingParameters::Radius::PREFERRED_SPEED) radius = agent->getPreferredSpeed();
 	else if (params.radius == SamplingParameters::Radius::MAXIMUM_SPEED) radius = agent->getMaximumSpeed();
 	else if (params.radius == SamplingParameters::Radius::MAXIMUM_ACCELERATION)
-		radius = std::min(2.0f * agent->getMaximumSpeed(), agent->getMaximumAcceleration() * world->GetCoarseDeltaTime());
+		radius = std::min(2.0f * agent->getMaximumSpeed(), agent->getMaximumAcceleration() * world->GetFineDeltaTime());
 
 
 	// compute the base direction (a unit vector)
@@ -235,7 +255,7 @@ Vector2D CostFunction::ApproximateGlobalMinimumBySampling_RK4(Agent* agent, Vect
 			// compute the cost for this velocity
 			float totalCost = 0;
 			for (auto& costFunction : costFunctions)
-				totalCost += costFunction.second * costFunction.first->GetCost(velocity, agent, world);
+				totalCost += costFunction.second * costFunction.first->GetCost_RK4(velocity, agent, world);
 
 			// check if this cost is better than the minimum so far
 			if (totalCost < bestCost)
@@ -271,7 +291,7 @@ Vector2D CostFunction::ApproximateGlobalMinimumBySampling_RK4(Agent* agent, Vect
 				// compute the cost for this velocity
 				float totalCost = 0;
 				for (auto& costFunction : costFunctions)
-					totalCost += costFunction.second * costFunction.first->GetCost(velocity, agent, world);
+					totalCost += costFunction.second * costFunction.first->GetCost_RK4(velocity, agent, world);
 
 				// check if this cost is better than the minimum so far
 				if (totalCost < bestCost)

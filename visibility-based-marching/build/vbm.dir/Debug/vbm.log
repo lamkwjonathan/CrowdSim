@@ -1,0 +1,1557 @@
+﻿cl : command line warning D9002: ignoring unknown option '-O0'
+cl : command line warning D9002: ignoring unknown option '-g'
+cl : command line warning D9002: ignoring unknown option '-std=c++20'
+  main.cpp
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(13,16): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::mode'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(16,19): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::nb_of_obstacles'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(22,17): warning C4820: 'vbm::Config': '3' bytes padding added after data member 'vbm::Config::randomSeed'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(23,25): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::seedValue'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(47,18): warning C4820: 'vbm::Config': '1' bytes padding added after data member 'vbm::Config::saveDistanceFunctionImage'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(50,1): warning C4820: 'vbm::Config': '7' bytes padding added after data member 'vbm::Config::contourLines'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(77,56): warning C4820: 'vbm::Environment': '4' bytes padding added after data member 'vbm::Environment::seedValue_'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4625: 'vbm::Environment': copy constructor was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4626: 'vbm::Environment': assignment operator was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1522,29): warning C4458: declaration of 'shift' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1526,10): message : see declaration of 'ska::fibonacci_hash_policy::shift'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(156,25): warning C4820: 'vbm::Solver': '4' bytes padding added after data member 'vbm::Solver::nb_of_iterations_'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(633,1): warning C4820: 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>': '6' bytes padding added after base class 'ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+          and
+          [
+              K=vbm::size_t,
+              V=double,
+              E=std::equal_to<vbm::size_t>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1538): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(171): message : see reference to class template instantiation 'ska::flat_hash_map<vbm::size_t,double,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(637,1): warning C4820: 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>': '2' bytes padding added after data member 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::max_lookups'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(175,1): warning C4625: 'vbm::Solver': copy constructor was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(175,1): warning C4626: 'vbm::Solver': assignment operator was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4365: 'return': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(85,1): warning C4365: 'argument': conversion from 'const int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(706,51): warning C4458: declaration of 'num_slots_minus_one' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(634,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_slots_minus_one'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(707): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(336): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1538): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(171): message : see reference to class template instantiation 'ska::flat_hash_map<vbm::size_t,double,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(707,1): warning C4458: declaration of 'max_lookups' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(636,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::max_lookups'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(141,4): warning C4820: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>': '7' bytes padding added after data member 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::distance_from_desired'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(708): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(142,1): warning C4626: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>': assignment operator was implicitly defined as deleted
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(115,1): warning C4582: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::value': constructor is not implicitly called
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(115): message : while compiling class template member function 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(int8_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(120): message : see reference to function template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(int8_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(708): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(707): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(336): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(114,1): warning C4582: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::value': constructor is not implicitly called
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(114): message : while compiling class template member function 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(void)'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(120): message : see reference to function template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(void)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(57,22): warning C4514: 'vbm::Environment::getVisibilityField': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(61,22): warning C4514: 'vbm::Environment::getSpeedField': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(63,22): warning C4514: 'vbm::Environment::getConfig': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1089,16): warning C4514: 'ska::prime_number_hash_policy::next_size_over': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1479,8): warning C4514: 'ska::prime_number_hash_policy::commit': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1482,8): warning C4514: 'ska::prime_number_hash_policy::reset': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1484,10): warning C4514: 'ska::prime_number_hash_policy::index_for_hash': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1487,10): warning C4514: 'ska::prime_number_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1499,10): warning C4514: 'ska::power_of_two_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1502,10): warning C4514: 'ska::power_of_two_hash_policy::next_size_over': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1506,8): warning C4514: 'ska::power_of_two_hash_policy::commit': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1507,8): warning C4514: 'ska::power_of_two_hash_policy::reset': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1511,10): warning C4514: 'ska::fibonacci_hash_policy::index_for_hash': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1514,10): warning C4514: 'ska::fibonacci_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1518,10): warning C4514: 'ska::fibonacci_hash_policy::next_size_over': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1522,8): warning C4514: 'ska::fibonacci_hash_policy::commit': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1523,8): warning C4514: 'ska::fibonacci_hash_policy::reset': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(16,8): warning C4514: 'vbm::Node::operator <': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(38,14): warning C4514: 'vbm::Solver::getNbOfIterations': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(43,14): warning C4514: 'vbm::Solver::indexAt': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(46,16): warning C4514: 'vbm::Solver::coordinatesAt': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(75,17): warning C4514: 'vbm::Solver::evaluateDistance': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(79,17): warning C4514: 'vbm::Solver::evaluateDistanceSpeedField': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(117,14): warning C4514: 'vbm::Solver::hashFunction': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(136,15): warning C4514: 'vbm::Solver::isValid': unreferenced inline function has been removed
+  environment.cpp
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(13,16): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::mode'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(16,19): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::nb_of_obstacles'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(22,17): warning C4820: 'vbm::Config': '3' bytes padding added after data member 'vbm::Config::randomSeed'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(23,25): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::seedValue'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(47,18): warning C4820: 'vbm::Config': '1' bytes padding added after data member 'vbm::Config::saveDistanceFunctionImage'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(50,1): warning C4820: 'vbm::Config': '7' bytes padding added after data member 'vbm::Config::contourLines'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(77,56): warning C4820: 'vbm::Environment': '4' bytes padding added after data member 'vbm::Environment::seedValue_'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4625: 'vbm::Environment': copy constructor was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4626: 'vbm::Environment': assignment operator was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(57,17): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(59,23): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(62,50): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(65,80): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(65,80): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(69,50): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(72,76): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(72,76): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(78,46): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(79,49): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(104,23): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(107,50): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(112,50): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(120,46): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(121,49): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(202,50): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(203,57): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(203,24): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(252,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(252,5): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(254,47): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(54,24): warning C4514: 'vbm::ConfigParser::getInstance': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(57,22): warning C4514: 'vbm::Environment::getVisibilityField': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(61,22): warning C4514: 'vbm::Environment::getSpeedField': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(63,22): warning C4514: 'vbm::Environment::getConfig': unreferenced inline function has been removed
+  solver.cpp
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(13,16): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::mode'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(16,19): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::nb_of_obstacles'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(22,17): warning C4820: 'vbm::Config': '3' bytes padding added after data member 'vbm::Config::randomSeed'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(23,25): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::seedValue'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(47,18): warning C4820: 'vbm::Config': '1' bytes padding added after data member 'vbm::Config::saveDistanceFunctionImage'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(50,1): warning C4820: 'vbm::Config': '7' bytes padding added after data member 'vbm::Config::contourLines'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(77,56): warning C4820: 'vbm::Environment': '4' bytes padding added after data member 'vbm::Environment::seedValue_'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4625: 'vbm::Environment': copy constructor was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment/environment.hpp(87,1): warning C4626: 'vbm::Environment': assignment operator was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1522,29): warning C4458: declaration of 'shift' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1526,10): message : see declaration of 'ska::fibonacci_hash_policy::shift'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(156,25): warning C4820: 'vbm::Solver': '4' bytes padding added after data member 'vbm::Solver::nb_of_iterations_'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(633,1): warning C4820: 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>': '6' bytes padding added after base class 'ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+          and
+          [
+              K=vbm::size_t,
+              V=double,
+              E=std::equal_to<vbm::size_t>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1538): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(171): message : see reference to class template instantiation 'ska::flat_hash_map<vbm::size_t,double,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(637,1): warning C4820: 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>': '2' bytes padding added after data member 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::max_lookups'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(175,1): warning C4625: 'vbm::Solver': copy constructor was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(175,1): warning C4626: 'vbm::Solver': assignment operator was implicitly defined as deleted
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4365: 'return': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(85,1): warning C4365: 'argument': conversion from 'const int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(20,31): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(20,25): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(60,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(66,55): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(68,55): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(129,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(129,43): warning C4365: '=': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(131,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(140,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(150,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(151,18): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(152,19): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(156,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(156,55): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(157,27): warning C4365: 'argument': conversion from 'const int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(183,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(186,10): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(189,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(191,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(192,27): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(195,63): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(196,61): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(196,61): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(197,33): warning C4365: 'argument': conversion from 'const int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(198,67): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(201,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(201,61): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(202,42): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(227,41): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(228,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(231,74): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(232,40): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(272,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(272,47): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(274,6): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(282,6): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(302,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(302,43): warning C4365: '=': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(304,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(309,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(321,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(322,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(323,19): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(324,18): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(326,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(326,55): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(327,27): warning C4365: 'argument': conversion from 'const int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(376,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(379,10): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(382,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(383,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(383,61): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(384,42): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(409,41): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(410,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(417,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(418,39): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(421,40): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(456,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(456,53): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(456,53): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(456,53): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(459,6): warning C4365: 'argument': conversion from 'const int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(468,6): warning C4365: 'argument': conversion from 'const int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(492,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(492,43): warning C4365: '=': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(495,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(501,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(513,20): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(515,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(516,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(517,19): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(517,35): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(517,36): warning C4365: '=': conversion from 'int' to 'T', signed/unsigned mismatch
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(549,20): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(558,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(561,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(565,23): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(566,10): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(570,41): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(570,57): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(570,58): warning C4365: '=': conversion from 'int' to 'T', signed/unsigned mismatch
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(571,39): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(576,43): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(577,39): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(579,10): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(584,42): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(616,38): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(616,38): warning C4365: 'argument': conversion from 'vbm::size_t' to '_Ty', signed/unsigned mismatch
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(617,38): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(617,38): warning C4365: 'argument': conversion from 'vbm::size_t' to '_Ty', signed/unsigned mismatch
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(631,17): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(632,18): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(633,19): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(635,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(635,55): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(636,27): warning C4365: 'argument': conversion from 'const int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(662,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(665,10): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(672,50): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(672,50): warning C4365: 'initializing': conversion from '_Ty' to 'int', signed/unsigned mismatch
+          with
+          [
+              _Ty=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(673,49): warning C4365: 'argument': conversion from 'int' to 'size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(674,49): warning C4365: 'argument': conversion from 'int' to 'size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(675,38): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(688,39): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(689,41): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(691,40): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<bool>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(727,53): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(728,57): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(758,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(759,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(762,38): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(762,38): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(764,76): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(764,76): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(765,8): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(767,71): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(767,71): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(786,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(787,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(790,38): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(790,38): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(792,76): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(792,76): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(793,8): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(796,74): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(796,74): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(812,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(812,53): warning C4365: 'argument': conversion from 'vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(813,25): warning C4365: 'argument': conversion from 'const int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(821,8): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(828,37): warning C4365: 'argument': conversion from 'const int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(829,35): warning C4365: 'argument': conversion from 'const int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(830,19): warning C4365: 'argument': conversion from 'const int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(851,50): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(851,50): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(852,6): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(855,6): warning C4365: 'argument': conversion from 'const int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(856,27): warning C4365: 'argument': conversion from 'int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(862,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(862,53): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(863,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(866,36): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(868,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(868,53): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(869,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(872,36): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(876,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(876,53): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(877,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(880,36): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(882,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(882,53): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(883,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(886,36): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(891,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(891,57): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(892,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(896,38): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(898,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(898,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(899,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(903,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(904,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(906,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(906,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(907,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(911,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(912,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(917,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(917,57): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(918,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(922,38): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(924,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(924,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(925,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(929,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(930,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(932,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(932,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(933,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(937,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(938,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(943,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(943,57): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(944,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(948,38): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(950,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(950,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(951,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(955,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(956,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(958,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(958,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(959,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(963,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(964,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(969,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(969,57): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(970,10): warning C4365: 'argument': conversion from 'int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(974,38): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(976,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(976,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(977,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(981,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(982,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(984,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(984,68): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(985,12): warning C4365: 'argument': conversion from 'const int' to 'const FindKey', signed/unsigned mismatch
+          with
+          [
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(989,48): warning C4365: 'argument': conversion from 'const int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(990,53): warning C4365: 'argument': conversion from 'int' to 'const K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(994,43): warning C4365: 'argument': conversion from 'const int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(995,45): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(995,45): warning C4365: 'argument': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(996,25): warning C4365: 'argument': conversion from 'int' to 'K', signed/unsigned mismatch
+          with
+          [
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1006,28): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1006,12): warning C4244: 'initializing': conversion from 'T' to 'double', possible loss of data
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1012,25): warning C4244: 'argument': conversion from 'double' to 'size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1013,25): warning C4244: 'argument': conversion from 'double' to 'size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1015,30): warning C4244: 'argument': conversion from 'double' to 'const vbm::size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1019,23): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1019,18): warning C4244: '=': conversion from 'T' to 'double', possible loss of data
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1068,43): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1082,55): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1082,55): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1086,12): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1087,51): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1093,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1093,40): warning C4365: '=': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1097,12): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1098,49): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1111,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1111,24): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1111,24): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1111,24): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1112,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1112,25): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1112,25): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1112,25): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1115,29): warning C4365: 'argument': conversion from 'const int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1123,31): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1136,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1137,46): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1139,52): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1141,35): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1153,58): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1153,58): warning C4365: '=': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1157,14): warning C4365: 'argument': conversion from 'int' to 'const vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1158,55): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1178,37): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1180,50): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1195,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1195,24): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1195,24): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1195,24): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1196,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1196,25): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1196,25): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1196,25): warning C4365: 'initializing': conversion from 'const vbm::size_t' to 'const int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1199,29): warning C4365: 'argument': conversion from 'const int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1207,31): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1220,10): warning C4365: 'argument': conversion from 'int' to 'const vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1221,46): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1223,52): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1225,35): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1243,35): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1245,48): warning C4365: 'argument': conversion from 'int' to 'unsigned int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1285,7): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1285,7): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1287,29): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1306,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1306,5): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1308,27): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1326,7): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1326,7): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1328,32): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<vbm::size_t>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1346,26): warning C4456: declaration of 'os' hides previous local declaration
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1305,19): message : see declaration of 'os'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1387,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1387,5): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1389,27): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1408,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1408,5): warning C4365: 'initializing': conversion from 'vbm::size_t' to 'int', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1410,27): warning C4365: 'argument': conversion from 'int' to 'vbm::Field<double>::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(623,61): warning C5219: implicit conversion from 'size_t' to 'float', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(620): message : while compiling class template member function 'float ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::load_factor(void) const'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(248): message : see reference to function template instantiation 'float ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::load_factor(void) const' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1538): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(171): message : see reference to class template instantiation 'ska::flat_hash_map<vbm::size_t,double,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(141,4): warning C4820: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>': '7' bytes padding added after data member 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::distance_from_desired'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(586): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(583): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::clear(void)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(88): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::clear(void)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(142,1): warning C4626: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>': assignment operator was implicitly defined as deleted
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(523,1): warning C4458: declaration of 'num_elements' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(638,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_elements'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(523): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::reserve(size_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(102): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::reserve(size_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(426,79): warning C4365: 'return': conversion from 'int' to 'size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(426): message : while compiling class template member function 'size_t ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::count(const FindKey &) const'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(852): message : see reference to function template instantiation 'size_t ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::count(const FindKey &) const' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              FindKey=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(706,51): warning C4458: declaration of 'num_slots_minus_one' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(634,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_slots_minus_one'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(707): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(336): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::deallocate_data(ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,size_t,int8_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(707,1): warning C4458: declaration of 'max_lookups' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(636,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::max_lookups'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(645,1): warning C4458: declaration of 'num_elements' hides class member
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(638,10): message : see declaration of 'ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_elements'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(645): message : while compiling class template member function 'size_t ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_buckets_for_reserve(size_t) const'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(524): message : see reference to function template instantiation 'size_t ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::num_buckets_for_reserve(size_t) const' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(647,9): warning C5219: implicit conversion from 'size_t' to 'const _Ty', possible loss of data
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(488,22): warning C5219: implicit conversion from 'size_t' to 'double', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(484): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::rehash(size_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(526): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::rehash(size_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(115,1): warning C4582: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::value': constructor is not implicitly called
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(115): message : while compiling class template member function 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(int8_t)'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(120): message : see reference to function template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(int8_t)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(586): message : see reference to class template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(583): message : while compiling class template member function 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::clear(void)'
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(88): message : see reference to function template instantiation 'void ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::clear(void)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(114,1): warning C4582: 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::value': constructor is not implicitly called
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(114): message : while compiling class template member function 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(void)'
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(120): message : see reference to function template instantiation 'ska::detailv3::sherwood_v3_entry<std::pair<K,V>>::sherwood_v3_entry(void)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\utility(186,48): warning C4267: 'initializing': conversion from 'size_t' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(770): message : see reference to function template instantiation 'std::pair<double,int>::pair<double&,vbm::size_t&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=vbm::size_t &
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(769): message : see reference to function template instantiation 'std::pair<double,int>::pair<double&,vbm::size_t&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=vbm::size_t &
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(671,34): warning C5219: implicit conversion from 'size_t' to 'double', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(444): message : see reference to function template instantiation 'std::pair<ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::templated_iterator<std::pair<K,V>>,bool> ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::emplace_new_key<_Ty,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value>(int8_t,ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,Key &&,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value &&)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              _Ty=size_t,
+              Key=size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(454): message : see reference to function template instantiation 'std::pair<ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::templated_iterator<std::pair<K,V>>,bool> ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::emplace_new_key<_Ty,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value>(int8_t,ska::detailv3::sherwood_v3_entry<std::pair<K,V>> *,Key &&,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value &&)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              _Ty=size_t,
+              Key=size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1556): message : see reference to function template instantiation 'std::pair<ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::templated_iterator<std::pair<K,V>>,bool> ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::emplace<unsigned __int64,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value>(Key &&,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value &&)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              Key=unsigned __int64
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1556): message : see reference to function template instantiation 'std::pair<ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::templated_iterator<std::pair<K,V>>,bool> ska::detailv3::sherwood_v3_table<std::pair<K,V>,K,H,ska::detailv3::KeyOrValueHasher<K,std::pair<K,V>,H>,E,ska::detailv3::KeyOrValueEquality<K,std::pair<K,V>,E>,A,std::allocator<ska::detailv3::sherwood_v3_entry<std::pair<K,V>>>>::emplace<unsigned __int64,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value>(Key &&,ska::flat_hash_map<K,V,H,E,A>::convertible_to_value &&)' being compiled
+          with
+          [
+              K=vbm::size_t,
+              V=double,
+              H=std::hash<vbm::size_t>,
+              E=std::equal_to<vbm::size_t>,
+              A=std::allocator<std::pair<vbm::size_t,double>>,
+              Key=unsigned __int64
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1555): message : while compiling class template member function 'V &ska::flat_hash_map<vbm::size_t,V,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>::operator [](K &&)'
+          with
+          [
+              V=double,
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(157): message : see reference to function template instantiation 'V &ska::flat_hash_map<vbm::size_t,V,std::hash<K>,std::equal_to<K>,std::allocator<std::pair<K,V>>>::operator [](K &&)' being compiled
+          with
+          [
+              V=double,
+              K=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(670,22): warning C5219: implicit conversion from 'size_t' to 'double', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(54,24): warning C4514: 'vbm::ConfigParser::getInstance': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1089,16): warning C4514: 'ska::prime_number_hash_policy::next_size_over': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1479,8): warning C4514: 'ska::prime_number_hash_policy::commit': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1482,8): warning C4514: 'ska::prime_number_hash_policy::reset': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1484,10): warning C4514: 'ska::prime_number_hash_policy::index_for_hash': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1487,10): warning C4514: 'ska::prime_number_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1499,10): warning C4514: 'ska::power_of_two_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1502,10): warning C4514: 'ska::power_of_two_hash_policy::next_size_over': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1506,8): warning C4514: 'ska::power_of_two_hash_policy::commit': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1507,8): warning C4514: 'ska::power_of_two_hash_policy::reset': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map/flat_hash_map.hpp(1514,10): warning C4514: 'ska::fibonacci_hash_policy::keep_in_range': unreferenced inline function has been removed
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\solver/solver.hpp(38,14): warning C4514: 'vbm::Solver::getNbOfIterations': unreferenced inline function has been removed
+  parser.cpp
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(13,16): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::mode'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(16,19): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::nb_of_obstacles'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(22,17): warning C4820: 'vbm::Config': '3' bytes padding added after data member 'vbm::Config::randomSeed'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(23,25): warning C4820: 'vbm::Config': '4' bytes padding added after data member 'vbm::Config::seedValue'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(47,18): warning C4820: 'vbm::Config': '1' bytes padding added after data member 'vbm::Config::saveDistanceFunctionImage'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(50,1): warning C4820: 'vbm::Config': '7' bytes padding added after data member 'vbm::Config::contourLines'
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(66,41): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(79,41): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(100,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(113,44): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(126,45): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(137,45): warning C4365: '=': conversion from 'int' to 'vbm::size_t', signed/unsigned mismatch
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(243,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(257,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\parser/parser.hpp(54,24): warning C4514: 'vbm::ConfigParser::getInstance': unreferenced inline function has been removed
+  Generating Code...
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(464): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(462): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp(464): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(68): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(65): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(68): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(66): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(65): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(66): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1032): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1031): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1032): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(601): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(521): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(601): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(596): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(521): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(596): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(592): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(521): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(592): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(524): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(521): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(549): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(555): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(552): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(579): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(491): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(490): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(501): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(440): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(340): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(440): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(986): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(983): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(986): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(433): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(340): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(433): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(429): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(340): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(429): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(984): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(983): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(984): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(348): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(340): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(348): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(978): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(975): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(978): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(341): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(340): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(341): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(712): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(648): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(712): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(976): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(975): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(976): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(709): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(648): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(709): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(373): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(370): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(384): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(971): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(968): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(971): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(301): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(300): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(309): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(969): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(968): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(969): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(702): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(648): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(702): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(960): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(957): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(960): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(653): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(648): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(653): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(958): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(957): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(958): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(659): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(656): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(665): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(257): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(170): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(257): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(952): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(949): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(952): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(672): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(671): message : index 'k' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(672): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(254): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(170): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(254): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(950): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(949): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(950): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(626): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(625): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(635): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(250): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(170): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(250): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(244): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(170): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(244): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(945): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(942): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(945): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(174): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(170): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(174): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(180): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(177): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(202): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(943): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(942): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(943): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(128): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(127): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(140): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(934): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(931): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(934): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1245): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1241): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1245): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(932): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(931): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(932): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1180): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1176): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1180): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1243): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1242): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1244): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(926): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(923): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(926): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1178): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1177): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1179): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1098): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1096): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1098): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1225): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1220): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1225): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1097): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1096): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1097): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1087): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1085): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1087): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(924): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(923): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(924): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1221): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1220): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1221): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1086): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1085): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1086): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1167): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1151): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1167): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(919): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(916): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(919): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1220): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1218): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1220): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1207): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1206): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1207): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1158): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1156): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1158): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1056): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1055): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1068): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1157): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1151): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1157): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(917): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(916): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(917): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1153): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1151): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1153): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(908): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(905): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(908): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1141): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1136): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1141): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(906): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(905): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(906): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1137): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1136): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1137): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(900): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(897): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(900): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1136): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1134): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1136): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(898): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(897): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(898): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1123): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1122): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1123): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(893): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(890): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(893): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(891): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(890): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(891): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(884): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(875): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(884): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(882): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(875): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(882): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(878): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(875): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(878): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(876): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(875): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(876): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(870): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(861): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(870): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(868): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(861): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(868): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(864): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(861): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(864): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(862): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(861): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(862): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(856): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(855): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(856): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1430): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1429): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1430): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1410): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1409): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1410): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1389): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1388): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1389): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1369): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1368): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1369): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1348): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1347): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1348): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1328): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1327): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1328): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1308): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1307): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1308): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1287): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1286): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(1287): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(79): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(78): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(79): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(526): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(525): message : index 'required_buckets' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(526): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(728): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(725): message : index 'k' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(733): message : feeds memory load on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(757): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(756): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(757): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(818): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(816): message : index 'p' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(821): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(785): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(784): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp(785): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(454): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(449): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(454): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(452): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(449): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(452): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(451): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(449): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(451): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(419): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(416): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(419): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(418): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(416): message : index '' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\flat_hash_map\flat_hash_map.hpp(418): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(79): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(76): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(79): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(160): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(154): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(160): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(158): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(154): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(158): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(157): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(154): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(157): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(275): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(274): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(275): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(254): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(253): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(254): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(121): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(118): message : index 'j' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp(121): message : feeds call on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(18): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(17): message : index 'i' range checked by comparison on this line
+C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include\environment\field.hpp(18): message : feeds call on this line
+LINK : warning LNK4300: ignoring '/INCREMENTAL' because input module contains ASAN metadata
+  vbm.vcxproj -> C:\Users\imjon\Documents\School\FYP\visibility-based-marching\Debug\vbm.exe

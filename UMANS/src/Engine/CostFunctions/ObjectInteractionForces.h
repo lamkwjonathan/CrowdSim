@@ -49,6 +49,15 @@ protected:
 	/// <returns>A 2D vector containing the sum of all agent-interaction forces, as computed by ComputeAgentInteractionForce().</returns>
 	virtual Vector2D ComputeForce(Agent* agent, const WorldBase* world) const override;
 
+	/// <summary>Computes and returns a 2D force vector that the agent experiences. (For use in RK4 calculations).</summary>
+	/// <remarks>In the case of ObjectInteractionForces, 
+	/// this method calls ComputeAgentInteractionForce() and ComputeObstacleInteractionForce() for each neighbor of the querying agent, 
+	/// and returns the sum of all these interaction forces.</remarks>
+	/// <param name="agent">The agent for which a force is requested.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A 2D vector containing the sum of all agent-interaction forces, as computed by ComputeAgentInteractionForce().</returns>
+	virtual Vector2D ComputeForce_RK4(Agent* agent, const Vector2D velocity, const WorldBase* world) const override;
+
 	/// <summary>Computes a 2D force vector that a given agent experiences due to a neighboring agent.</summary>
 	/// <remarks>Subclasses of ObjectInteractionForces must implement this function.</remarks>
 	/// <param name="agent">The agent for which a force is requested.</param>
@@ -56,12 +65,26 @@ protected:
 	/// <returns>A 2D vector describing the force that 'other' applies to 'agent', according to a particular force model.</returns>
 	virtual Vector2D ComputeAgentInteractionForce(const Agent* agent, const PhantomAgent& other) const = 0;
 
+	/// <summary>Computes a 2D force vector that a given agent experiences due to a neighboring agent. (For use in RK4 calculations).</summary>
+	/// <remarks>Subclasses of ObjectInteractionForces must implement this function.</remarks>
+	/// <param name="agent">The agent for which a force is requested.</param>
+	/// <param name="other">The neighboring agent.</param>
+	/// <returns>A 2D vector describing the force that 'other' applies to 'agent', according to a particular force model.</returns>
+	virtual Vector2D ComputeAgentInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const PhantomAgent& other) const = 0;
+
 	/// <summary>Computes a 2D force vector that a given agent experiences due to a neighboring obstacle segment.</summary>
 	/// <remarks>Subclasses of ObjectInteractionForces must implement this function.</remarks>
 	/// <param name="agent">The agent for which a force is requested.</param>
 	/// <param name="obstacle">The neighboring obstacle segment.</param>
 	/// <returns>A 2D vector describing the force that 'obstacle' applies to 'agent', according to a particular force model.</returns>
 	virtual Vector2D ComputeObstacleInteractionForce(const Agent* agent, const LineSegment2D& obstacle) const = 0;
+
+	/// <summary>Computes a 2D force vector that a given agent experiences due to a neighboring obstacle segment. (For use in RK4 calculations).</summary>
+	/// <remarks>Subclasses of ObjectInteractionForces must implement this function.</remarks>
+	/// <param name="agent">The agent for which a force is requested.</param>
+	/// <param name="obstacle">The neighboring obstacle segment.</param>
+	/// <returns>A 2D vector describing the force that 'obstacle' applies to 'agent', according to a particular force model.</returns>
+	virtual Vector2D ComputeObstacleInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const LineSegment2D& obstacle) const = 0;
 };
 
 #endif //LIB_OBJECT_INTERACTION_FORCES_H

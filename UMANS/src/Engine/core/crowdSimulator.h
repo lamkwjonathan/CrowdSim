@@ -142,6 +142,8 @@ private:
 	bool FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tinyxml2::XMLElement* obstaclesBlock, const std::string& fileFolder);
 	bool FromConfigFile_loadObstaclesBlock(const tinyxml2::XMLElement* obstaclesBlock);
 	bool FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElement* obstacleElement);
+
+	bool FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* pathBlock, const std::string& fileFolder);
 };
 
 #endif

@@ -68,6 +68,26 @@ float Moussaid::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase 
 	return (float)(K * (1 + pow((S - speed) / S, 2.0)));
 }
 
+float Moussaid::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	const float speed = velocity.magnitude();
+	const float prefSpeed = agent->getPreferredSpeed();
+
+	// compute the distance to collision at maximum speed
+	const auto& dir = velocity.getnormalized();
+	float DC = getDistanceToCollisionAtPreferredSpeed(dir, agent);
+
+	// compute the cost for this direction, assuming maximum speed
+	float K = d_max * d_max + DC * DC - 2 * d_max * DC * cosAngle(dir, agent->getPreferredVelocity());
+	K += 1;
+
+	// compute the optimal speed for this direction
+	float S = std::min(prefSpeed, DC / agent->getPolicy()->getRelaxationTime());
+
+	// return a cost that penalizes the difference with the optimal speed
+	return (float)(K * (1 + pow((S - speed) / S, 2.0)));
+}
+
 void Moussaid::parseParameters(const CostFunctionParameters & params)
 {
 	CostFunction::parseParameters(params);

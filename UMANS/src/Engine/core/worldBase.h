@@ -96,6 +96,13 @@ public:
 	enum Type { UNKNOWN_WORLD_TYPE, INFINITE_WORLD, TORIC_WORLD };
 	static Type StringToWorldType(const std::string& type);
 
+	/// <summary>An enum containing the types of integration that a simulation uses.</summary>
+	enum Integration_Mode { UNKNOWN, EULER, RK4, VERLET2, LEAPFROG2 };
+	static Integration_Mode StringToIntegrationMode(const std::string& mode);
+
+	/// <summary>A vector array containing the global navigation direction vector for each grid square.</summary>
+	std::unique_ptr<Vector2D[]> vectorArray_;
+
 private:
 
 	typedef std::pair<Agent*, double> AgentTimePair; 
@@ -126,6 +133,9 @@ protected:
 	/// <summary>The type of this world, e.g. infinite or toric.</summary>
 	const Type type_;
 
+	/// <summary>The integration mode of this world, e.g. Semi-Implicit Euler, RK4 or SI.</summary>
+	Integration_Mode mode_;
+
 	std::vector<Polygon2D> obstacles_;
 
 	/// <summary>A list containing all agents that are currently in the crowd.</summary>
@@ -145,6 +155,18 @@ protected:
 
 	/// <summary>The simulation time (in seconds) that has passed since the previous coarse simulation step.</summary>
 	double coarse_time_;
+
+	/// <summary>The world coordinate offset.</summary>
+	Vector2D offset_ = Vector2D(0.0f,0.0f);
+
+	/// <summary>The world width.</summary>
+	int width_ = 0;
+
+	/// <summary>The world height.</summary>
+	int height_ = 0;
+
+	/// <summary>Boolean value indicating whether global navigation is to be used in this simulation.</summary>
+	bool isActiveGlobalNav_ = false;
 
 	/// <summary>The SPH instance attached to this world.</summary>
 	SPH sph_;
@@ -193,6 +215,26 @@ public:
 	/// <returns>The value of the Type enum describing the type of this world.</returns>
 	inline Type GetType() { return type_; }
 
+	/// <summary>Returns the integration mode of this world, i.e. Semi-Implicit Euler, RK4 or SI.</summary>
+	/// <returns>The value of the Integration_Mode enum describing the integration mode.</returns>
+	inline Integration_Mode GetMode() { return mode_; }
+
+	/// <summary>Returns the offset of this world.</summary>
+	/// <returns>A Vector2D referencing the offset of this world with respect to global Geo-coordinates.</returns>
+	inline Vector2D* GetOffset() { return &offset_; }
+
+	/// <summary>Returns the width of this world.</summary>
+	/// <returns>An int referencing the width of this world.</returns>
+	inline int GetWidth() const { return width_; }
+
+	/// <summary>Returns the width of this world.</summary>
+	/// <returns>An int referencing the width of this world.</returns>
+	inline int GetHeight() const { return height_; }
+
+	/// <summary>Returns the boolean isActiveGlobalNav that indicates whether global navigation is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether global navigation is used.</returns>
+	inline bool GetIsActiveGlobalNav() { return isActiveGlobalNav_; }
+
 	/// <summary>Returns the SPH instance attached to this world.</summary>
 	/// <returns>A reference to the SPH instance.</returns>
 	inline SPH* GetSPH() { return &sph_; }
@@ -229,6 +271,26 @@ public:
 	/// <summary>Sets the length of coarse simulation time steps.</summary>
 	/// <param name="coarse_delta_time">The desired length (in seconds) of a single coarse simulation frame.</param>
 	inline void SetCoarseDeltaTime(float coarse_delta_time) { coarse_delta_time_ = coarse_delta_time; }
+
+	/// <summary>Sets the integration mode of this world, i.e. Semi-Implicit Euler, RK4 or SI.</summary>
+	/// <maram name="mode">The value of the Integration_Mode enum describing the integration mode.</returns>
+	inline void SetMode(Integration_Mode mode) { mode_ = mode; }
+
+	/// <summary>Sets the offset of this world from Geo-coordinates.</summary>
+	/// <maram name="offset">The value to offset all objects in this world by.</returns>
+	inline void SetOffset(Vector2D offset) { offset_ = offset; }
+
+	/// <summary>Sets the width of this world.</summary>
+	/// <maram name="width">The value representing the width of the world.</returns>
+	inline void SetWidth(int width) { width_ = width; }
+
+	/// <summary>Sets the height of this world.</summary>
+	/// <maram name="height">The value representing the height of the world.</returns>
+	inline void SetHeight(int height) { height_ = height; }
+
+	/// <summary>Sets whether global navigation is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether global navigation is used.</param>
+	inline void SetIsActiveGlobalNav(bool b) { isActiveGlobalNav_ = b; }
 
 	/// <summary>Sets whether SPH is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether SPH is used.</param>

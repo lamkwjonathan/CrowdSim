@@ -74,7 +74,55 @@ Vector2D PowerLaw::ComputeAgentInteractionForce(const Agent* agent, const Phanto
 	return component1 * component2;
 }
 
+Vector2D PowerLaw::ComputeAgentInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const PhantomAgent& other) const
+{
+	// Custom implementation of the Power Law force, based on the paper's supplementary material:
+	// https://journals.aps.org/prl/supplemental/10.1103/PhysRevLett.113.238701/prl_supplemental.pdf
+
+	// This is based on a quadratic equation very similar to the one solved by ComputeTimeToCollision().
+	// Some constants are different, but it all cancels out in the end.
+	// We use the a/b/c/d definitions from the Power Law paper here, because they are used in the gradient as well.
+
+	float R = other.realAgent->getRadius() + agent->getRadius();
+	const Vector2D& x = agent->getPosition() - other.GetPosition();
+	const Vector2D& v = velocity - other.GetVelocity();
+	float a = v.dot(v);
+	float b = -x.dot(v);
+	float c = x.dot(x) - R * R;
+
+	// ignore collisions that are already happening; our framework handles those via contact forces
+	if (c <= 0)
+		return Vector2D(0, 0);
+
+	// compute time to collision
+	float d = b * b - a * c;
+	if (d <= 0) // no solution
+		return Vector2D(0, 0);
+	float sqrtD = sqrt(d);
+	float tau = (b - sqrtD) / a;
+
+	// ignore collisions that lie in the past
+	if (tau < 0.001f)
+		return Vector2D(0, 0);
+
+	// ignore collisions that lie too far away
+	if (tau > tau0)
+		return Vector2D(0, 0);
+
+	// compute the negative gradient with respect to the vector x
+	float component1 = -k * exp(-tau / tau0) * (2 / tau + 1 / tau0) / (a * tau * tau);
+	const Vector2D& component2 = v - (a * x + b * v) / sqrtD;
+
+	return component1 * component2;
+}
+
 Vector2D PowerLaw::ComputeObstacleInteractionForce(const Agent* agent, const LineSegment2D& obstacle) const
+{
+	// TODO: implement obstacle force
+	return Vector2D(0, 0);
+}
+
+Vector2D PowerLaw::ComputeObstacleInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const LineSegment2D& obstacle) const
 {
 	// TODO: implement obstacle force
 	return Vector2D(0, 0);

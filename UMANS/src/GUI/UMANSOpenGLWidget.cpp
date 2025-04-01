@@ -597,7 +597,8 @@ void UMANSOpenGLWidget::drawEnvironment(const bool refresh)
 	// - draw the interior of all obstacles
 	for (const auto& ob : world->GetObstacles())
 		for (const auto& t : ob.GetTriangles())
-			addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			//addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
 
 	// - draw a grid
 	drawGrid(refresh);
@@ -632,8 +633,13 @@ void UMANSOpenGLWidget::drawGrid(bool refresh)
 	}
 	// - otherwise, use a default range of -100 to +100
 	else
-		bbox = { {-100,-100}, {100, 100} };
-
+	{
+		if (world->GetWidth() == 0 || world->GetHeight() == 0)
+			bbox = { {-100,-100}, {100, 100} };
+		else
+			bbox = { {0,0}, {(float)world->GetWidth(), (float)world->GetHeight()} };
+	}
+		
 	std::vector<LineSegment2D> grid, grid_major;
 	const int majorSteps = 10;
 

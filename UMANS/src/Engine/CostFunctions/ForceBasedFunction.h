@@ -53,6 +53,15 @@ public:
 	/// <returns>A floating-point cost, derived from the result of ComputeForce().</param>
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const override;
 
+	/// <summary>Computes the cost of a given velocity, in a way that is specific for force-based functions. (For use in RK4 calculations).</summary>
+	/// <remarks>In the case of ForceBasedFunction, the cost depends on the difference to the target velocity 
+	/// (the velocity that the agent would reach by using the method's force).</remarks>
+	/// <param name="velocity">The velocity for which the cost is requested; ForceBasedFunction actually does not use this.</param>
+	/// <param name="agent">The agent that would use the requested velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A floating-point cost, derived from the result of ComputeForce().</param>
+	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const override;
+
 	/// <summary>Computes the gradient of the cost, in a way that is specific for force-based functions.</summary>
 	/// <remarks>In the case of ForceBasedFunction, the gradient points towards the target velocity 
 	/// (the velocity that the agent would reach by using the method's force), with a magnitude that will always lead to this target velocity.</remarks>
@@ -89,6 +98,13 @@ protected:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	/// <returns>A 2D vector indicating the force that the agent experiences according to a specific model.</returns>
 	virtual Vector2D ComputeForce(Agent* agent, const WorldBase* world) const = 0;
+
+	/// <summary>Computes and returns a 2D force vector that the agent experiences. (For use in RK4 calculations).</summary>
+	/// <remarks>Subclasses of ForceBasedFunction should implement this method.</remarks>
+	/// <param name="agent">The agent for which a force is requested.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>A 2D vector indicating the force that the agent experiences according to a specific model.</returns>
+	virtual Vector2D ComputeForce_RK4(Agent* agent, const Vector2D velocity, const WorldBase* world) const = 0;
 	
 private:
 	/// <summary>Computes the velocity that the agent would reach if it uses the result of ComputeForce() for one timestep.</summary>
@@ -96,6 +112,12 @@ private:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	/// <returns>The velocity resulting from using this cost function's force.</param>
 	Vector2D ComputeTargetVelocity(Agent* agent, const WorldBase* world) const;
+
+	/// <summary>Computes the velocity that the agent would reach if it uses the result of ComputeForce() for one RK4 step.</summary>
+	/// <param name="agent">The agent that would use the requested velocity.</param>
+	/// <param name="world">The world in which the simulation takes place.</param>
+	/// <returns>The velocity resulting from using this cost function's force.</param>
+	Vector2D ComputeTargetVelocity_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const;
 };
 
 #endif //LIB_FORCE_BASED_FUNCTION_H

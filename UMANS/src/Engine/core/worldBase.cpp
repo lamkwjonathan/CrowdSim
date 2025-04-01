@@ -42,6 +42,20 @@ WorldBase::Type WorldBase::StringToWorldType(const std::string& type)
 		return Type::UNKNOWN_WORLD_TYPE;
 }
 
+WorldBase::Integration_Mode WorldBase::StringToIntegrationMode(const std::string& mode)
+{
+	if (mode == "Euler")
+		return Integration_Mode::EULER;
+	else if (mode == "RK4")
+		return Integration_Mode::RK4;
+	else if (mode == "Verlet")
+		return Integration_Mode::VERLET2;
+	else if (mode == "Leapfrog")
+		return Integration_Mode::LEAPFROG2;
+	else
+		return Integration_Mode::UNKNOWN;
+}
+
 WorldBase::WorldBase(WorldBase::Type type) : type_(type)
 {
 	time_ = 0;
@@ -86,12 +100,10 @@ void WorldBase::computeNeighboringObstacles_Flat(const Vector2D& position, float
 
 void WorldBase::DoStep()
 {
-	// Before the simulation frame begins, add agents that need to be added now (once every coarse time step)
-
-	int n = (int)agents_.size();
-
-	if (coarse_time_ == 0.f)
+	int n;
+	if (coarse_time_ == 0.0f)
 	{
+		// Before the simulation frame begins, add agents that need to be added now (once every coarse time step)
 		while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
 		{
 			addAgentToList(agentsToAdd.top().first);
@@ -110,6 +122,13 @@ void WorldBase::DoStep()
 		#pragma omp parallel for 
 		for (int i = 0; i < n; ++i)
 			agents_[i]->ComputeNeighbors(this);
+	}
+	else
+	{
+		n = (int)agents_.size();
+		#pragma omp parallel for
+		for (int i = 0; i < n; ++i)
+			agents_[i]->UpdateNeighbors(this);
 	}
 
 	// compute SPH parameters if required
@@ -159,9 +178,36 @@ void WorldBase::DoStep()
 
 void WorldBase::DoStep_MoveAllAgents()
 {
-	#pragma omp parallel for 
-	for (int i = 0; i < (int)agents_.size(); i++)
-		agents_[i]->UpdateVelocityAndPosition(this);
+	if (mode_ == WorldBase::Integration_Mode::EULER)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::RK4)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_RK4(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::VERLET2)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_Verlet2(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::LEAPFROG2)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_Leapfrog2(this);
+	}
+	else
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition(this);
+	}
 }
 
 #pragma region [Finding, adding, and removing agents]

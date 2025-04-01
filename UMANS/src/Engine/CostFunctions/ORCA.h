@@ -66,11 +66,14 @@ public:
 	const static std::string GetName() { return "ORCA"; }
 
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const override;
+	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const override;
 	virtual Vector2D GetGlobalMinimum(Agent* agent, const WorldBase* world) const override;
+	virtual Vector2D GetGlobalMinimum_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const override;
 	void parseParameters(const CostFunctionParameters & params) override;
 
 private:
 	const ORCALibrary::Solution& GetOrcaSolutionForAgent(Agent* agent, const WorldBase* world) const;
+	const ORCALibrary::Solution& GetOrcaSolutionForAgent_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const;
 };
 
 #endif //LIB_ORCA_H

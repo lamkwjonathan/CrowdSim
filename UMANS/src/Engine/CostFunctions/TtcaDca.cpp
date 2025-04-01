@@ -135,6 +135,75 @@ float TtcaDca::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase *
 	return ObstacleCost + MovementCost;
 }
 
+float TtcaDca::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	const float Radius = agent->getRadius();
+	const Vector2D& Position = agent->getPosition();
+	const float rangeSquared = range_ * range_;
+
+	// --- movement towards the goal
+
+	float MovementCost = getMovementCost(velocity, agent);
+
+	// --- collision avoidance
+
+	float ObstacleCost = 0;
+	float ObstacleCostScale = 0;
+
+	const auto& neighbors = agent->getNeighbors();
+
+	// for each agent of the neighbourhood
+	for (const auto& neighbor : neighbors.first)
+	{
+		const auto& neighborPos = neighbor.GetPosition();
+		if (neighbor.GetDistanceSquared() >= rangeSquared)
+			continue;
+
+		// Compute relative velocity and relative position
+		const Vector2D& relPos = neighborPos - Position;
+		const Vector2D& relVelocity = neighbor.GetVelocity() - velocity;
+
+		// ignore neighbors that are behind the agent; the original Dutra method uses rendering, and agents always face forward
+		if (angle(relPos, velocity) > viewingAngleHalf_)
+			continue;
+
+		// there is adaptation only if relative velocity is not zero
+		// --> disabled because it makes the cost function non-smooth
+		//if (relVelocity.sqrMagnitude() <= eps)
+		//	continue;
+
+		// computing ttc and dca
+		const auto& ttca_dca = ComputeTimeAndDistanceToClosestApproach(
+			Position, velocity, Radius,
+			neighborPos, neighbor.GetVelocity(), neighbor.realAgent->getRadius());
+
+		// ignore TTCAs in the past
+		// --> disabled because it makes the cost function non-smooth
+		//if (ttca_dca.first < 0) 
+		//	continue;
+
+		// The original method does this per pixel; we do it per obstacle.
+		// To simulate the "number of pixels" for this obstacle, scale by the distance
+
+		float distance = relPos.magnitude() - Radius - neighbor.realAgent->getRadius();
+		float scale = 1 / (distance * distance); //simulate num of pixels of an agent in screen
+		ObstacleCostScale += scale;
+
+		float cost = costForTtcaDca(ttca_dca.first, ttca_dca.second) * scale;
+		ObstacleCost += cost;
+	}
+
+	// TODO: check neighboring obstacles
+	// ...
+
+	if (ObstacleCostScale > 0)
+		ObstacleCost /= ObstacleCostScale;
+
+	// --- total
+
+	return ObstacleCost + MovementCost;
+}
+
 Vector2D TtcaDca::GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	const float Radius = agent->getRadius();

@@ -34,6 +34,7 @@
 Agent::Agent(size_t id, const Agent::Settings& settings) :
 	id_(id), settings_(settings),
 	position_(0, 0),
+	original_velocity_(0, 0),
 	velocity_(0, 0),
 	acceleration_(0, 0),
 	contact_forces_(0, 0),
@@ -72,6 +73,14 @@ void Agent::ComputeNeighbors(WorldBase* world)
 
 	// perform the query and store the result
 	neighbors_ = world->ComputeNeighbors(position_, range, this);
+}
+
+void Agent::UpdateNeighbors(WorldBase* world)
+{
+	for (auto neighbor_agent : neighbors_.first)
+	{
+		neighbor_agent.UpdatePositionAndDistance(position_);
+	}
 }
 
 void Agent::ComputeBaseSPH(WorldBase* world)
@@ -164,7 +173,16 @@ void Agent::ComputePreferredVelocity(WorldBase* world)
 {
 	if (hasReachedGoal(world->GetGoalRadius()))
 		preferred_velocity_ = Vector2D(0, 0);
-
+	else if (world->GetIsActiveGlobalNav())
+	{
+		if (position_.x >= 0 && position_.x < world->GetWidth() && position_.y >= 0 && position_.y < world->GetHeight())
+		{
+			preferred_velocity_ = world->vectorArray_[(int)std::floor(position_.x) + (int)std::floor(position_.y) * world->GetWidth()] * getPreferredSpeed();
+		}
+		else
+			preferred_velocity_ = (goal_ - position_).getnormalized() * getPreferredSpeed();
+	}
+		
 	else
 		preferred_velocity_ = (goal_ - position_).getnormalized() * getPreferredSpeed();
 }
@@ -197,7 +215,8 @@ void Agent::updateViewingDirection()
 void Agent::UpdateVelocityAndPosition(WorldBase* world)
 {
 	const float dt = world->GetFineDeltaTime();
-	
+	const float relaxation_time = 0.5f;
+
 	// add contact forces
 	contact_forces_ = next_contact_forces_;
 
@@ -215,7 +234,7 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 			else
 			{
 				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
-				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(0.5f, getDeltaTime(world)) / getMass(); 
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(relaxation_time, getDeltaTime(world)) / getMass(); 
 				//Vector2D goalReachingAcceleration = Vector2D(0, 0);
 				if (sph_density_ > 4.f)
 				{
@@ -267,7 +286,109 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 
 void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
 {
-	const float dt = world->GetCoarseDeltaTime();
+	const float dt = world->GetFineDeltaTime();
+	const float relaxation_time = 0.5f;
+
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
+	original_velocity_ = velocity_;
+
+	// add and clamp the acceleration if SPH enabled
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+
+			if (sph_density_ < 2.f)
+			{
+				k1_ = next_acceleration_;
+				velocity_ = original_velocity_ + dt * k1_ / 2;
+				ComputeAcceleration(world);
+				k2_ = next_acceleration_;
+				velocity_ = original_velocity_ + dt * k2_ / 2;
+				ComputeAcceleration(world);
+				k3_ = next_acceleration_;
+				velocity_ = original_velocity_ + dt * k3_;
+				ComputeAcceleration(world);
+				k4_ = next_acceleration_;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				//Vector2D goalReachingAcceleration = (getPreferredVelocity() - velocity_) / std::max(0.5f, getDeltaTime(world)) / getMass();
+				if (sph_density_ > 4.f)
+				{
+					k1_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					velocity_ = original_velocity_ + dt * k1_ / 2;
+					k2_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					velocity_ = original_velocity_ + dt * k2_ / 2;
+					k3_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					velocity_ = original_velocity_ + dt * k3_;
+					k4_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+				}
+				else
+				{
+					k1_ = (1 - kappa) * next_acceleration_ + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					velocity_ = original_velocity_ + dt * k1_ / 2;
+					ComputeAcceleration(world);
+					k2_ = (1 - kappa) * next_acceleration_ + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					velocity_ = original_velocity_ + dt * k2_ / 2;
+					ComputeAcceleration(world);
+					k3_ = (1 - kappa) * next_acceleration_ + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					velocity_ = original_velocity_ + dt * k3_;
+					ComputeAcceleration(world);
+					k4_ = (1 - kappa) * next_acceleration_ + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+				}
+			}
+		}
+		else
+		{
+			k1_ = next_acceleration_ + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			velocity_ = original_velocity_ + dt * k1_ / 2;
+			ComputeAcceleration(world);
+			k2_ = next_acceleration_ + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			velocity_ = original_velocity_ + dt * k2_ / 2;
+			ComputeAcceleration(world);
+			k3_ = next_acceleration_ + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			velocity_ = original_velocity_ + dt * k3_;
+			ComputeAcceleration(world);
+			k4_ = next_acceleration_ + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+		}
+	}
+	else
+	{
+		k1_ = next_acceleration_;
+		velocity_ = original_velocity_ + dt * k1_ / 2;
+		ComputeAcceleration(world);
+		k2_ = next_acceleration_;
+		velocity_ = original_velocity_ + dt * k2_ / 2;
+		ComputeAcceleration(world);
+		k3_ = next_acceleration_;
+		velocity_ = original_velocity_ + dt * k3_;
+		ComputeAcceleration(world);
+		k4_ = next_acceleration_;
+	}
+	acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(original_velocity_ + (acceleration_ * dt), getMaximumSpeed());
+
+	// update the position
+	position_ += velocity_ * dt;
+
+	updateViewingDirection();
+}
+
+/*
+void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
+{
+	const float dt = world->GetFineDeltaTime();
+	const float relaxation_time = 0.5f;
 
 	// add contact forces
 	contact_forces_ = next_contact_forces_;
@@ -279,6 +400,7 @@ void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
 		if (world->GetIsActiveDensityBlending())
 		{
 			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+
 			if (sph_density_ < 2.f)
 			{
 				k1_ = next_acceleration_;
@@ -291,28 +413,31 @@ void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
 			{
 				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
 				//Vector2D goalReachingAcceleration = (getPreferredVelocity() - velocity_) / std::max(0.5f, getDeltaTime(world)) / getMass();
-				//Vector2D goalReachingAcceleration = Vector2D(0, 0);
 				if (sph_density_ > 4.f)
 				{
-					k1_ = (getPreferredVelocity() - velocity_) / std::max(0.5f, dt) / getMass();
-					k2_ = (getPreferredVelocity() - (velocity_ + dt * k1_ / 2)) / std::max(0.5f, dt) / getMass();
-					k3_ = (getPreferredVelocity() - (velocity_ + dt * k2_ / 2)) / std::max(0.5f, dt) / getMass();
-					k4_ = (getPreferredVelocity() - (velocity_ + dt * k3_)) / std::max(0.5f, dt) / getMass();
-					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6 + sph_acceleration_;
+					k1_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					k2_ = (preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					k3_ = (preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					k4_ = (preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
+					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
 				}
 				else
 				{
-					k1_ = (1 - kappa) * (next_acceleration_) + kappa * ((getPreferredVelocity() - velocity_) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
-					k2_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k1_ / 2)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
-					k3_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k2_ / 2)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
-					k4_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + kappa * ((getPreferredVelocity() - (velocity_ + dt * k3_)) / std::max(0.5f, dt) / getMass() + sph_acceleration_);
+					k1_ = (1 - kappa) * (next_acceleration_) + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					k2_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					k3_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+					k4_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
 					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
 				}
 			}
 		}
 		else
 		{
-			acceleration_ = next_acceleration_ + sph_acceleration_;
+			k1_ = (next_acceleration_) + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			k2_ = (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + ((preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			k3_ = (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + ((preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			k4_ = (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + ((preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
+			acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
 		}
 	}
 	else
@@ -333,20 +458,172 @@ void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
 	// update the position
 	position_ += velocity_ * dt;
 
-	/*
-	// clamp the acceleration
-	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_), getMaximumAcceleration());
+	updateViewingDirection();
+}
+*/
 
-	// integrate the velocity; clamp to a maximum speed
-	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
+void Agent::UpdateVelocityAndPosition_Verlet2(WorldBase* world)
+{
+	const float dt = world->GetFineDeltaTime();
+	const float relaxation_time = 0.5f;
 
 	// add contact forces
 	contact_forces_ = next_contact_forces_;
-	velocity_ += contact_forces_ / settings_.mass_ * dt;
+
+	// add and clamp the acceleration if SPH enabled
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+			if (sph_density_ < 2.f)
+			{
+				acceleration_ = next_acceleration_;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(relaxation_time, getDeltaTime(world)) / getMass();
+				if (sph_density_ > 4.f)
+				{
+					acceleration_ = goalReachingAcceleration + sph_acceleration_;
+				}
+				else
+				{
+					acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (goalReachingAcceleration + sph_acceleration_);
+				}
+			}
+		}
+		else
+		{
+			acceleration_ = next_acceleration_ + sph_acceleration_;
+		}
+	}
+	else
+	{
+		acceleration_ = next_acceleration_;
+	}
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(velocity_ + (acceleration_ * 0.5 * dt), getMaximumSpeed());
 
 	// update the position
 	position_ += velocity_ * dt;
-	*/
+
+	ComputeBaseSPH(world);
+	ComputeDerivedSPH(world);
+	ComputePreferredVelocity(world);
+	ComputeAcceleration(world);
+	ComputeContactForces(world);
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
+
+	// repeated to get updated acceleration
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+			if (sph_density_ < 2.f)
+			{
+				acceleration_ = next_acceleration_;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(relaxation_time, getDeltaTime(world)) / getMass();
+				if (sph_density_ > 4.f)
+				{
+					acceleration_ = goalReachingAcceleration + sph_acceleration_;
+				}
+				else
+				{
+					acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (goalReachingAcceleration + sph_acceleration_);
+				}
+			}
+		}
+		else
+		{
+			acceleration_ = next_acceleration_ + sph_acceleration_;
+		}
+	}
+	else
+	{
+		acceleration_ = next_acceleration_;
+	}
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
+	velocity_ = clampVector(velocity_ + (acceleration_ * 0.5 * dt), getMaximumSpeed());
+
+	updateViewingDirection();
+}
+
+void Agent::UpdateVelocityAndPosition_Leapfrog2(WorldBase* world)
+{
+	const float dt = world->GetFineDeltaTime();
+	const float relaxation_time = 0.5f;
+
+	// add contact forces
+	contact_forces_ = next_contact_forces_;
+
+	// add and clamp the acceleration if SPH enabled
+	if (world->GetIsActiveSPH())
+	{
+		// Use density-based blending if enabled
+		if (world->GetIsActiveDensityBlending())
+		{
+			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
+			if (sph_density_ < 2.f)
+			{
+				acceleration_ = next_acceleration_;
+			}
+			else
+			{
+				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
+				Vector2D goalReachingAcceleration = (getPreferredVelocity() - getVelocity()) / std::max(relaxation_time, getDeltaTime(world)) / getMass();
+				if (sph_density_ > 4.f)
+				{
+					acceleration_ = goalReachingAcceleration + sph_acceleration_;
+				}
+				else
+				{
+					acceleration_ = (1 - kappa) * (next_acceleration_) + kappa * (goalReachingAcceleration + sph_acceleration_);
+				}
+			}
+		}
+		else
+		{
+			acceleration_ = next_acceleration_ + sph_acceleration_;
+		}
+	}
+	else
+	{
+		acceleration_ = next_acceleration_;
+	}
+
+	// add contact forces to acceleration
+	acceleration_ += contact_forces_ / settings_.mass_;
+
+	// integrate the velocity; clamp to a maximum speed
+	velocity_ = clampVector(original_velocity_ + (acceleration_ * dt), getMaximumSpeed());
+	if (world->GetCurrentTime() == 0.f)
+		original_velocity_ = clampVector(original_velocity_ + (acceleration_ * 0.5 * dt), getMaximumSpeed());
+	else
+		original_velocity_ = velocity_;
+
+	//velocity_ = clampVector(velocity_ + (acceleration_ * 0.5 * dt), getMaximumSpeed());
+	//position_ += velocity_ * dt;
+	//velocity_ = clampVector(velocity_ + (acceleration_ * 0.5 * dt), getMaximumSpeed());
+
+	// update the position
+	position_ += velocity_ * dt;
+
 	updateViewingDirection();
 }
 
@@ -405,7 +682,7 @@ void Agent::setColorByDensity(float density)
 	Color color;
 	short r, g, b;
 	float slider;
-	float densityLimit = 6.f;
+	float densityLimit = 10.f;
 	float densityRatio = density / densityLimit;
 
 	if (densityRatio < 0)
@@ -413,25 +690,79 @@ void Agent::setColorByDensity(float density)
 	else if (densityRatio > 1)
 		densityRatio = 1;
 	
-	if (densityRatio <= 0.33f) // transition from blue(0, 102, 204) to green(0, 204, 102)
+	if (densityRatio <= 0.1f) // Constant value for density beneath 1
 	{
-		slider = densityRatio / 0.33f;
 		r = 0;
-		g = 102 + (short)(102 * slider);
-		b = 204 - (short)(102 * slider);
+		g = 0;
+		b = 255;
 	}
-	else if (densityRatio <= 0.66f) // transition from green(0, 204, 102) to yellow(204, 204, 0)
+	else if (densityRatio <= 0.2f) // transition from blue(0, 0, 255) to lighter blue(0, 128, 255) // transition from green(0, 204, 102) to yellow(204, 204, 0)
 	{
-		slider = (densityRatio - 0.33f) / 0.33f;
-		r = (short)(204 * slider);
-		g = 204;
-		b = 102 - (short)(102 * slider);
+		slider = (densityRatio - 0.1f) / 0.1f;
+		r = 0;
+		g = (short)(128 * slider);
+		b = 255;
 	}
-	else // transition from yellow(204, 204, 0) to red(204, 0, 0)
+	else if (densityRatio <= 0.3f) // transition from lighter blue(0, 128, 255) to light blue(0, 255, 255)
 	{
-		slider = (densityRatio - 0.66f) / 0.34f;
-		r = 204;
-		g = 204 - (short)(204 * slider);
+		slider = (densityRatio - 0.2f) / 0.1f;
+		r = 0;
+		g = 128 + (short)(127 * slider);
+		b = 255;
+	}
+	else if (densityRatio <= 0.4f) // transition from light blue(0, 255, 255) to light green(0, 255, 128)
+	{
+		slider = (densityRatio - 0.3f) / 0.1f;
+		r = 0;
+		g = 255;
+		b = 255 - (short)(127 * slider);
+	}
+	else if (densityRatio <= 0.5f) // transition from light green(0, 255, 128) to green(0, 255, 0)
+	{
+		slider = (densityRatio - 0.4f) / 0.1f;
+		r = 0;
+		g = 255;
+		b = 128 - (short)(128 * slider);
+	}
+	else if (densityRatio <= 0.6f) // transition from green(0, 255, 0) to yellow(255, 255, 0)
+	{
+		slider = (densityRatio - 0.5f) / 0.1f;
+		r = (short)(255 * slider);
+		g = 255;
+		b = 0;
+	}
+	else if (densityRatio <= 0.7f) // transition from yellow(255, 255, 0) to orange(255, 128, 0)
+	{
+		slider = (densityRatio - 0.6f) / 0.1f;
+		r = 255;
+		g = 255 - (short)(127 * slider);
+		b = 0;
+	}
+	else if (densityRatio <= 0.8f) // transition from orange(255, 128, 0) to red(255, 0, 0)
+	{
+		slider = (densityRatio - 0.7f) / 0.1f;
+		r = 255;
+		g = 128 - (short)(128 * slider);
+		b = 0;
+	}
+	else if (densityRatio <= 0.9f) // transition from red(255, 0, 0) to dark red(128, 0, 0)
+	{
+		slider = (densityRatio - 0.8f) / 0.1f;
+		r = 255 - (short)(127 * slider);
+		g = 0;
+		b = 0;
+	}
+	else if (densityRatio <= 1.0f) // transition from dark red(128, 0, 0) to brown(64, 0, 0)
+	{
+		slider = (densityRatio - 0.9f) / 0.1f;
+		r = 128 - (short)(64 * slider);
+		g = 0;
+		b = 0;
+	}
+	else // 
+	{
+		r = 64;
+		g = 0;
 		b = 0;
 	}
 	color = Color(r, g, b);

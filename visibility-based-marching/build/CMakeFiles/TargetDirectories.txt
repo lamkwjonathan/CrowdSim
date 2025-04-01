@@ -1,0 +1,3 @@
+C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/vbm.dir
+C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/ZERO_CHECK.dir

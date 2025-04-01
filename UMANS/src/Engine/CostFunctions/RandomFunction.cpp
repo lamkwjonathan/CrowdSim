@@ -34,6 +34,11 @@ float RandomFunction::GetCost(const Vector2D& velocity, Agent* agent, const Worl
 	return agent->ComputeRandomNumber(-1, 1);
 }
 
+float RandomFunction::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	return agent->ComputeRandomNumber(-1, 1);
+}
+
 Vector2D RandomFunction::GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	return Vector2D(agent->ComputeRandomNumber(-1, 1), agent->ComputeRandomNumber(-1, 1));

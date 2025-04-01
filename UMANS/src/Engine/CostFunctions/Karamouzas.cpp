@@ -63,6 +63,37 @@ float Karamouzas::GetCost(const Vector2D& velocity, Agent* agent, const WorldBas
 	return A + B + C + D;
 }
 
+float Karamouzas::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	const auto& prefVelocity = agent->getPreferredVelocity();
+	const auto& currentVelocity = velocity;
+	const auto& speed = velocity.magnitude();
+	const float maxSpeed = agent->getMaximumSpeed();
+	const auto& neighbors = agent->getNeighbors();
+
+	float TTC_preferred = ComputeTimeToFirstCollision(agent->getPosition(), prefVelocity, agent->getRadius(), neighbors, range_, true);
+
+	// This collision-avoidance method has a dynamic angular range, so ignore velocities that are outside it
+	if (angle(velocity, prefVelocity) > getMaxDeviationAngle(agent, TTC_preferred))
+		return MaxFloat;
+
+	// same for speed
+	if (speed < getMinSpeed(agent, TTC_preferred) || speed > getMaxSpeed(agent, TTC_preferred))
+		return MaxFloat;
+
+	// compute time to collision at this candidate velocity
+	float TTC = ComputeTimeToFirstCollision(agent->getPosition(), velocity, agent->getRadius(), neighbors, range_, true);
+
+	// the cost is a weighted sum of factors:
+
+	float A = alpha * (1 - cosAngle(velocity, prefVelocity) / 2.0f);
+	float B = beta * abs(speed - currentVelocity.magnitude()) / maxSpeed;
+	float C = gamma * (velocity - prefVelocity).magnitude() / (2 * maxSpeed);
+	float D = delta * std::max(0.0f, t_max - TTC) / t_max;
+
+	return A + B + C + D;
+}
+
 float Karamouzas::getMinSpeed(const Agent* agent, const float ttc) const
 {
 	float prefSpeed = agent->getPreferredSpeed();

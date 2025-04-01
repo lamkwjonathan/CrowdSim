@@ -66,7 +66,7 @@ public:
 
 		/// <summary>The visualization color of the agent, used by the UMANS GUI when applicable.</summary>
 		//Color color_ = Color(255, 180, 0);
-		Color color_ = Color(0, 104, 204);
+		Color color_ = Color(0, 0, 255);
 	};
 
 private:
@@ -75,6 +75,7 @@ private:
 	Agent::Settings settings_;
 
 	Vector2D position_;
+	Vector2D original_velocity_;
 	Vector2D velocity_;
 	Vector2D acceleration_;
 	Vector2D contact_forces_;
@@ -133,6 +134,12 @@ public:
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void ComputeNeighbors(WorldBase* world);
 
+	/// <summary>Updates the positions of neighbors for this agent.</summary>
+	/// The result will be stored in a NeighborList object inside the agent. 
+	/// You can obtain this result via the Agent::GetNeighbors() method.</remarks>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void UpdateNeighbors(WorldBase* world);
+
 	/// <summary>Computes the SPH density, personal rest density, and pressure for the agent.</summary>
 	/// <remarks></remarks>
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
@@ -171,8 +178,17 @@ public:
 	void UpdateVelocityAndPosition(WorldBase* world);
 
 	/// <summary>Updates the velocity and position of this Agent via Runge-Kutta method, using the last computed acceleration and contact forces.</summary>
-/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void UpdateVelocityAndPosition_RK4(WorldBase* world);
+
+	/// <summary>Updates the velocity and position of this Agent via Velocity-Verlet method, using the last computed acceleration and contact forces.</summary>
+	/// <remarks>Results are unstable since method assumes that acceleration is only dependent on position and independent of velocity.</remarks>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void UpdateVelocityAndPosition_Verlet2(WorldBase* world);
+
+	/// <summary>Updates the velocity and position of this Agent via Leapfrog method, using the last computed acceleration and contact forces.</summary>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void UpdateVelocityAndPosition_Leapfrog2(WorldBase* world);
 
 	/// @}
 #pragma endregion

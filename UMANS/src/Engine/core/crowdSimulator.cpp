@@ -41,6 +41,8 @@
 #include <omp.h>
 #include <stdexcept>
 
+#include <fstream>
+
 CrowdSimulator::CrowdSimulator()
 {
 	CostFunctionFactory::RegisterAllCostFunctions();
@@ -230,6 +232,34 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 		}
 	}
 
+	WorldBase::Integration_Mode intMode = WorldBase::Integration_Mode::UNKNOWN;
+	const char* mode = worldElement->Attribute("integration_mode");
+	if (mode != nullptr)
+		intMode = WorldBase::StringToIntegrationMode(mode);
+
+	if (intMode == WorldBase::Integration_Mode::UNKNOWN)
+	{
+		std::cerr << "Warning: No valid integration mode specified in the XML file. Selecting default type (Semi-Implicit Euler)." << std::endl;
+		intMode = WorldBase::Integration_Mode::EULER;
+	}
+	if (intMode == WorldBase::Integration_Mode::EULER)
+	{
+		std::cout << "World Integration Mode set to Semi-Implicit Euler." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::RK4)
+	{
+		std::cout << "World Integration Mode set to Rugge-Kutta 4." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::VERLET2)
+	{
+		std::cout << "World Integration Mode set to Velocity-Verlet." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::LEAPFROG2)
+	{
+		std::cout << "World Integration Mode set to Leapfrog." << std::endl;
+	}
+	world_->SetMode(intMode);
+
 	const char* goalRadius = worldElement->Attribute("goal_radius");
 	std::string goalRadius_str;
 	float goalRadius_float = 1.0;
@@ -380,6 +410,61 @@ bool CrowdSimulator::FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tin
 	return FromConfigFile_loadObstaclesBlock(xmlBlock);
 }
 
+bool CrowdSimulator::FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)
+{
+	// - if this block refers to another file, read it
+	const char* externalFilename = xmlBlock->Attribute("file");
+	if (externalFilename != nullptr)
+	{
+		std::ifstream f(fileFolder + externalFilename);
+		if (!f.is_open())
+		{
+			std::cerr << "Could not load or parse Path txt file at " << (fileFolder + externalFilename) << "." << std::endl
+				<< "Please check this file location." << std::endl;
+			return false;
+		}
+		int width = world_->GetWidth();
+		int height = world_->GetHeight();
+		world_->vectorArray_ = std::make_unique<Vector2D[]>(width * height);
+		std::string s;
+		float x_val = 0;
+		float y_val = 0;
+		std::string temp = "";
+		int i;
+		for (int j = 0; j < height; ++j)
+		{
+			i = 0;
+			getline(f, s);
+			for (char c : s)
+			{
+				if (c == ' ')
+				{
+					if (i % 2 == 0)
+					{
+						x_val = stof(temp);
+					}
+					else
+					{
+						y_val = stof(temp);
+						world_->vectorArray_[(int)std::floor(i / 2) + j * width] = Vector2D(x_val - i/2, y_val - j-0.5f).getnormalized();
+					}
+					temp = "";
+					++i;
+				}
+				else
+				{
+					temp += c;
+				}
+			}
+		}
+		world_->SetIsActiveGlobalNav(true);
+		std::cout << "Initialized Global Navigation." << std::endl;
+		f.close();
+		return true;
+	}
+	return false;
+}
+
 bool CrowdSimulator::FromConfigFile_loadPoliciesBlock(const tinyxml2::XMLElement* xmlBlock)
 {
 	// load the elements one by one
@@ -417,7 +502,27 @@ bool CrowdSimulator::FromConfigFile_loadAgentsBlock(const tinyxml2::XMLElement* 
 bool CrowdSimulator::FromConfigFile_loadObstaclesBlock(const tinyxml2::XMLElement* xmlBlock)
 {
 	// load the elements one by one
-	const tinyxml2::XMLElement* element = xmlBlock->FirstChildElement();
+	float offset_x = 0.0f;
+	float offset_y = 0.0f;
+	const tinyxml2::XMLElement* element = xmlBlock->FirstChildElement("Offset");
+	if (element != nullptr)
+	{
+		element->QueryFloatAttribute("x", &offset_x);
+		element->QueryFloatAttribute("y", &offset_y);
+		world_->SetOffset(Vector2D(offset_x, offset_y));
+	}
+	int width = 0;
+	int height = 0;
+	element = xmlBlock->FirstChildElement("Dimension");
+	if (element != nullptr)
+	{
+		element->QueryIntAttribute("width", &width);
+		element->QueryIntAttribute("height", &height);
+		world_->SetWidth(width);
+		world_->SetHeight(height);
+	}
+	
+	element = xmlBlock->FirstChildElement("Obstacle");
 	while (element != nullptr)
 	{
 		// load a single element
@@ -627,7 +732,8 @@ bool CrowdSimulator::FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElemen
 		pointElement->QueryFloatAttribute("x", &x);
 		pointElement->QueryFloatAttribute("y", &y);
 		pointElement = pointElement->NextSiblingElement("Point");
-		points.push_back(Vector2D(x, y));
+		points.push_back(Vector2D(x-world_->GetOffset()->x, y-world_->GetOffset()->y));
+		//points.push_back(Vector2D(x, y));
 	}
 
 	// add obstacle to world
@@ -794,6 +900,21 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 		std::cerr << "Error while loading obstacles. The simulation cannot be loaded." << std::endl;
 		delete crowdsimulator;
 		return nullptr;
+	}
+
+	// 
+	// --- Read path
+	//
+
+	// read the block with path array
+	tinyxml2::XMLElement* pathElement = simulationElement->FirstChildElement("Path");
+	if (pathElement != nullptr && !crowdsimulator->FromConfigFile_loadPathBlock(pathElement, fileFolder))
+	{
+		std::cerr << "Error while loading path. The simulation will run without global navigation active." << std::endl;
+	}
+	if (pathElement == nullptr)
+	{
+		std::cout << "Warning: Initializing simulation without global navigation." << std::endl;
 	}
 
 	return crowdsimulator;

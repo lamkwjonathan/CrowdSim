@@ -60,6 +60,7 @@ public:
 	const static std::string GetName() { return "VanToll"; }
 
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const;
+	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const;
 	void parseParameters(const CostFunctionParameters & params) override;
 };
 

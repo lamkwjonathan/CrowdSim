@@ -98,6 +98,50 @@ float FOEAvoidance::GetCost(const Vector2D& velocity, Agent* agent, const WorldB
 	return Cost;
 }
 
+float FOEAvoidance::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
+{
+	if (velocity.isZero())
+		return 0;
+
+	const Vector2D& Position = agent->getPosition();
+	const Vector2D& Vnorm = velocity.getnormalized();
+	Matrix R(Vector2D(Vnorm.y, -Vnorm.x), Vnorm);
+	const Matrix& RT = R.GetTransposed();
+	const float rangeSquared = range_ * range_;
+	const auto& neighbors = agent->getNeighbors();
+
+	float Cost = 0;
+
+	// check neighboring agents
+	for (const PhantomAgent& neighbor : neighbors.first)
+	{
+		if (neighbor.GetDistanceSquared() > rangeSquared)
+			continue;
+
+		Vector2D Vel = RT * (neighbor.GetVelocity() - velocity);
+		Vector2D Pos = RT * (neighbor.GetPosition() - Position);
+
+		if (Pos.y < MIN_DISTANCE || Vel.y > -MIN_VELOCITY)
+			continue;
+
+		float xf = Vel.x / Vel.y;
+		float xg = Pos.x / Pos.y;
+		float dx = xg - xf;
+		float ttc = -Pos.y / Vel.y;
+
+		float sigma = (float)(((agent->getRadius() + neighbor.realAgent->getRadius()) / Pos.y) / log(10));
+
+		float localCost = Importance(ttc) * exp(-abs(dx) / sigma);
+
+		Cost += localCost;
+	}
+
+	// TODO: check neighboring obstacles
+	// ...
+
+	return Cost;
+}
+
 Vector2D FOEAvoidance::GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	if (velocity.isZero())
