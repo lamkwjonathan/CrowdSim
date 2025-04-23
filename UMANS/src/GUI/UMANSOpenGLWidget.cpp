@@ -132,7 +132,7 @@ void UMANSOpenGLWidget::startNewSimulation(const std::string& scenarioFilename)
 	bool firstTime = simulator == nullptr;
 
 	// try to load a new simulation
-	CrowdSimulator* newSimulator = CrowdSimulator::FromConfigFile(scenarioFilename);
+	CrowdSimulator* newSimulator = CrowdSimulator::FromConfigFile(scenarioFilename, 16);
 	if (newSimulator != nullptr)
 	{
 		// delete the current simulation, if applicable
@@ -142,7 +142,7 @@ void UMANSOpenGLWidget::startNewSimulation(const std::string& scenarioFilename)
 		setActiveAgent(nullptr);
 
 		simulator = newSimulator;
-		simulator->GetWorld()->SetNumberOfThreads(15);
+		simulator->GetWorld()->SetNumberOfThreads(16);
 
 		// Prepare a timer for update events, using the current value of playbackMultiplier.
 		// This works for the very first simulation, because playbackMultiplier=1 by default.
@@ -597,8 +597,8 @@ void UMANSOpenGLWidget::drawEnvironment(const bool refresh)
 	// - draw the interior of all obstacles
 	for (const auto& ob : world->GetObstacles())
 		for (const auto& t : ob.GetTriangles())
-			//addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
-			addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
+			addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			//addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
 
 	// - draw a grid
 	drawGrid(refresh);

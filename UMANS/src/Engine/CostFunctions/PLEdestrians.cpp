@@ -42,17 +42,6 @@ float PLEdestrians::GetCost(const Vector2D& velocity, Agent* agent, const WorldB
 		+ 2 * (agent->getGoal() - agent->getPosition() - t_max * velocity).magnitude() * sqrt(w_a*w_b);
 }
 
-float PLEdestrians::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
-{
-	float ttc = ComputeTimeToFirstCollision(agent->getPosition(), velocity, agent->getRadius(), agent->getNeighbors(), range_, true);
-	if (ttc < t_min)
-		return MaxFloat;
-
-	return t_max * (w_a + w_b * velocity.sqrMagnitude())
-		+ 2 * (agent->getGoal() - agent->getPosition() - t_max * velocity).magnitude() * sqrt(w_a * w_b);
-}
-
-
 void PLEdestrians::parseParameters(const CostFunctionParameters & params)
 {
 	CostFunction::parseParameters(params);

@@ -2,6 +2,7 @@ import geojson
 import pygame
 import math
 from pygame.locals import *
+import xml.etree.ElementTree as ET
 
 #with open(r'C:\Users\imjon\Documents\School\FYP\Environment\UTown\UTown_Green.geojson') as file:
     #data = geojson.load(file)
@@ -31,7 +32,7 @@ def create_xml_from_geojson(geojson_filename, obstacles_filename, border_size):
 
     f.write("<Obstacles>\n")
     f.write("<Offset x=\"" + str(x_min - border_size) + "\" y=\"" + str(y_min - border_size) + "\"/>\n")
-    f.write("<Dimension width=\"" + str(math.ceil(x_max - x_min + 1 + 2*border_size)) + "\" y=\"" + str(math.ceil(y_max - y_min + 1 + 2*border_size)) + "\"/>\n")
+    f.write("<Dimension width=\"" + str(math.ceil(x_max - x_min + 1 + 2*border_size)) + "\" height=\"" + str(math.ceil(y_max - y_min + 1 + 2*border_size)) + "\"/>\n")
     
     for feature in data["features"]:
         geometry = feature["geometry"]
@@ -85,7 +86,7 @@ def create_png_from_geojson(geojson_filename, obstacles_filename, border_size):
             points = []
             for coord in geometry["coordinates"][0][0]:
                 x_coord = coord[0] - x_min + border_size
-                y_coord = (height - 1) - (coord[1] - y_min) + border_size 
+                y_coord = (height - 1) - (coord[1] - y_min + border_size) 
                 points.append([x_coord, y_coord])
             pygame.draw.polygon(canvas, color_black, points)
 
@@ -97,11 +98,49 @@ def create_png_from_geojson(geojson_filename, obstacles_filename, border_size):
     #print("x_min = " + str(x_min))
     #print("y_min = " + str(y_min))
 
-def get_endpoints_coordinates(endpoint_geocoord_list, x_min, y_min, border_size):
+def create_png_from_xml(xml_filename, png_filename):
+    tree = ET.parse(xml_filename)
+    root = tree.getroot()
+    
+    x_min = float(root.find("Offset").get("x"))
+    y_min = float(root.find("Offset").get("y"))
+    width = int(root.find("Dimension").get("width"))
+    height = int(root.find("Dimension").get("height"))
+
+    pygame.init()
+
+    canvas = pygame.display.set_mode((width,height))
+    color_black = (0,0,0)
+    color_white = (255,255,255)
+    
+    canvasOn = True
+
+    while canvasOn:
+        canvas.fill(color_white)
+        for event in pygame.event.get():
+            
+            if event.type == QUIT:
+                canvasOn = False
+                
+        for obstacle in root.findall("Obstacle"):
+            points = []
+            for point in obstacle.findall("Point"):
+                x_coord = float(point.get("x")) - x_min
+                y_coord = (height - 1) - (float(point.get("y")) - y_min)
+                points.append([x_coord, y_coord])
+            pygame.draw.polygon(canvas, color_black, points)
+
+        pygame.display.update()
+
+    pygame.image.save(canvas, png_filename)
+    pygame.display.quit()
+    pygame.quit()
+
+def get_endpoints_coordinates(endpoint_geocoord_list, offset_x, offset_y):
     points = []
     for coord in endpoint_geocoord_list:
-        x = coord[1] - x_min + border_size
-        y = coord[0] - y_min + border_size
+        x = coord[1] - offset_x
+        y = coord[0] - offset_y
         points += [x, y]
     print(points)
     

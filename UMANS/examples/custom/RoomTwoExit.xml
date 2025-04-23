@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.05" write_interval="1.0" end_time="200">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="true">
+		<Obstacles file="../obstacles/RoomTwoExit.xml"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/RoomTwoExit900.xml" />
+	<Map goal_x="32.0" goal_y="20.0" vector="../maps/RoomTwoExit_exit1_vector.txt" distance="../maps/RoomTwoExit_exit1_distance.txt"/>
+	<Map goal_x="28.0" goal_y="8.0" vector="../maps/RoomTwoExit_exit2_vector.txt" distance="../maps/RoomTwoExit_exit2_distance.txt"/>
+</Simulation>

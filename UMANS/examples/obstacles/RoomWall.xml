@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<Obstacles>
+	<Offset x="0.0" y="0.0"/>
+	<Dimension width="40" height="40"/>
+	<Obstacle>
+		<Point x="9" y="30"/>
+		<Point x="31" y="30"/>
+		<Point x="31" y="31"/>
+		<Point x="9" y="31"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="9" y="30"/>
+		<Point x="9" y="10"/>
+		<Point x="10" y="10"/>
+		<Point x="10" y="30"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="9" y="10"/>
+		<Point x="31" y="10"/>
+		<Point x="31" y="9"/>
+		<Point x="9" y="9"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="30" y="30"/>
+		<Point x="30" y="21"/>
+		<Point x="31" y="21"/>
+		<Point x="31" y="30"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="30" y="19"/>
+		<Point x="30" y="10"/>
+		<Point x="31" y="10"/>
+		<Point x="31" y="19"/>
+	</Obstacle>
+	<Obstacle>
+		<Point x="19" y="15"/>
+		<Point x="21" y="15"/>
+		<Point x="21" y="25"/>
+		<Point x="19" y="25"/>
+	</Obstacle>
+</Obstacles>

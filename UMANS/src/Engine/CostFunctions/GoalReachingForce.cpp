@@ -34,8 +34,3 @@ Vector2D GoalReachingForce::ComputeForce(Agent* agent, const WorldBase* world) c
 {
 	return (agent->getPreferredVelocity() - agent->getVelocity()) / std::max(agent->getPolicy()->getRelaxationTime(), agent->getDeltaTime(world));
 }
-
-Vector2D GoalReachingForce::ComputeForce_RK4(Agent* agent, Vector2D velocity, const WorldBase* world) const
-{
-	return (agent->getPreferredVelocity() - velocity) / std::max(agent->getPolicy()->getRelaxationTime(), agent->getDeltaTime(world));
-}

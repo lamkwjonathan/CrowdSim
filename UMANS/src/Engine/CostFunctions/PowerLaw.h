@@ -73,9 +73,7 @@ public:
 
 protected:
 	virtual Vector2D ComputeAgentInteractionForce(const Agent* agent, const PhantomAgent& other) const override;
-	virtual Vector2D ComputeAgentInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const PhantomAgent& other) const override;
 	virtual Vector2D ComputeObstacleInteractionForce(const Agent* agent, const LineSegment2D& obstacle) const override;
-	virtual Vector2D ComputeObstacleInteractionForce_RK4(const Agent* agent, const Vector2D velocity, const LineSegment2D& obstacle) const override;
 };
 
 #endif //LIB_POWER_LAW_H

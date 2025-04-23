@@ -26,6 +26,8 @@
 ** See the file AUTHORS.md for a list of all contributors.
 */
 
+#define NOMINMAX
+#include <Windows.h>
 #include <version.h> // this header file (host git version data) is automaticaly generated via the cmake script
 #include <core/crowdSimulator.h>
 #include <omp.h>
@@ -53,41 +55,6 @@ void printUsageInfo(const std::string& programName)
 
 int main( int argc, char * argv[] )
 {
-//	// Allocate our arrays
-//	const int N = 1 << 26;
-//	float* a = new float[N];
-//	float* b = new float[N];
-//	float* c = new float[N];
-//
-//	// Create our random number generator
-//	std::random_device rd;
-//	std::mt19937 mt(rd());
-//	std::uniform_real_distribution dist(1.0f, 2.0f);
-//
-//	// Initialize a and b
-//	std::generate(a, a + N, [&] { return dist(mt); });
-//	std::generate(b, b + N, [&] { return dist(mt); });
-//
-//	// Get time before
-//	auto start = omp_get_wtime();
-//
-//	// Do vector addition
-//#pragma omp target teams \
-//  distribute parallel for simd \
-//  map(to: a [0:N], b [0:N]) map(from: c [0:N])
-//	for (int i = 0; i < N; i++) {
-//		c[i] = a[i] + b[i];
-//	}
-//
-//	// Get time after
-//	auto end = omp_get_wtime();
-//	std::cout << end - start << '\n';
-//
-//	// Free our memory
-//	delete[] a;
-//	delete[] b;
-//	delete[] c;
-
 	std::cout << version::version_getInfo(); // Display the software info and script status (ex: git info's)
 
 	std::string configFile = "", outputFolder = "";
@@ -150,11 +117,13 @@ int main( int argc, char * argv[] )
 	}
 	
 	// run the simulation
-	CrowdSimulator* cs = CrowdSimulator::FromConfigFile(configFile);
+	CrowdSimulator* cs = CrowdSimulator::FromConfigFile(configFile, nrThreads);
 	if (cs == nullptr) // the simulation could not be loaded (for reasons already written to the console)
 		return -1;
 
+	SetPriorityClass(GetCurrentProcess(), HIGH_PRIORITY_CLASS);
 	cs->GetWorld()->SetNumberOfThreads(nrThreads);
+
 	if (outputFolder != "")
 		cs->StartCSVOutput(outputFolder, false); // false = don't save any files until the simulation ends
 
@@ -162,5 +131,6 @@ int main( int argc, char * argv[] )
 	cs->RunSimulationUntilEnd(true, true);
 
 	delete cs;
+
 	return 0;
 }

@@ -30,6 +30,7 @@
 #include <core/worldBase.h>
 #include <stdio.h>
 #include <iostream>
+#include <omp.h>
 
 Agent::Agent(size_t id, const Agent::Settings& settings) :
 	id_(id), settings_(settings),
@@ -40,6 +41,7 @@ Agent::Agent(size_t id, const Agent::Settings& settings) :
 	contact_forces_(0, 0),
 	preferred_velocity_(0, 0),
 	goal_(0, 0),
+	mapIndex_(0),
 	viewing_direction_(0, 0),
 	next_acceleration_(0, 0),
 	next_contact_forces_(0, 0),
@@ -175,14 +177,44 @@ void Agent::ComputePreferredVelocity(WorldBase* world)
 		preferred_velocity_ = Vector2D(0, 0);
 	else if (world->GetIsActiveGlobalNav())
 	{
+		//OPTIMIZE
 		if (position_.x >= 0 && position_.x < world->GetWidth() && position_.y >= 0 && position_.y < world->GetHeight())
 		{
-			preferred_velocity_ = world->vectorArray_[(int)std::floor(position_.x) + (int)std::floor(position_.y) * world->GetWidth()] * getPreferredSpeed();
+			int n = world->GetMaps().size();
+			Vector2D preferredVector;
+
+			//Choose map with shortest distance taking into account congestion
+			if ((int) id_ % n == (int) (world->GetCurrentTime() / world->GetFineDeltaTime()) % n)
+			{
+				float dist = 0;
+				float shortestDist = 100000000;
+
+				for (int i = 0; i < n; ++i)
+				{
+					dist = world->GetMaps()[i]->getDistance(position_.x, position_.y) * world->GetMaps()[i]->getDistanceMultiplier();
+					if (dist < shortestDist)
+					{
+						shortestDist = dist;
+						mapIndex_ = i;
+					}
+				}
+			}
+			preferredVector = world->GetMaps()[mapIndex_]->getVector(position_.x, position_.y);
+			goal_ = world->GetMaps()[mapIndex_]->getGoal();
+			
+			// For using fixed speed
+			preferred_velocity_ = preferredVector * getPreferredSpeed();
+
+			// For using simple variable speed
+			//preferred_velocity_ = preferredVector * vectorMap::speedFromSPHDensity(sph_density_);
+
+			// For using DenseSense variable speed
+			//preferred_velocity_ = preferredVector * getPreferredSpeed();
+			//preferred_velocity_ = vectorMap::preferredVelocityFromSPHDensity(preferredVector, sph_density_);
 		}
 		else
 			preferred_velocity_ = (goal_ - position_).getnormalized() * getPreferredSpeed();
 	}
-		
 	else
 		preferred_velocity_ = (goal_ - position_).getnormalized() * getPreferredSpeed();
 }
@@ -191,11 +223,6 @@ void Agent::ComputeAcceleration(WorldBase* world)
 {
 	if (!(getPolicy()->GetName() == "RVO" && world->GetCurrentCoarseTime() != 0.0f))
 		next_acceleration_ = getPolicy()->ComputeAcceleration(this, world);
-}
-
-Vector2D Agent::ComputeAcceleration_RK4(Vector2D velocity, WorldBase* world)
-{
-	return getPolicy()->ComputeAcceleration_RK4(this, velocity, world);
 }
 
 void Agent::ComputeContactForces(WorldBase* world)
@@ -267,20 +294,6 @@ void Agent::UpdateVelocityAndPosition(WorldBase* world)
 	// update the position
 	position_ += velocity_ * dt;
 
-	/*
-	// clamp the acceleration
-	acceleration_ = clampVector((next_acceleration_ + sph_acceleration_), getMaximumAcceleration());
-
-	// integrate the velocity; clamp to a maximum speed
-	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
-
-	// add contact forces
-	contact_forces_ = next_contact_forces_;
-	velocity_ += contact_forces_ / settings_.mass_ * dt;
-
-	// update the position
-	position_ += velocity_ * dt;
-	*/
 	updateViewingDirection();
 }
 
@@ -383,84 +396,6 @@ void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
 
 	updateViewingDirection();
 }
-
-/*
-void Agent::UpdateVelocityAndPosition_RK4(WorldBase* world)
-{
-	const float dt = world->GetFineDeltaTime();
-	const float relaxation_time = 0.5f;
-
-	// add contact forces
-	contact_forces_ = next_contact_forces_;
-
-	// add and clamp the acceleration if SPH enabled
-	if (world->GetIsActiveSPH())
-	{
-		// Use density-based blending if enabled
-		if (world->GetIsActiveDensityBlending())
-		{
-			float kappa = (sph_density_ - 2.f) / (4.f - 2.f);
-
-			if (sph_density_ < 2.f)
-			{
-				k1_ = next_acceleration_;
-				k2_ = ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world);
-				k3_ = ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world);
-				k4_ = ComputeAcceleration_RK4(velocity_ + dt * k3_, world);
-				acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
-			}
-			else
-			{
-				// Calculate a preferred goalReachingAcceleration based on GoalReachingForce since SPH alone does not take into account a global goal
-				//Vector2D goalReachingAcceleration = (getPreferredVelocity() - velocity_) / std::max(0.5f, getDeltaTime(world)) / getMass();
-				if (sph_density_ > 4.f)
-				{
-					k1_ = (preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
-					k2_ = (preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
-					k3_ = (preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
-					k4_ = (preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6;
-					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
-				}
-				else
-				{
-					k1_ = (1 - kappa) * (next_acceleration_) + kappa * ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-					k2_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-					k3_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-					k4_ = (1 - kappa) * (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + kappa * ((preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-					acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
-				}
-			}
-		}
-		else
-		{
-			k1_ = (next_acceleration_) + ((preferred_velocity_ - velocity_) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-			k2_ = (ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world)) + ((preferred_velocity_ - (velocity_ + dt * k1_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-			k3_ = (ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world)) + ((preferred_velocity_ - (velocity_ + dt * k2_ / 2)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-			k4_ = (ComputeAcceleration_RK4(velocity_ + dt * k3_, world)) + ((preferred_velocity_ - (velocity_ + dt * k3_)) / std::max(relaxation_time, dt) / settings_.mass_ + sph_acceleration_ / 6);
-			acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
-		}
-	}
-	else
-	{
-		k1_ = next_acceleration_;
-		k2_ = ComputeAcceleration_RK4(velocity_ + dt * k1_ / 2, world);
-		k3_ = ComputeAcceleration_RK4(velocity_ + dt * k2_ / 2, world);
-		k4_ = ComputeAcceleration_RK4(velocity_ + dt * k3_, world);
-		acceleration_ = (k1_ + 2 * k2_ + 2 * k3_ + k4_) / 6;
-	}
-
-	// add contact forces to acceleration
-	acceleration_ += contact_forces_ / settings_.mass_;
-
-	// integrate the velocity; clamp to a maximum speed
-	velocity_ = clampVector(velocity_ + (acceleration_ * dt), getMaximumSpeed());
-
-	// update the position
-	position_ += velocity_ * dt;
-
-	updateViewingDirection();
-}
-*/
 
 void Agent::UpdateVelocityAndPosition_Verlet2(WorldBase* world)
 {
@@ -625,6 +560,23 @@ void Agent::UpdateVelocityAndPosition_Leapfrog2(WorldBase* world)
 	position_ += velocity_ * dt;
 
 	updateViewingDirection();
+}
+
+void Agent::UpdateMapParameters(WorldBase* world)
+{
+	int thread_id = omp_get_thread_num();
+	float weight = 0.0f;
+	if (velocity_ != Vector2D(0, 0))
+	{
+		for (int i = 0; i < world->GetMaps().size(); ++i)
+		{
+			weight = abs(velocity_.getnormalized().dot((world->GetMaps()[i]->getGoal() - position_).getnormalized()));
+			world->GetMaps()[i]->incrementWeightedCount(weight, thread_id);
+			world->GetMaps()[i]->incrementCongestionValue(sph_density_ * weight, thread_id);
+		}
+		world->GetMaps()[mapIndex_]->incrementAgentCount(1, thread_id);
+		world->GetMaps()[mapIndex_]->incrementSpeedValue(velocity_.magnitude(), thread_id);
+	}
 }
 
 #pragma endregion

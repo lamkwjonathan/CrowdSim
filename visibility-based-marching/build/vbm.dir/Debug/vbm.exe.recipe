@@ -2,10 +2,10 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\Debug\vbm.exe</FullPath>
+      <FullPath>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\Debug\vbm.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

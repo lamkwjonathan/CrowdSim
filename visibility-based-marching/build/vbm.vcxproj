@@ -22,7 +22,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{98D9809A-5FEE-38C5-992E-691225FADDD5}</ProjectGuid>
+    <ProjectGuid>{081B904D-AF36-391A-BF64-73413ADCAA6E}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
@@ -60,25 +60,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vbm.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">vbm</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vbm.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">vbm</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">vbm.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">vbm</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">vbm.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">vbm</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -87,7 +87,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories);C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/SFML-2.5.0-windows-vc15-64-bit/SFML-2.5.0/include" -O0 -g -fsanitize=address -std=c++20</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -105,17 +105,17 @@
       <SupportJustMyCode>
       </SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_USE_MATH_DEFINES;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -123,13 +123,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-network-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-audio-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/Debug/vbm.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/Debug/vbm.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/Debug/vbm.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/Debug/vbm.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -138,7 +138,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;%(AdditionalIncludeDirectories);C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/SFML-2.5.0-windows-vc15-64-bit/SFML-2.5.0/include" -O3 -W4 -flto=auto -std=c++20</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -164,10 +164,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_USE_MATH_DEFINES;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -175,13 +175,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-audio.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-network.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/Release/vbm.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/Release/vbm.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/Release/vbm.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/Release/vbm.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -190,7 +190,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories);C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/SFML-2.5.0-windows-vc15-64-bit/SFML-2.5.0/include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -207,7 +207,7 @@
       <SupportJustMyCode>
       </SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
@@ -216,10 +216,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -228,12 +228,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/MinSizeRel/vbm.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/MinSizeRel/vbm.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/MinSizeRel/vbm.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/MinSizeRel/vbm.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -242,7 +242,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories);C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include";%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>%(AdditionalOptions) /external:I "C:/SFML-2.5.0-windows-vc15-64-bit/SFML-2.5.0/include"</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -260,17 +260,17 @@
       <SupportJustMyCode>
       </SupportJustMyCode>
       <UseFullPaths>false</UseFullPaths>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -279,12 +279,12 @@
     </Midl>
     <Link>
       <AdditionalDependencies>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-graphics-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-window-d.lib;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\sfml-system-d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>"C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib";%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/RelWithDebInfo/vbm.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/visibility-based-marching/RelWithDebInfo/vbm.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/RelWithDebInfo/vbm.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/RelWithDebInfo/vbm.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -292,11 +292,11 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/visibility-based-marching/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -304,12 +304,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/visibility-based-marching/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -317,12 +317,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/visibility-based-marching/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -330,12 +330,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/visibility-based-marching/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/visibility-based-marching/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build --check-stamp-file C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -343,20 +343,20 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.30\Modules\Platform\WindowsPaths.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfig.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigDependencies.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLConfigVersion.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-debug.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets-release.cmake;C:\SFML-2.5.0-windows-vc15-64-bit\SFML-2.5.0\lib\cmake\SFML\SFMLSharedTargets.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeCXXCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeRCCompiler.cmake;C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\3.30.3\CMakeSystem.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\main.cpp" />
-    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\environment.cpp" />
-    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\solver.cpp" />
-    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\src\parser.cpp" />
+    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\main.cpp" />
+    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp" />
+    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp" />
+    <ClCompile Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\parser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\imjon\Documents\School\FYP\visibility-based-marching\build\ZERO_CHECK.vcxproj">
-      <Project>{C851F680-EDEC-3342-8C97-94F2AF53BD81}</Project>
+    <ProjectReference Include="C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\build\ZERO_CHECK.vcxproj">
+      <Project>{E752EC39-059C-3B7A-90A6-185F8E36C9D5}</Project>
       <Name>ZERO_CHECK</Name>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

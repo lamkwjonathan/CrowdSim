@@ -126,7 +126,7 @@ void WorldBase::DoStep()
 	else
 	{
 		n = (int)agents_.size();
-		#pragma omp parallel for
+		#pragma omp parallel for 
 		for (int i = 0; i < n; ++i)
 			agents_[i]->UpdateNeighbors(this);
 	}
@@ -134,11 +134,11 @@ void WorldBase::DoStep()
 	// compute SPH parameters if required
 	if (GetIsActiveSPH()) 
 	{
-		#pragma omp parallel for
+		#pragma omp parallel for 
 		for (int i = 0; i < n; ++i)
 			agents_[i]->ComputeBaseSPH(this);
 
-		#pragma omp parallel for
+		#pragma omp parallel for 
 		for (int i = 0; i < n; ++i)
 			agents_[i]->ComputeDerivedSPH(this);
 	}
@@ -160,7 +160,46 @@ void WorldBase::DoStep()
 
 	// 6. move all agents to their new positions
 	DoStep_MoveAllAgents();
-	
+
+	// update map parameters if required
+	if (isActiveGlobalNav_ && isActiveDynamicNav_)
+	{
+		// Parallelized with buckets
+		#pragma omp parallel for 
+		for (int i = 0; i < n; i++)
+		{
+			agents_[i]->UpdateMapParameters(this);
+		}
+		float ratio = fine_delta_time_ / GetDynamicNavTimeWindow();
+		for (int i = 0; i < maps_.size(); ++i)
+		{
+			// Collate thread-local parameters
+			maps_[i]->collateThreadLocalVariables();
+
+			// For using congestion value only with exponential moving average
+			//maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount()));
+			
+			// For using congestion value only without exponential moving average
+			//maps_[i]->setDistanceMultiplier(vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount()));
+
+			// For using speed value only with exponential moving average
+			maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue());
+			
+			// For using speed value only without exponential moving average
+			//maps_[i]->setDistanceMultiplier(maps_[i]->getAgentCount() / maps_[i]->getSpeedValue());
+
+			// For using congestion value + speed value with exponential moving average
+			//maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * 0.5 * (1.4 * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue() + vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount())));
+			
+			// For using congestion value + speed value with exponential moving average
+			//maps_[i]->setDistanceMultiplier(0.5 * (1.4 * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue() + vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount())));
+
+			maps_[i]->setWeightedCount(1.0f);
+			maps_[i]->setCongestionValue(1.0f);
+			maps_[i]->setAgentCount(1);
+			maps_[i]->setSpeedValue(1.4f);
+		}
+	}
 	// --- End of main simulation tasks.	
 
 	// increase the time that has passed
@@ -312,6 +351,11 @@ void WorldBase::removeAgentAtListIndex(size_t index)
 
 #pragma endregion
 
+void WorldBase::AddMap(vectorMap* m)
+{
+	maps_.push_back(m);
+}
+
 void WorldBase::AddObstacle(const std::vector<Vector2D>& points)
 {
 	obstacles_.push_back(Polygon2D(points));
@@ -322,6 +366,11 @@ WorldBase::~WorldBase()
 	// delete the KD tree
 	if (agentKDTree != nullptr)
 		delete agentKDTree;
+
+	// delete all agents
+	for (vectorMap* m : maps_)
+		delete m;
+	maps_.clear();
 
 	// delete all agents
 	for (Agent* agent : agents_)

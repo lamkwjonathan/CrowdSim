@@ -5,5 +5,5 @@
 	</World>
 	<SPH max_density="6.0" density_blending="true"/>
 	<Policies file="../policies/SocialForces.xml" />
-	<Agents file="../agents/Empty.xml" />
+	<Agents file="../agents/UTownGreen10000.xml" />
 </Simulation>

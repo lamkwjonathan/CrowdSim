@@ -74,33 +74,6 @@ Vector2D Policy::ComputeAcceleration(Agent* agent, WorldBase * world)
 	return (bestVelocity - currentVelocity) / std::max(relaxationTime_, dt);
 }
 
-Vector2D Policy::ComputeAcceleration_RK4(Agent* agent, Vector2D velocity, WorldBase* world)
-{
-	const Vector2D& currentVelocity = velocity;
-	float dt = world->GetFineDeltaTime();
-
-	// if the agent does not want to move, return a deceleration vector
-	if (agent->getPreferredVelocity().isZero())
-		return -currentVelocity / dt;
-
-	// compute a new acceleration using a certain optimization method
-
-	// a) Gradient following: compute acceleration from cost-function gradients
-	if (optimizationMethod_ == OptimizationMethod::GRADIENT)
-		return getAccelerationFromGradient_RK4(agent, velocity, world);
-
-	// b) Global optimization or sampling
-
-	// - compute the ideal velocity according to the cost functions
-	const Vector2D& bestVelocity = (optimizationMethod_ == OptimizationMethod::GLOBAL
-		? getBestVelocityGlobal_RK4(agent, velocity, world)
-		: getBestVelocitySampling_RK4(agent, velocity, world, samplingParameters_));
-
-	// - convert this to an acceleration using a relaxation time
-	//   Note: the relaxation time should be at least the length of a frame.
-	return (bestVelocity - currentVelocity) / std::max(relaxationTime_, dt);
-}
-
 float Policy::ComputeCostForVelocity(const Vector2D& velocity, Agent* agent, WorldBase* world)
 {
 	// compute the cost for this velocity
@@ -124,19 +97,6 @@ Vector2D Policy::getAccelerationFromGradient(Agent* agent, WorldBase * world)
 	return -1 * TotalGradient;
 }
 
-Vector2D Policy::getAccelerationFromGradient_RK4(Agent* agent, Vector2D velocity, WorldBase* world)
-{
-	const Vector2D& CurrentVelocity = velocity;
-
-	// sum up the gradient of all cost functions
-	Vector2D TotalGradient(0, 0);
-	for (auto& costFunction : cost_functions_)
-		TotalGradient += costFunction.second * costFunction.first->GetGradientFromCurrentVelocity_RK4(agent, velocity, world);
-
-	// move in the opposite direction of this gradient
-	return -1 * TotalGradient;
-}
-
 Vector2D Policy::getBestVelocityGlobal(Agent* agent, WorldBase * world)
 {
 	// Note: True global optimization only works if this policy has a single cost function, 
@@ -148,25 +108,9 @@ Vector2D Policy::getBestVelocityGlobal(Agent* agent, WorldBase * world)
 		: getBestVelocitySampling(agent, world, SamplingParameters::ApproximateGlobalOptimization());
 }
 
-Vector2D Policy::getBestVelocityGlobal_RK4(Agent* agent, Vector2D velocity, WorldBase* world)
-{
-	// Note: True global optimization only works if this policy has a single cost function, 
-	// because it requires a closed-form solution that has to be implemented per function.
-	// If no such closed-form solution is given (or if there are multiple cost functions), we have to resort to sampling.
-
-	return cost_functions_.size() == 1
-		? cost_functions_[0].first->GetGlobalMinimum_RK4(agent, velocity, world)
-		: getBestVelocitySampling_RK4(agent, velocity, world, SamplingParameters::ApproximateGlobalOptimization());
-}
-
 Vector2D Policy::getBestVelocitySampling(Agent* agent, WorldBase * world, const SamplingParameters& params)
 {
 	return CostFunction::ApproximateGlobalMinimumBySampling(agent, world, params, cost_functions_);
-}
-
-Vector2D Policy::getBestVelocitySampling_RK4(Agent* agent, Vector2D velocity, WorldBase* world, const SamplingParameters& params)
-{
-	return CostFunction::ApproximateGlobalMinimumBySampling_RK4(agent, velocity, world, params, cost_functions_);
 }
 
 Vector2D Policy::ComputeContactForces(Agent* agent, WorldBase * world)

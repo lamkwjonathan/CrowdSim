@@ -68,8 +68,9 @@ public:
   /// <summary>Creates a new CrowdSimulator object by loading a given configuration file.</summary>
   /// <remarks>Note: The caller of this method is responsible for deleting the resulting CrowdSimulator object.</remarks>
   /// <param name="filename">The name of the configuration file to load.</param>
+  /// <param name="num_threads">The number of threads initialized for this simulation.</param>
   /// <returns>A pointer to new CrowdSimulator object, or nullptr if the loading failed for any reason.</returns>
-  static CrowdSimulator* FromConfigFile(const std::string& filename);
+  static CrowdSimulator* FromConfigFile(const std::string& filename, int num_threads);
   
   /// <summary>Destroys this CrowdSimulator object.</summary>
   ~CrowdSimulator();
@@ -143,7 +144,7 @@ private:
 	bool FromConfigFile_loadObstaclesBlock(const tinyxml2::XMLElement* obstaclesBlock);
 	bool FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElement* obstacleElement);
 
-	bool FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* pathBlock, const std::string& fileFolder);
+	bool FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* mapBlock, const std::string& fileFolder, int num_threads);
 };
 
 #endif

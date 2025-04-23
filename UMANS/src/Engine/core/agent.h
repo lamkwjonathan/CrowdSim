@@ -82,6 +82,7 @@ private:
 
 	Vector2D preferred_velocity_;
 	Vector2D goal_; 
+	int mapIndex_;
 	Vector2D viewing_direction_;
 	
 	Vector2D next_acceleration_;
@@ -162,12 +163,6 @@ public:
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void ComputeAcceleration(WorldBase* world);
 
-	/// <summary>Uses this agent's Policy and intermediate velocity to compute a new acceleration vector for the agent by the RK4 method.</summary>
-	/// <param name="velocity">The intermediate velocity used for calculation.</param>
-	/// <param name="world">A reference to the world in which the simulation takes place.</param>
-	/// <returns>A Vector2D containing the intermediate acceleration of the agent.</returns>
-	Vector2D ComputeAcceleration_RK4(Vector2D velocity, WorldBase* world);
-
 	/// <summary>Computes forces with neighboring agents that are currently colliding with this agent.</summary>
 	/// <remarks>The result will be stored internally in the agent.</remarks>
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
@@ -189,6 +184,10 @@ public:
 	/// <summary>Updates the velocity and position of this Agent via Leapfrog method, using the last computed acceleration and contact forces.</summary>
 	/// <param name="world">A reference to the world in which the simulation takes place.</param>
 	void UpdateVelocityAndPosition_Leapfrog2(WorldBase* world);
+
+	/// <summary>Updates the map parameters with this Agent's data.</summary>
+	/// <param name="world">A reference to the world in which the simulation takes place.</param>
+	void UpdateMapParameters(WorldBase* world);
 
 	/// @}
 #pragma endregion

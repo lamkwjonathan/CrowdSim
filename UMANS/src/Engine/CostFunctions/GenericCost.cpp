@@ -34,12 +34,6 @@ float GenericCost::GetCost(const Vector2D& velocity, Agent* agent, const WorldBa
 	return 0;
 }
 
-float GenericCost::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
-{
-	// Here you should compute a scalar that indicates the "cost" of using the given velocity.
-	return 0;
-}
-
 Vector2D GenericCost::GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	// Here you should compute a 2D vector that is the gradient of the cost function at the given velocity.

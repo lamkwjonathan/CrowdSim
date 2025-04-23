@@ -155,12 +155,6 @@ public:
 	/// <param name="world">The world in which the simulation takes place.</param>
 	Vector2D ComputeAcceleration(Agent* agent, WorldBase* world);
 
-	/// <summary>Computes and returns a new intermediate acceleration vector (for RK4) for a given agent, using the cost functions and optimization method of this Policy.</summary>
-	/// <param name="agent">The agent for which a new acceleration should be computed.</param>
-	/// <param name="velocity">The intermediate velocity for which a new acceleration should be computed based on.</param>
-	/// <param name="world">The world in which the simulation takes place.</param>
-	Vector2D ComputeAcceleration_RK4(Agent* agent, Vector2D velocity, WorldBase* world);
-
 	/// <summary>Computes and returns the cost that this Policy assigns to a (hypothetical) velocity for a given agent. 
 	/// This is useful for e.g. visualizing a cost function. For most purposes, ComputeNewVelocity() is better because it encapsulates more work.</summary>
 	/// <param name="velocity">A velocity vector for which the cost should be computed.</param>
@@ -204,20 +198,12 @@ public:
 private:
 	/// <summary>Computes an acceleration vector for an agent by following the gradient of this Policy's cost functions.</summary>
 	Vector2D getAccelerationFromGradient(Agent* agent, WorldBase* world);
-	/// <summary>Computes an intermediate acceleration vector for an agent by following the gradient of this Policy's cost functions (for RK4).</summary>
-	Vector2D getAccelerationFromGradient_RK4(Agent* agent, Vector2D velocity, WorldBase* world);
 	/// <summary> Computes the best new velocity for an agent by finding the global minimum of this Policy's cost functions. 
 	/// If the cost function does not have a closed-form global optimum, or if the Policy has more than one cost function,
 	/// this method will use sampling to *approximate* the solution.</summary>
 	Vector2D getBestVelocityGlobal(Agent* agent, WorldBase* world);
-	/// <summary> Computes the best new intermediate velocity for an agent by finding the global minimum of this Policy's cost functions. 
-	/// If the cost function does not have a closed-form global optimum, or if the Policy has more than one cost function,
-	/// this method will use sampling to *approximate* the solution.</summary>
-	Vector2D getBestVelocityGlobal_RK4(Agent* agent, Vector2D velocity, WorldBase* world);
 	/// <summary>Computes the best velocity for an agent by approaching the global minimum of this Policy's cost function via sampling.</summary>
 	Vector2D getBestVelocitySampling(Agent* agent, WorldBase* world, const SamplingParameters& params);
-	/// <summary>Computes the best intermediate velocity for an agent by approaching the global minimum of this Policy's cost function via sampling.</summary>
-	Vector2D getBestVelocitySampling_RK4(Agent* agent, Vector2D velocity, WorldBase* world, const SamplingParameters& params);
 };
 
 

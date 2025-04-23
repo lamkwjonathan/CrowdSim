@@ -3,7 +3,7 @@
 
 #include <tools/vector2D.h>
 
-class WorldBase;
+//class WorldBase;
 
 /// <summary>Class containing SPH parameters and functions.</summary>
 class SPH

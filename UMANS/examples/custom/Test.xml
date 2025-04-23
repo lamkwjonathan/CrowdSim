@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Simulation delta_time="0.05" write_interval="1.0" end_time="600">
-	<World type="Infinite" integration_mode="Euler" goal_radius="10.0">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="true">
 		<Obstacles file="../obstacles/testObstacles.xml"/>
 	</World>
 	<SPH max_density="6.0" density_blending="true"/>
 	<Policies file="../policies/SocialForces.xml" />
-	<Agents file="../agents/test_agents_2.xml" />
-	<Path file="../paths/utown.txt" />
+	<Agents file="../agents/test_agents_nearestGoal.xml" />
+	<Map goal_x="226.5928019999992" goal_y="114.6585840000007" vector="../maps/utown_exit2_vector.txt" distance="../maps/utown_exit2_distance.txt"/>
+	<Map goal_x="211.73280200000227" goal_y="76.83858400000099" vector="../maps/utown_exit3_vector.txt" distance="../maps/utown_exit3_distance.txt"/>
+	<Map goal_x="148.46280200000183" goal_y="75.93858399999954" vector="../maps/utown_exit4_vector.txt" distance="../maps/utown_exit4_distance.txt"/>
 </Simulation>

@@ -33,6 +33,7 @@
 #include <core/agent.h>
 #include <core/AgentKDTree.h>
 #include <core/sph.h>
+#include <core/vectorMap.h>
 
 #include <queue>
 #include <unordered_map>
@@ -100,9 +101,6 @@ public:
 	enum Integration_Mode { UNKNOWN, EULER, RK4, VERLET2, LEAPFROG2 };
 	static Integration_Mode StringToIntegrationMode(const std::string& mode);
 
-	/// <summary>A vector array containing the global navigation direction vector for each grid square.</summary>
-	std::unique_ptr<Vector2D[]> vectorArray_;
-
 private:
 
 	typedef std::pair<Agent*, double> AgentTimePair; 
@@ -136,6 +134,10 @@ protected:
 	/// <summary>The integration mode of this world, e.g. Semi-Implicit Euler, RK4 or SI.</summary>
 	Integration_Mode mode_;
 
+	/// <summary>A list containing the path vector maps associated with this world.</summary>
+	std::vector<vectorMap*> maps_;
+
+	/// <summary>A list containing all obstacles that are currently in the world.</summary>
 	std::vector<Polygon2D> obstacles_;
 
 	/// <summary>A list containing all agents that are currently in the crowd.</summary>
@@ -145,7 +147,7 @@ protected:
 	AgentKDTree* agentKDTree;
 
 	/// <summary>The length (in seconds) of a fine (physics) simulation step.</summary>
-	float fine_delta_time_ = 0.05; // lambda * radius / max_speed = 0.4 * 0.24 / 1.8 = 0.053333 (CFL Stability Criteria)
+	float fine_delta_time_ = 0.05; // lambda * radius / max_speed = 0.4 * 0.24 * 2 / 1.8 = 0.096 (CFL Stability Criteria)
 
 	/// <summary>The length (in seconds) of a coarse (regular) simulation step.</summary>
 	float coarse_delta_time_;
@@ -168,6 +170,12 @@ protected:
 	/// <summary>Boolean value indicating whether global navigation is to be used in this simulation.</summary>
 	bool isActiveGlobalNav_ = false;
 
+	/// <summary>Boolean value indicating whether dynamic navigation is to be used in this simulation.</summary>
+	bool isActiveDynamicNav_ = false;
+
+	/// <summary>Float value indicating the size of the dynamic navigation distance penalty moving average window in seconds.</summary>
+	float dynamicNavTimeWindow_ = 5.0f;
+
 	/// <summary>The SPH instance attached to this world.</summary>
 	SPH sph_;
 
@@ -187,6 +195,10 @@ public:
 	/// Methods that directly return a value stored in the world.
 	/// @{
 
+	/// <summary>Returns the list of maps. Use this to iterate all maps in arbitrary order.</summary>
+	/// <returns>A non-mutable reference to the list of Map objects.</returns>
+	inline const std::vector<vectorMap*>& GetMaps() const { return maps_; }
+
 	/// <summary>Returns the list of agents. Use this if you want to retrieve information from all agents in an arbitrary order.</summary>
 	/// <returns>A non-mutable reference to the list of Agent objects.</returns>
 	inline const std::vector<Agent*>& GetAgents() const { return agents_; }
@@ -204,11 +216,11 @@ public:
 	inline double GetCurrentCoarseTime() const { return coarse_time_; }
 
 	/// <summary>Returns the duration of a single fine simulation time step (in seconds), i.e. the time that is simulated in a single execution of DoStep().</summary>
-	/// <returns>The duration of a single fine simulation time step (in seconds).</summary>
+	/// <returns>The duration of a single fine simulation time step (in seconds).</returns>
 	inline float GetFineDeltaTime() const { return fine_delta_time_; }
 
 	/// <summary>Returns the duration of a single coarse simulation time step (in seconds), i.e. the time that is simulated in a single execution of ComputeNeighbours() and some RVO calculations.</summary>
-	/// <returns>The duration of a single coarse simulation time step (in seconds).</summary>
+	/// <returns>The duration of a single coarse simulation time step (in seconds).</returns>
 	inline float GetCoarseDeltaTime() const { return coarse_delta_time_; }
 
 	/// <summary>Returns the type of this world, i.e. infinite or toric.</summary>
@@ -234,6 +246,14 @@ public:
 	/// <summary>Returns the boolean isActiveGlobalNav that indicates whether global navigation is used in this simulation.</summary>
 	/// <returns>A boolean denoting whether global navigation is used.</returns>
 	inline bool GetIsActiveGlobalNav() { return isActiveGlobalNav_; }
+
+	/// <summary>Returns the boolean isActiveDynamicNav that indicates whether dynamic navigation is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether dynamic navigation is used.</returns>
+	inline bool GetIsActiveDynamicNav() { return isActiveDynamicNav_; }
+
+	/// <summary>Returns the float value denoting the size of the dynamic navigation distance penalty moving average window in seconds.</summary>
+	/// <returns>A float denoting the size of dynamic navigation distance penalty moving average window in seconds.</returns>
+	inline float GetDynamicNavTimeWindow() { return dynamicNavTimeWindow_; }
 
 	/// <summary>Returns the SPH instance attached to this world.</summary>
 	/// <returns>A reference to the SPH instance.</returns>
@@ -291,6 +311,10 @@ public:
 	/// <summary>Sets whether global navigation is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether global navigation is used.</param>
 	inline void SetIsActiveGlobalNav(bool b) { isActiveGlobalNav_ = b; }
+
+	/// <summary>Sets whether dynamic navigation is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether dynamic navigation is used.</param>
+	inline void SetIsActiveDynamicNav(bool b) { isActiveDynamicNav_ = b; }
 
 	/// <summary>Sets whether SPH is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether SPH is used.</param>
@@ -351,6 +375,10 @@ public:
 
 	/// @}
 #pragma endregion
+
+	/// <summary>Adds a map to the world.</summary>
+	/// <param name="m">A vectorMap containing information on global path to a goal for this world.</param>
+	virtual void AddMap(vectorMap* m);
 
 	/// <summary>Adds an obstacle with the given vertices to the world.</summary>
 	/// <param name="points">A sequence of 2D points defining the obstacle's boundary vertices.</param>

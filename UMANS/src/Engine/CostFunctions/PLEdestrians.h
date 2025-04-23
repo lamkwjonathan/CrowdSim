@@ -67,7 +67,6 @@ public:
 	const static std::string GetName() { return "PLEdestrians"; }
 
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const override;
-	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const override;
 
 	void parseParameters(const CostFunctionParameters & params) override;
 };

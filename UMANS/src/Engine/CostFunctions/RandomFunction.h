@@ -48,7 +48,6 @@ public:
 
 	/// Computes a random cost between -1 and 1.
 	virtual float GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const override;
-	virtual float GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const override;
 
 	/// Computes a random gradient with both the X and Y component between -1 and 1.
 	virtual Vector2D GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const override;

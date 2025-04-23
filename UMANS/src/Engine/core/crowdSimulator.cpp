@@ -284,6 +284,17 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 	}
 	
 	world_->SetGoalRadius(goalRadius_float);
+
+	const char* isDynamicNav = worldElement->Attribute("dynamic_nav");
+	std::string isDynamicNav_str;
+	if (isDynamicNav != nullptr)
+		isDynamicNav_str = (std::string) isDynamicNav;
+	if (isDynamicNav_str == "true")
+	{
+		world_->SetIsActiveDynamicNav(true);
+		std::cout << "Dynamic navigation initialized. Will only work if more than one map is specified." << std::endl;
+	}
+
 	return true;
 }
 
@@ -410,22 +421,30 @@ bool CrowdSimulator::FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tin
 	return FromConfigFile_loadObstaclesBlock(xmlBlock);
 }
 
-bool CrowdSimulator::FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)
+bool CrowdSimulator::FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder, const int num_threads)
 {
+	const char* goal_x = xmlBlock->Attribute("goal_x");
+	std::string goal_x_str(goal_x);
+	const char* goal_y = xmlBlock->Attribute("goal_y");
+	std::string goal_y_str(goal_y);
+
+	int width = world_->GetWidth();
+	int height = world_->GetHeight();
+	vectorMap* m = new vectorMap(width, height, num_threads);
+	m->setGoal(Vector2D(stof(goal_x_str), stof(goal_y_str)));
+
 	// - if this block refers to another file, read it
-	const char* externalFilename = xmlBlock->Attribute("file");
+	const char* externalFilename = xmlBlock->Attribute("vector");
 	if (externalFilename != nullptr)
 	{
 		std::ifstream f(fileFolder + externalFilename);
 		if (!f.is_open())
 		{
-			std::cerr << "Could not load or parse Path txt file at " << (fileFolder + externalFilename) << "." << std::endl
+			std::cerr << "Could not load or parse Map vector txt file at " << (fileFolder + externalFilename) << "." << std::endl
 				<< "Please check this file location." << std::endl;
 			return false;
 		}
-		int width = world_->GetWidth();
-		int height = world_->GetHeight();
-		world_->vectorArray_ = std::make_unique<Vector2D[]>(width * height);
+		
 		std::string s;
 		float x_val = 0;
 		float y_val = 0;
@@ -446,7 +465,7 @@ bool CrowdSimulator::FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* xm
 					else
 					{
 						y_val = stof(temp);
-						world_->vectorArray_[(int)std::floor(i / 2) + j * width] = Vector2D(x_val - i/2, y_val - j-0.5f).getnormalized();
+						m->setVector((int)std::floor(i / 2), j, Vector2D(x_val - i / 2, y_val - j - 0.5f).getnormalized());
 					}
 					temp = "";
 					++i;
@@ -457,9 +476,47 @@ bool CrowdSimulator::FromConfigFile_loadPathBlock(const tinyxml2::XMLElement* xm
 				}
 			}
 		}
-		world_->SetIsActiveGlobalNav(true);
-		std::cout << "Initialized Global Navigation." << std::endl;
 		f.close();
+
+		const char* externalFilename = xmlBlock->Attribute("distance");
+		if (externalFilename != nullptr)
+		{
+			std::ifstream f(fileFolder + externalFilename);
+			if (!f.is_open())
+			{
+				std::cerr << "Could not load or parse Map distance txt file at " << (fileFolder + externalFilename) << "." << std::endl
+					<< "Please check this file location." << std::endl;
+				return false;
+			}
+
+			std::string s;
+			float dist = 0;
+			std::string temp = "";
+			int i;
+			for (int j = 0; j < height; ++j)
+			{
+				i = 0;
+				getline(f, s);
+				for (char c : s)
+				{
+					if (c == ' ')
+					{
+						dist = stof(temp);
+						m->setDistance(i, j, dist);
+						temp = "";
+						++i;
+					}
+					else
+					{
+						temp += c;
+					}
+				}
+			}
+			f.close();
+		}
+		world_->AddMap(m);
+		world_->SetIsActiveGlobalNav(true);
+		std::cout << "Loaded " << externalFilename << " as map." << std::endl;
 		return true;
 	}
 	return false;
@@ -741,7 +798,7 @@ bool CrowdSimulator::FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElemen
 	return true;
 }
 
-CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
+CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename, int num_threads)
 {
 	std::setlocale(LC_NUMERIC, "en_US.UTF-8");
 
@@ -764,7 +821,7 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 	{
 		// Location of the config file should be relative to the location of the *main* config file.
 		// Check if the main config file lies in a subfolder.
-		return CrowdSimulator::FromConfigFile(fileFolder + simConfigPathElement->Attribute("path"));
+		return CrowdSimulator::FromConfigFile(fileFolder + simConfigPathElement->Attribute("path"), num_threads);
 	}
 
 	// --- Otherwise, we assume that this is a "regular" config file that contains the simulation itself.
@@ -903,16 +960,21 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 	}
 
 	// 
-	// --- Read path
+	// --- Read map
 	//
 
-	// read the block with path array
-	tinyxml2::XMLElement* pathElement = simulationElement->FirstChildElement("Path");
-	if (pathElement != nullptr && !crowdsimulator->FromConfigFile_loadPathBlock(pathElement, fileFolder))
+	// read the block with map array
+	tinyxml2::XMLElement* mapElement = simulationElement->FirstChildElement("Map");
+	while (mapElement != nullptr)
 	{
-		std::cerr << "Error while loading path. The simulation will run without global navigation active." << std::endl;
+		if (!crowdsimulator->FromConfigFile_loadMapBlock(mapElement, fileFolder, num_threads))
+		{
+			std::cerr << "Error while loading map." << std::endl;
+		}
+		mapElement = mapElement->NextSiblingElement("Map");
 	}
-	if (pathElement == nullptr)
+	
+	if (!crowdsimulator->GetWorld()->GetIsActiveGlobalNav())
 	{
 		std::cout << "Warning: Initializing simulation without global navigation." << std::endl;
 	}

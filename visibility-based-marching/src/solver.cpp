@@ -1376,7 +1376,7 @@ void Solver::saveResults(const std::vector<point> &resultingPath,
             return;
         }
         std::ostream& os4 = of4;
-        for (int j = 0; j < ny_; ++j) {
+        for (int j = ny_ - 1; j >= 0; --j) {
             for (size_t i = 0; i < nx_*2; ++i) {
                 os4 << vectorFrom_(i, j) << " ";
             }

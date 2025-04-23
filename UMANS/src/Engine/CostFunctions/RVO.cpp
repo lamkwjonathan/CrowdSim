@@ -50,24 +50,6 @@ float RVO::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * wor
 	return w / minTTC + vDiff.magnitude();
 }
 
-float RVO::GetCost_RK4(const Vector2D& velocity, Agent* agent, const WorldBase* world) const
-{
-	// disallow high speeds
-	if (velocity.magnitude() > agent->getMaximumSpeed())
-		return MaxFloat;
-
-	const float radius = agent->getRadius();
-	const Vector2D& position = agent->getPosition();
-	const Vector2D& RVOVelocity = 2 * velocity - velocity;
-
-	const Vector2D& vDiff = agent->getPreferredVelocity() - velocity;
-
-	// compute the smallest time to collision among all neighboring agents
-	float minTTC = ComputeTimeToFirstCollision(position, RVOVelocity, radius, agent->getNeighbors(), range_, true);
-
-	return w / minTTC + vDiff.magnitude();
-}
-
 void RVO::parseParameters(const CostFunctionParameters & params)
 {
 	CostFunction::parseParameters(params);
