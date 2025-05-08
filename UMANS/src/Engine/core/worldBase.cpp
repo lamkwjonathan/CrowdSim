@@ -162,7 +162,7 @@ void WorldBase::DoStep()
 	DoStep_MoveAllAgents();
 
 	// update map parameters if required
-	if (isActiveGlobalNav_ && isActiveDynamicNav_)
+	if (isActiveGlobalNav_ && isActiveNearestNav_ && isActiveDynamicNav_)
 	{
 		// Parallelized with buckets
 		#pragma omp parallel for 

@@ -170,7 +170,10 @@ protected:
 	/// <summary>Boolean value indicating whether global navigation is to be used in this simulation.</summary>
 	bool isActiveGlobalNav_ = false;
 
-	/// <summary>Boolean value indicating whether dynamic navigation is to be used in this simulation.</summary>
+	/// <summary>Boolean value indicating whether global navigation to nearest goal is to be used in this simulation.</summary>
+	bool isActiveNearestNav_ = false;
+
+	/// <summary>Boolean value indicating whether dynamic navigation to goal with shortest time-to-goal is to be used in this simulation.</summary>
 	bool isActiveDynamicNav_ = false;
 
 	/// <summary>Float value indicating the size of the dynamic navigation distance penalty moving average window in seconds.</summary>
@@ -247,6 +250,10 @@ public:
 	/// <returns>A boolean denoting whether global navigation is used.</returns>
 	inline bool GetIsActiveGlobalNav() { return isActiveGlobalNav_; }
 
+	/// <summary>Returns the boolean isActiveNearestNav that indicates whether global navigation to nearest goal is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether global navigation to nearest goal is used.</returns>
+	inline bool GetIsActiveNearestNav() { return isActiveNearestNav_; }
+
 	/// <summary>Returns the boolean isActiveDynamicNav that indicates whether dynamic navigation is used in this simulation.</summary>
 	/// <returns>A boolean denoting whether dynamic navigation is used.</returns>
 	inline bool GetIsActiveDynamicNav() { return isActiveDynamicNav_; }
@@ -311,6 +318,10 @@ public:
 	/// <summary>Sets whether global navigation is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether global navigation is used.</param>
 	inline void SetIsActiveGlobalNav(bool b) { isActiveGlobalNav_ = b; }
+
+	/// <summary>Sets whether global navigation to nearest goal is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether global navigation to nearest goal is used.</param>
+	inline void SetIsActiveNearestNav(bool b) { isActiveNearestNav_ = b; }
 
 	/// <summary>Sets whether dynamic navigation is used in the simulation.</summary>
 	/// <param name="b">The boolean indicating whether dynamic navigation is used.</param>

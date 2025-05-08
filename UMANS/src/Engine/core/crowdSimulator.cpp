@@ -30,6 +30,8 @@
 
 #include <tools/HelperFunctions.h>
 #include <tools/TrajectoryCSVWriter.h>
+#include <tools/heatmapPNGWriter.h>
+#include <3rd-party/lodepng/lodepng.h>
 #include <core/worldInfinite.h>
 #include <core/worldToric.h>
 #include <core/costFunctionFactory.h>
@@ -47,14 +49,15 @@ CrowdSimulator::CrowdSimulator()
 {
 	CostFunctionFactory::RegisterAllCostFunctions();
 	writer_ = nullptr;
+	pngWriter_ = nullptr;
 	end_time_ = MaxFloat;
 }
 
-void CrowdSimulator::StartCSVOutput(const std::string &dirname, bool flushImmediately)
+void CrowdSimulator::StartCSVOutput(const std::string &dirname, bool byAgent, bool flushImmediately)
 {
 	// create the CSV writer if it did not exist yet
 	if (writer_ == nullptr)
-		writer_ = new TrajectoryCSVWriter(flushImmediately);
+		writer_ = new TrajectoryCSVWriter(byAgent, flushImmediately);
 
 	// try to set the directory
 	if (!writer_->SetOutputDirectory(dirname))
@@ -75,11 +78,40 @@ void CrowdSimulator::StopCSVOutput()
 	}
 }
 
+void CrowdSimulator::StartPNGOutput(const std::string& dirname)
+{
+	// create the PNG writer if it did not exist yet
+	if (pngWriter_ == nullptr)
+		pngWriter_ = new heatmapPNGWriter();
+
+	// try to set the directory
+	if (!pngWriter_->SetOutputDirectory(dirname))
+	{
+		std::cerr << "Error: Could not set PNG output directory to " << dirname << "." << std::endl
+			<< "The program will be unable to write PNG output." << std::endl;
+		delete pngWriter_;
+		pngWriter_ = nullptr;
+	}
+}
+
+void CrowdSimulator::StopPNGOutput()
+{
+	if (pngWriter_ != nullptr)
+	{
+		delete pngWriter_;
+		pngWriter_ = nullptr;
+	}
+}
+
 CrowdSimulator::~CrowdSimulator()
 {
-	// delete the CSV writer?
+	// delete the CSV writer
 	if (writer_ != nullptr)
 		delete writer_;
+
+	// delete the PNG writer
+	if (pngWriter_ != nullptr)
+		delete pngWriter_;
 
 	// delete all policies
 	for (auto& policy : policies_)
@@ -96,6 +128,16 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 	{
 		world_->DoStep();
 
+		write_time_ += world_->GetFineDeltaTime();
+		if (write_time_ >= write_interval_)
+			write_time_ = 0.0f;
+
+		png_write_time_ += world_->GetFineDeltaTime();
+		if (png_write_time_ >= png_write_interval_)
+		{
+			png_write_time_ = 0.0f;
+		}
+
 		if (writer_ != nullptr && write_time_ == 0.0f)
 		{
 			double t = world_->GetCurrentTime();
@@ -109,15 +151,42 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 			//	data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
 			//}
 
-			for (const Agent* agent : agents)
-				data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
+			//for (const Agent* agent : agents)
+			//	data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection(), agent->getColor());
 
-			writer_->AppendAgentData(data);
+			for (const Agent* agent : agents)
+			{
+				float x = agent->getPosition().x + world_->GetOffset()->x;
+				float y = agent->getPosition().y + world_->GetOffset()->y;
+				data[agent->getID()] = TrajectoryPoint(t, Vector2D(x, y), agent->getViewingDirection(), agent->getColor());
+			}
+
+			if (writer_->GetByAgent())
+			{
+				writer_->AppendAgentData(data);
+			}
+			else
+			{
+				writer_->FlushByTimeStep(data, flushCount_);
+				flushCount_ += 1;
+			}
 		}
 
-		write_time_ += world_->GetFineDeltaTime();
-		if (write_time_ >= write_interval_)
-			write_time_ = 0.0f;
+		if (pngWriter_ != nullptr && png_write_time_ == 0.0f)
+		{
+			double t = world_->GetCurrentTime();
+			const auto& agents = world_->GetAgents();
+		
+			densityArray_ = std::unique_ptr<int[]>(new int[world_->GetWidth() * world_->GetHeight()]());
+
+			for (const Agent* agent : agents)
+				densityArray_[std::floor(agent->getPosition().y) * world_->GetWidth() + std::floor(agent->getPosition().x)] += 1;
+
+			if (pngWriter_->writePNG(densityArray_, obstaclesArray_, world_->GetWidth(), world_->GetHeight(), pngCount_))
+			{
+				pngCount_ += 1;
+			}
+		}
 	}
 }
 
@@ -134,6 +203,22 @@ void CrowdSimulator::RunSimulationUntilEnd(bool showProgressBar, bool measureTim
 
 	// get the current system time; useful for time measurements later on
 	const auto& startTime = HelperFunctions::GetCurrentTime();
+
+	if (pngWriter_ != nullptr)
+	{
+		double t = world_->GetCurrentTime();
+		const auto& agents = world_->GetAgents();
+
+		densityArray_ = std::unique_ptr<int[]>(new int[world_->GetWidth() * world_->GetHeight()]());
+
+		for (const Agent* agent : agents)
+			densityArray_[std::floor(agent->getPosition().y) * world_->GetWidth() + std::floor(agent->getPosition().x)] += 1;
+
+		if (pngWriter_->writePNG(densityArray_, obstaclesArray_, world_->GetWidth(), world_->GetHeight(), pngCount_))
+		{
+			pngCount_ += 1;
+		}
+	}
 
 	if (showProgressBar)
 	{
@@ -285,6 +370,16 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 	
 	world_->SetGoalRadius(goalRadius_float);
 
+	const char* isNearestNav = worldElement->Attribute("nearest_nav");
+	std::string isNearestNav_str;
+	if (isNearestNav != nullptr)
+		isNearestNav_str = (std::string)isNearestNav;
+	if (isNearestNav_str == "true")
+	{
+		world_->SetIsActiveNearestNav(true);
+		std::cout << "Nearest navigation initialized. Will only work if more than one map is specified." << std::endl;
+	}
+
 	const char* isDynamicNav = worldElement->Attribute("dynamic_nav");
 	std::string isDynamicNav_str;
 	if (isDynamicNav != nullptr)
@@ -292,7 +387,7 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 	if (isDynamicNav_str == "true")
 	{
 		world_->SetIsActiveDynamicNav(true);
-		std::cout << "Dynamic navigation initialized. Will only work if more than one map is specified." << std::endl;
+		std::cout << "Dynamic navigation initialized. Will only work if more than one map is specified and nearest navigation is also active." << std::endl;
 	}
 
 	return true;
@@ -419,6 +514,28 @@ bool CrowdSimulator::FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tin
 
 	// - otherwise, read the agents straight from the file itself
 	return FromConfigFile_loadObstaclesBlock(xmlBlock);
+}
+
+bool CrowdSimulator::FromConfigFile_loadObstaclesPNG(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)
+{
+	// - if this block refers to another file, read it
+	const char* externalFilename = xmlBlock->Attribute("file");
+	if (externalFilename != nullptr)
+	{
+		// Decode the PNG file
+		unsigned width, height;
+		unsigned error = lodepng::decode(obstaclesArray_, width, height, fileFolder + externalFilename);
+		if (error)
+		{
+			std::cout << lodepng_error_text(error) << std::endl;
+			return false;
+		}
+		else
+		{
+			std::cout << "Successfully loaded obstacles PNG file. Heatmaps can be displayed." << std::endl;
+			return true;
+		}
+	}
 }
 
 bool CrowdSimulator::FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder, const int num_threads)
@@ -955,6 +1072,18 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename, int 
 	if (obstaclesElement != nullptr && !crowdsimulator->FromConfigFile_loadObstaclesBlock_ExternallyOrNot(obstaclesElement, fileFolder))
 	{
 		std::cerr << "Error while loading obstacles. The simulation cannot be loaded." << std::endl;
+		delete crowdsimulator;
+		return nullptr;
+	}
+
+	//
+	// --- Read obstacles png
+	//
+
+	tinyxml2::XMLElement* obstaclesPNGElement = worldElement->FirstChildElement("PNG");
+	if (obstaclesPNGElement != nullptr && !crowdsimulator->FromConfigFile_loadObstaclesPNG(obstaclesPNGElement, fileFolder))
+	{
+		std::cerr << "Error while loading obstacles PNG. The simulation will not output heatmaps." << std::endl;
 		delete crowdsimulator;
 		return nullptr;
 	}

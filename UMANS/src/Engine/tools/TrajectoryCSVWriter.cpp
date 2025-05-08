@@ -68,9 +68,14 @@ bool TrajectoryCSVWriter::Flush()
 		file_i.open(file_name, std::ios::app);
 		for (const TrajectoryPoint& record : pos_log_copy.at(i))
 		{
+			if (record.time == 0.1f)
+			{
+				file_i << "time" << "," << "pos_x" << "," << "pos_y" << "," << "pos_z" << "," << "ori_x" << "," << "ori_y" << "," << "ori_z" << "," << "color_r" << "," << "color_g" << "," << "color_b" << "\n";
+			}
 			file_i << record.time << ","
-				<< record.position.x << "," << record.position.y << ","
-				<< record.orientation.x << "," << record.orientation.y << "\n";
+				<< record.position.x << "," << record.position.y << "," << 0 << ","
+				<< record.orientation.x << "," << record.orientation.y << "," << 0 << ","
+				<< record.color.r << "," << record.color.g << "," << record.color.b << "\n";
 		}
 		file_i.close();
 		pos_log_copy.at(i).clear();
@@ -94,6 +99,30 @@ bool TrajectoryCSVWriter::Flush()
 	
 	return true;
 }
+
+bool TrajectoryCSVWriter::FlushByTimeStep(AgentTrajectoryPoints data, int seq)
+{
+	if (dirname_.empty())
+		return false;
+
+	std::fstream file_i;
+	std::string file_name = dirname_ + std::to_string(seq) + ".csv";
+	file_i.open(file_name, std::ios::app);
+	file_i << "id" << "," << "pos_x" << "," << "pos_y" << "," << "pos_z" << "," << "ori_x" << "," << "ori_y" << "," << "ori_z" << "," << "color_r" << "," << "color_g" << "," << "color_b" << "\n";
+	
+	for (auto& item : data) // For every agent
+	{
+		TrajectoryPoint record = item.second;
+		file_i << item.first << ","
+			<< record.position.x << "," << record.position.y << "," << 0 << ","
+			<< record.orientation.x << "," << record.orientation.y << "," << 0 << ","
+			<< record.color.r << "," << record.color.g << "," << record.color.b << "\n";
+	}
+
+	file_i.close();
+	return true;
+}
+
 void TrajectoryCSVWriter::AppendAgentData(const AgentTrajectoryPoints& data)
 {
     mtx_.lock();

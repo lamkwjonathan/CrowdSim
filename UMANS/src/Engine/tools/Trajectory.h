@@ -31,6 +31,7 @@
 
 #include <tools/vector2D.h>
 #include <map>
+#include <tools/Color.h>
 
 ///<summary>A struct describing a position and orientation at a particular time.</summary>
 struct TrajectoryPoint
@@ -38,10 +39,11 @@ struct TrajectoryPoint
 	double time;
 	Vector2D position;
 	Vector2D orientation;
+	Color color;
 
 	TrajectoryPoint() {}
-	TrajectoryPoint(double time, const Vector2D& position, const Vector2D& orientation)
-		: time(time), position(position), orientation(orientation) {}
+	TrajectoryPoint(double time, const Vector2D& position, const Vector2D& orientation, const Color color)
+		: time(time), position(position), orientation(orientation), color(color) {}
 };
 
 typedef std::vector<TrajectoryPoint> Trajectory;

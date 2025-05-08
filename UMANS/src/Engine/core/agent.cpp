@@ -186,21 +186,34 @@ void Agent::ComputePreferredVelocity(WorldBase* world)
 			//Choose map with shortest distance taking into account congestion
 			if ((int) id_ % n == (int) (world->GetCurrentTime() / world->GetFineDeltaTime()) % n)
 			{
-				float dist = 0;
-				float shortestDist = 100000000;
-
-				for (int i = 0; i < n; ++i)
+				if (world->GetIsActiveNearestNav())
 				{
-					dist = world->GetMaps()[i]->getDistance(position_.x, position_.y) * world->GetMaps()[i]->getDistanceMultiplier();
-					if (dist < shortestDist)
+					float dist = 0;
+					float shortestDist = 100000000;
+
+					for (int i = 0; i < n; ++i)
 					{
-						shortestDist = dist;
-						mapIndex_ = i;
+						dist = world->GetMaps()[i]->getDistance(position_.x, position_.y) * world->GetMaps()[i]->getDistanceMultiplier();
+						if (dist < shortestDist)
+						{
+							shortestDist = dist;
+							mapIndex_ = i;
+							goal_ = world->GetMaps()[mapIndex_]->getGoal();
+						}
+					}
+				}
+				else
+				{
+					for (int i = 0; i < n; ++i)
+					{
+						if (world->GetMaps()[i]->getGoal() == goal_)
+						{
+							mapIndex_ = i;
+						}
 					}
 				}
 			}
 			preferredVector = world->GetMaps()[mapIndex_]->getVector(position_.x, position_.y);
-			goal_ = world->GetMaps()[mapIndex_]->getGoal();
 			
 			// For using fixed speed
 			preferred_velocity_ = preferredVector * getPreferredSpeed();

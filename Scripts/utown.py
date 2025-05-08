@@ -3,7 +3,7 @@
 from AgentToolkit import *
 from EnvironmentToolkit import *
 
-#UTownTest Scenario
+##UTownTest Scenario
 
 #f = open("test_agents.xml", "w")
 #f.write("<Agents>\n")
@@ -25,13 +25,33 @@ from EnvironmentToolkit import *
 #[175.48280200000227, 224.30858400000216, 226.5928019999992, 114.6585840000007, 211.73280200000227, 76.83858400000099, 148.46280200000183, 75.93858399999954]
 
 
-#UTownConcert Scenario
+##UTownConcert Scenario
 
-#create_xml_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown_obstacles.geojson", r"utownObstacles.xml", 50)
-#create_png_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown_obstacles.geojson", r"utownObstacles.png", 50)
-get_endpoints_coordinates([[31750.26,21382.82], [31735.25,21406.12], [31825.10,21504.62]], 21090.672486, 31710.897441, )
+#create_xml_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown\utown_obstacles.geojson", r"utownObstacles.xml", 50)
+#create_png_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown\utown_obstacles.geojson", r"utownObstacles.png", 50)
+get_endpoints_coordinates([[31750.26,21382.82], [31735.25,21406.12], [31825.10,21504.62]], 21090.672486, 31710.897441)
+#create_mask_png_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown\utown_obstacles.geojson", 50,
+                             #r"C:\Users\imjon\Documents\School\FYP\QGIS\utown_dense\utown_dense.geojson",
+                             #r"UTownConcert_dense.png")
+#create_mask_png_from_geojson(r"C:\Users\imjon\Documents\School\FYP\QGIS\utown\utown_obstacles.geojson", 50,
+                             #r"C:\Users\imjon\Documents\School\FYP\QGIS\utown_exclude\utown_exclude.geojson",
+                             #r"UTownConcert_exclude.png")
 
 
+#filename = "UTownConcert_RandomizedTestPopulation30000.xml"
+#num_agents = 30000
+#goals = [[292.1475140000002, 39.362558999997422], [315.4475139999995, 24.35255899999902], [402.5875139999989, 115.88255899999785]]
+#skew = 5
+
+#open_agent_xml(filename)
+#populate_world_from_png(r"C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\images\custom\UTownConcert.png",
+                        #r"C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\images\custom\UTownConcert_dense.png",
+                        #r"C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\images\custom\UTownConcert_exclude.png",
+                        #filename, num_agents, goals, skew)
+#close_agent_xml(filename)
+
+#Legacy Population Code
+'''
 filename = "UTownConcert70000.xml"
 f = open(filename, "w")
 f.write("<Agents>\n")
@@ -69,4 +89,4 @@ populate_rect(21181, 31791, 75, 75, 100, [[0,0]], 10000, True, [21091, 31711], 0
 f = open(filename, "a")
 f.write("</Agents>")
 f.close()
-
+'''

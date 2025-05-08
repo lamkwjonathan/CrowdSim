@@ -46,6 +46,13 @@ void printUsageInfo(const std::string& programName)
 		<< "                       For help on creating scenario files, please see the UMANS documentation." << std::endl
 		<< "  -o (or -output)    = (optional) Name of a folder to which the simulation output will be written." << std::endl
 		<< "                       The program will write a CSV file for each agent's trajectory." << std::endl
+		<< "  -ba (or -byAgent)  = (optional) true or false." << std::endl
+		<< "                       The program will write to the CSV file by agent rather than by timestep." << std::endl
+		<< "  -if (or -immediateFlush) = (optional) true or false." << std::endl
+		<< "                       The program will write to the CSV file periodically (based on write interval) rather than at the end." << std::endl
+		<< "                       Only works if byAgent is set to true." << std::endl
+		<< "  -hm (or -heatmap)    = (optional) Name of a folder to which the simulation heatmap output will be written." << std::endl
+		<< "                       The program will write PNG files once every stipulated time interval." << std::endl
 		<< "  -so (or -simpleOutput) = (optional, default output format) The outputed .csv files will be registered in their simpler data format" << std::endl
 		<< "  -co (or -complexOutput) = (optional, default=si) The outputed .csv files will be registered in their complex data format" << std::endl
 		<< "                       If you omit this, the program will run faster, but no results will be saved." << std::endl
@@ -57,7 +64,10 @@ int main( int argc, char * argv[] )
 {
 	std::cout << version::version_getInfo(); // Display the software info and script status (ex: git info's)
 
-	std::string configFile = "", outputFolder = "";
+	std::string configFile = "", outputFolder = "", heatmapOutputFolder = "";
+
+	bool byAgent = false;
+	bool immediateFlush = false;
 
 	enum outputformat { // define if the registered .csv files should be stored under a SIMPLE or COMPLEX format
 		SIMPLEOUTPUT = 1, // default value
@@ -85,6 +95,12 @@ int main( int argc, char * argv[] )
 			configFile = paramValue;
 		else if (paramName == "-o" || paramName == "-output")
 			outputFolder = paramValue;
+		else if (paramName == "-ba" || paramName == "-byAgent")
+			byAgent = (paramValue == "true") ? true : false;
+		else if (paramName == "-if" || paramName == "-immediateFlush")
+			immediateFlush = (paramValue == "true") ? true : false;
+		else if (paramName == "-hm" || paramName == "-heatmap")
+			heatmapOutputFolder = paramValue;
 		else if (paramName == "-so" || paramName == "-simpleOutput")
 			_outputFormat = COMPLEXOUTPUT;
 		else if (paramName == "-co" || paramName == "-complexOutput")
@@ -125,7 +141,10 @@ int main( int argc, char * argv[] )
 	cs->GetWorld()->SetNumberOfThreads(nrThreads);
 
 	if (outputFolder != "")
-		cs->StartCSVOutput(outputFolder, false); // false = don't save any files until the simulation ends
+		cs->StartCSVOutput(outputFolder, byAgent, immediateFlush); // false = don't save any files until the simulation ends
+
+	if (heatmapOutputFolder != "")
+		cs->StartPNGOutput(heatmapOutputFolder);
 
 	// run the full simulation; show a progress bar and measure the time
 	cs->RunSimulationUntilEnd(true, true);

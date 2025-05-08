@@ -266,7 +266,10 @@ void UMANSOpenGLWidget::ZoomToFit()
 	if (simulator->GetWorld()->GetType() == WorldBase::Type::TORIC_WORLD)
 		bbox = dynamic_cast<const WorldToric*>(simulator->GetWorld())->GetBoundingBox();
 	else
-		bbox = { {-10, -10}, {10, 10} };
+		if (simulator->GetWorld()->GetWidth() == 0 || simulator->GetWorld()->GetHeight() == 0)
+			bbox = { {-10,-10}, {10, 10} };
+		else
+			bbox = { {0,0}, {(float)simulator->GetWorld()->GetWidth(), (float)simulator->GetWorld()->GetHeight()} };
 
 	double width_environment = bbox.second.x - bbox.first.x;
 	double height_environment = bbox.second.y - bbox.first.y;
@@ -321,7 +324,7 @@ void UMANSOpenGLWidget::ToggleCSVOutput()
 	if (writeCSVOutput)
 	{
 		const auto& scenarioName = getScenarioNameFromFullPath(simulator->GetScenarioFilename());
-		simulator->StartCSVOutput("../output/" + scenarioName + "/", true); // true = write output continuously
+		simulator->StartCSVOutput("../output/" + scenarioName + "/", true, true); // true = write output continuously
 	}
 	else
 		simulator->StopCSVOutput();
@@ -597,8 +600,8 @@ void UMANSOpenGLWidget::drawEnvironment(const bool refresh)
 	// - draw the interior of all obstacles
 	for (const auto& ob : world->GetObstacles())
 		for (const auto& t : ob.GetTriangles())
-			addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
-			//addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
+			//addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
 
 	// - draw a grid
 	drawGrid(refresh);
