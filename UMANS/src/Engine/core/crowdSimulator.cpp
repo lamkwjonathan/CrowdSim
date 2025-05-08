@@ -172,7 +172,7 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 			}
 		}
 
-		if (pngWriter_ != nullptr && png_write_time_ == 0.0f)
+		if (pngWriter_ != nullptr && obstaclesSuccess_ && png_write_time_ == 0.0f)
 		{
 			double t = world_->GetCurrentTime();
 			const auto& agents = world_->GetAgents();
@@ -204,11 +204,36 @@ void CrowdSimulator::RunSimulationUntilEnd(bool showProgressBar, bool measureTim
 	// get the current system time; useful for time measurements later on
 	const auto& startTime = HelperFunctions::GetCurrentTime();
 
-	if (pngWriter_ != nullptr)
-	{
-		double t = world_->GetCurrentTime();
-		const auto& agents = world_->GetAgents();
+	// In preparation for writing to files
+	double t = world_->GetCurrentTime();
+	const auto& agents = world_->GetAgents();
 
+	// Write initial agent positions
+	if (writer_ != nullptr)
+	{
+		AgentTrajectoryPoints data;
+
+		for (const Agent* agent : agents)
+		{
+			float x = agent->getPosition().x + world_->GetOffset()->x;
+			float y = agent->getPosition().y + world_->GetOffset()->y;
+			data[agent->getID()] = TrajectoryPoint(t, Vector2D(x, y), agent->getViewingDirection(), agent->getColor());
+		}
+
+		if (writer_->GetByAgent())
+		{
+			writer_->AppendAgentData(data);
+		}
+		else
+		{
+			writer_->FlushByTimeStep(data, flushCount_);
+			flushCount_ += 1;
+		}
+	}
+
+	// Write initial heatmap
+	if (pngWriter_ != nullptr && obstaclesSuccess_)
+	{
 		densityArray_ = std::unique_ptr<int[]>(new int[world_->GetWidth() * world_->GetHeight()]());
 
 		for (const Agent* agent : agents)
@@ -527,15 +552,24 @@ bool CrowdSimulator::FromConfigFile_loadObstaclesPNG(const tinyxml2::XMLElement*
 		unsigned error = lodepng::decode(obstaclesArray_, width, height, fileFolder + externalFilename);
 		if (error)
 		{
-			std::cout << lodepng_error_text(error) << std::endl;
+			std::cerr << lodepng_error_text(error) << std::endl;
+			std::cout << "Heatmaps will not be displayed." << std::endl;
+			obstaclesSuccess_ = false;
 			return false;
 		}
 		else
 		{
 			std::cout << "Successfully loaded obstacles PNG file. Heatmaps can be displayed." << std::endl;
+			obstaclesSuccess_ = true;
 			return true;
 		}
 	}
+	else
+	{
+		std::cout << "Failed to load obstacles PNG file. Heatmaps will not be displayed." << std::endl;
+		return false;
+	}
+	
 }
 
 bool CrowdSimulator::FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder, const int num_threads)
@@ -1084,8 +1118,10 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename, int 
 	if (obstaclesPNGElement != nullptr && !crowdsimulator->FromConfigFile_loadObstaclesPNG(obstaclesPNGElement, fileFolder))
 	{
 		std::cerr << "Error while loading obstacles PNG. The simulation will not output heatmaps." << std::endl;
-		delete crowdsimulator;
-		return nullptr;
+	}
+	else if (obstaclesPNGElement == nullptr)
+	{
+		std::cout << "No Obstacles PNG file detected. The simulation will not output heatmaps." << std::endl;
 	}
 
 	// 

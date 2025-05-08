@@ -183,10 +183,10 @@ void Agent::ComputePreferredVelocity(WorldBase* world)
 			int n = world->GetMaps().size();
 			Vector2D preferredVector;
 
-			//Choose map with shortest distance taking into account congestion
-			if ((int) id_ % n == (int) (world->GetCurrentTime() / world->GetFineDeltaTime()) % n)
+			//Choose map with shortest distance taking into account congestion if nearest navigation is active
+			if (world->GetIsActiveNearestNav())
 			{
-				if (world->GetIsActiveNearestNav())
+				if ((int)id_ % n == (int)(world->GetCurrentTime() / world->GetFineDeltaTime()) % n)
 				{
 					float dist = 0;
 					float shortestDist = 100000000;
@@ -202,14 +202,14 @@ void Agent::ComputePreferredVelocity(WorldBase* world)
 						}
 					}
 				}
-				else
+			}
+			else if (world->GetCurrentTime() == 0.0f)
+			{
+				for (int i = 0; i < n; ++i)
 				{
-					for (int i = 0; i < n; ++i)
+					if (world->GetMaps()[i]->getGoal() == goal_)
 					{
-						if (world->GetMaps()[i]->getGoal() == goal_)
-						{
-							mapIndex_ = i;
-						}
+						mapIndex_ = i;
 					}
 				}
 			}

@@ -69,11 +69,14 @@ private:
   /// <summary>The counter keeping track of the number of PNG files written./// </summary>
   int pngCount_ = 0;
 
-  std::mutex pngMtx_;
-
+  /// <summary>The array keeping track of the number of agents per grid square./// </summary>
   std::unique_ptr<int[]> densityArray_;
 
+  /// <summary>The array storing obstacles PNG data./// </summary>
   std::vector<unsigned char> obstaclesArray_;
+
+  /// <summary>The boolean indicating whether obstaclesArray_ was successfully instantiated./// </summary>
+  bool obstaclesSuccess_ = false;
 
   /// <summary>An optional time at which the simulation should end.
   /// Only used if this number is set in a configuration file.</summary>
