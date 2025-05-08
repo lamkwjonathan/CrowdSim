@@ -170,8 +170,9 @@ All `agents.xml` files should be included in the `CrowdSim\UMANS\examples\agents
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <Simulation delta_time="0.05" write_interval="1.0" end_time="600">
-	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="false">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" nearest_nav="true" dynamic_nav="false">
 		<Obstacles file="../obstacles/UTownConcert.xml"/>
+		<PNG file="../obstacles/UTownConcert.png"/>
 	</World>
 	<SPH max_density="6.0" density_blending="true"/>
 	<Policies file="../policies/SocialForces.xml" />
@@ -198,9 +199,13 @@ All `agents.xml` files should be included in the `CrowdSim\UMANS\examples\agents
 
 `goal_radius` represents the radius around the goal point in which an agent is counted to have arrived at the goal point as a multiple of agent size. 
 
-`dynamic_nav` determines whether dynamic goal selection is active. Accepts `true` or `false`. Dynamic navigation only works if more than one `map` is provided.
+`nearest_nav` determines whether navigation to nearest goal point is used.
+
+`dynamic_nav` determines whether dynamic goal selection is active. Accepts `true` or `false`. Dynamic navigation only works if more than one `map` is provided and `nearest_nav` is active.
 
 `Obstacles file` represents the file location of the `obstacles.xml` file used for the simulation.
+
+`PNG file` represents the file location of the `obstacles.png` file used when outputting heatmaps. Heatmaps are only written if the PNG file is provided (only works when using the console with heatmap output location specified).
 
 `SPH` represents the header enclosing SPH-related parameters.
 
