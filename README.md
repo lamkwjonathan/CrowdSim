@@ -66,7 +66,6 @@ The UMANS system takes in `obstacles.xml`, `agents.xml`, `distance.txt` and `vec
 QGIS is an open-source geospatial software that allows users to add maps and draw polygons using selected coordinate reference systems.
 
 To set-up:
-
 - Download QGIS from https://qgis.org/ (while likely incoonsequential, the version used for this pipeline is 3.40.4).
 - Open the software.
 - In the browser menu found on the left-hand side of the application window, right-click on `XYZ Tiles` and choose `New Connection`.
@@ -74,7 +73,6 @@ To set-up:
 - Repeat the above steps to open a second `New Connection`. Name it `Google Satellite Hybrid` and add https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z} as the URL.
 
 To draw obstacles:
-
 - Drag both the `Google Maps` and `Google Satellite Hybrid` XYZ tiles into the Layers menu located on the bottom left of the application. The maps should become visible in the editor on the right. These two maps are recommended for aiding in drawing of obstacles.
 - Click on the icon on the bottom right of the application window labeled `EPSG:xxxx` and search for and switch the Coordinate Reference System to `SVY21 / Singapore TM`.
 - From the options at the top of the application window, navigate to `Layer` -> `Create Layer` -> `New Shapefile Layer`.
@@ -86,13 +84,11 @@ To draw obstacles:
 - Click the `Toggle Editing` icon to finish editing and save the layer.
 
 To export as `.geojson`:
-
 - Right-click on the shapefile layer containing all the polygons, navigate to `Export` -> `Save Features as`.
 - Select `GeoJSON` as the file type and ensure the Coordinate Reference System chosen is `SVY21 / Singapore TM`.
 - Choose an appropriate file name and location to save the file.
 
 To re-import old layers for further editing:
-
 - From the options at the top of the application window, navigate to `Layer` -> `Add Layer` -> `Add Vector Layer`.
 - Select `File` as the source type and pick the appropriate `.geojson` file to be added as a layer.
 
@@ -174,15 +170,15 @@ All `agents.xml` files should be included in the `CrowdSim\UMANS\examples\agents
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <Simulation delta_time="0.05" write_interval="1.0" end_time="600">
-    <World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="false">
-        <Obstacles file="../obstacles/UTownConcert.xml"/>
-    </World>
-    <SPH max_density="6.0" density_blending="true"/>
-    <Policies file="../policies/SocialForces.xml" />
-    <Agents file="../agents/UTownConcert10000.xml" />
-    <Map goal_x="292.1475140000002" goal_y="39.362558999997422" vector="../maps/UTownConcert_exit1_vector.txt" distance="../maps/UTownConcert_exit1_distance.txt"/>
-    <Map goal_x="315.4475139999995" goal_y="24.35255899999902" vector="../maps/UTownConcert_exit2_vector2.txt" distance="../maps/UTownConcert_exit2_distance2.txt"/>
-    <Map goal_x="402.5875139999989" goal_y="115.88255899999785" vector="../maps/UTownConcert_exit3_vector4.txt" distance="../maps/UTownConcert_exit3_distance4.txt"/>
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="false">
+		<Obstacles file="../obstacles/UTownConcert.xml"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/UTownConcert10000.xml" />
+	<Map goal_x="292.1475140000002" goal_y="39.362558999997422" vector="../maps/UTownConcert_exit1_vector.txt" distance="../maps/UTownConcert_exit1_distance.txt"/>
+	<Map goal_x="315.4475139999995" goal_y="24.35255899999902" vector="../maps/UTownConcert_exit2_vector2.txt" distance="../maps/UTownConcert_exit2_distance2.txt"/>
+	<Map goal_x="402.5875139999989" goal_y="115.88255899999785" vector="../maps/UTownConcert_exit3_vector4.txt" distance="../maps/UTownConcert_exit3_distance4.txt"/>
 </Simulation>
 ```
 
