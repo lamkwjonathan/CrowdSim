@@ -19,7 +19,11 @@ My own additions can be found in the future commits.
 
 ## Getting Started
 
-To be filled in.
+Refer to instructions from https://gitlab.inria.fr/OCSR/UMANS for set up of UMANS-adapted code. CMAKE is recommended.
+
+Refer to instructions from https://gitlab.inria.fr/OCSR/chaos for set up of ChAOS environment.
+
+Refer to instructions from https://github.com/IbrahimSquared/visibility-based-marching for set up of VBM-adapted code. CMAKE can also be used for this.
 
 ## UMANS Details
 
