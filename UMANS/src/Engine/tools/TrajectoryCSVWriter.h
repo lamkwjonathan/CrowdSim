@@ -47,13 +47,15 @@ private:
     std::string dirname_;
 	AgentTrajectories pos_log_;
 
+	/// <summary>Whether or not this TrajectoryCSVWriter saves CSV files by agent or by timestep.</summary>
+	bool byAgent;
 	/// <summary>Whether or not this TrajectoryCSVWriter immediately calls Flush() at the end of each call to AppendAgentPositions().</summary>
 	bool flushImmediately;
 
 public:
 	/// <summary>Creates a TrajectoryCSVWriter object.</summary>
 	/// <param name="flushImmediately">Whether or not this TrajectoryCSVWriter should immediately call Flush() at the end of each call to AppendAgentPositions().</param>
-    TrajectoryCSVWriter(bool flushImmediately) : flushImmediately(flushImmediately) {}
+    TrajectoryCSVWriter(bool byAgent, bool flushImmediately) : byAgent(byAgent), flushImmediately(flushImmediately) {}
 
 	/// <summary>Tries to set the directory to which CSV output files will be written.
 	/// If this directory does not yet exist, the program will try to create it, but this operation might fail.</summary>
@@ -73,6 +75,18 @@ public:
 	/// <returns>true if the output was successfully written; 
 	/// false otherwise, e.g. if the output folder was never specified via SetOutputDirectory().</returns>
 	bool Flush();
+
+	/// <summary>Writes all buffered output to CSV files by timestep, and then cleans the buffer.</summary>
+	/// <remarks>Call this method whenever you have finished gathering trajectory data via AppendAgentPositions().</remarks>
+	/// <param name="data">The data of all agents for this time step.</param>
+	/// <param name="seq">The counter keeping track of number of flushes.</param>
+	/// <returns>true if the output was successfully written; 
+	/// false otherwise, e.g. if the output folder was never specified via SetOutputDirectory().</returns>
+	bool FlushByTimeStep(AgentTrajectoryPoints data, int seq);
+
+	/// <summary>Returns whether the CSV files are to be saved by agent or by timestep.</summary>
+	/// <returns>true if CSV files are to be saved by agent.</returns>
+	inline bool GetByAgent() { return byAgent; }
 
 	/// <summary>Cleans up this TrajectoryCSVWriter for removal. This includes a final call to flush().</summary>
 	~TrajectoryCSVWriter();

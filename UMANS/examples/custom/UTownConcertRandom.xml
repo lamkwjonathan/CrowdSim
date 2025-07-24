@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.05" write_interval="1.0" end_time="60">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" nearest_nav="false" dynamic_nav="false">
+		<Obstacles file="../obstacles/UTownConcert.xml"/>
+		<PNG file="../obstaclespng/UTownConcert.png"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/UTownConcert_RandomizedTestPopulation30000.xml" />
+	<Map goal_x="292.1475140000002" goal_y="39.362558999997422" vector="../maps/UTownConcert_exit1_vector.txt" distance="../maps/UTownConcert_exit1_distance.txt"/>
+	<Map goal_x="315.4475139999995" goal_y="24.35255899999902" vector="../maps/UTownConcert_exit2_vector2.txt" distance="../maps/UTownConcert_exit2_distance2.txt"/>
+	<Map goal_x="402.5875139999989" goal_y="115.88255899999785" vector="../maps/UTownConcert_exit3_vector4.txt" distance="../maps/UTownConcert_exit3_distance4.txt"/>
+</Simulation>

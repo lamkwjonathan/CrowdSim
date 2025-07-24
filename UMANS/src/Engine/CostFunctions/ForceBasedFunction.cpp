@@ -33,13 +33,13 @@
 float ForceBasedFunction::GetCost(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	const Vector2D& targetV = ComputeTargetVelocity(agent, world);
-	return 0.5f * (velocity - targetV).sqrMagnitude() / world->GetDeltaTime();
+	return 0.5f * (velocity - targetV).sqrMagnitude() / agent->getDeltaTime(world);
 }
 
 Vector2D ForceBasedFunction::GetGradient(const Vector2D& velocity, Agent* agent, const WorldBase * world) const
 {
 	const Vector2D& targetV = ComputeTargetVelocity(agent, world);
-	return (velocity - targetV) / world->GetDeltaTime();
+	return (velocity - targetV) / agent->getDeltaTime(world);
 }
 
 Vector2D ForceBasedFunction::GetGradientFromCurrentVelocity(Agent* agent, const WorldBase * world) const
@@ -59,5 +59,5 @@ void ForceBasedFunction::parseParameters(const CostFunctionParameters & params)
 
 Vector2D ForceBasedFunction::ComputeTargetVelocity(Agent* agent, const WorldBase* world) const
 {
-	return agent->getVelocity() + ComputeForce(agent, world) / agent->getMass() * world->GetDeltaTime();
+	return agent->getVelocity() + ComputeForce(agent, world) / agent->getMass() * agent->getDeltaTime(world);
 }

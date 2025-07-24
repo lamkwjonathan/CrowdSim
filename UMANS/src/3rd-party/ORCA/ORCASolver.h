@@ -72,6 +72,14 @@ namespace ORCALibrary
 			std::vector<Line>& orcaLines_, const float timeHorizonObst_, const float simulationTimeStep, const ObstacleNeighborList& obstacleNeighbors_, const float maxDistance) const;*/
 		void createAgentOrcaLines(const Agent& agent, 
 			std::vector<Line>& orcaLines_, const float timeHorizon_, const float simulationTimeStep, const AgentNeighborList& agentNeighbors_, const float maxDistance) const;
+
+	public:
+		void solveOrcaProgram_RK4(const Agent& agent, const Vector2D velocity,
+			const float timeHorizon, const float currentTime, const float simulationTimeStep, const NeighborList& neighbors, const float maxDistance, Solution& result) const;
+
+	private:
+		void createAgentOrcaLines_RK4(const Agent& agent, const Vector2D velocity,
+			std::vector<Line>& orcaLines_, const float timeHorizon_, const float simulationTimeStep, const AgentNeighborList& agentNeighbors_, const float maxDistance) const;
 	};
 
 	/**

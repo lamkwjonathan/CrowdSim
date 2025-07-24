@@ -32,6 +32,8 @@
 #include <tools/Polygon2D.h>
 #include <core/agent.h>
 #include <core/AgentKDTree.h>
+#include <core/sph.h>
+#include <core/vectorMap.h>
 
 #include <queue>
 #include <unordered_map>
@@ -69,6 +71,12 @@ public:
 	inline Vector2D GetVelocity() const { return realAgent->getVelocity(); }
 	/// <summary>Returns the (precomputed) squared distance from this PhantomAgent to the query position that was used to find it.</summary>
 	inline float GetDistanceSquared() const { return distSqr; }
+	/// <summary>Returns the mass of this neighboring agent.</summary>
+	inline float GetMass() const { return realAgent->getMass(); }
+	/// <summary>Returns the SPH density of this neighboring agent.</summary>
+	inline float GetDensity() const { return realAgent->getDensity(); }
+	/// <summary>Returns the SPH pressure of this neighboring agent.</summary>
+	inline float GetPressure() const { return realAgent->getPressure(); }
 
 	/// <summary>Pre-computes (or re-computes) the translated position of this PhantomAgent, as well as its distance to a query point.
 	/// Use this method if you want to correct the PhantomAgent's data in a new frame, without having search the AgentKDTree again.</summary>
@@ -88,6 +96,10 @@ public:
 	/// <summary>An enum containing the types of world in which a simulation takes place.</summary>
 	enum Type { UNKNOWN_WORLD_TYPE, INFINITE_WORLD, TORIC_WORLD };
 	static Type StringToWorldType(const std::string& type);
+
+	/// <summary>An enum containing the types of integration that a simulation uses.</summary>
+	enum Integration_Mode { UNKNOWN, EULER, RK4, VERLET2, LEAPFROG2 };
+	static Integration_Mode StringToIntegrationMode(const std::string& mode);
 
 private:
 
@@ -119,6 +131,13 @@ protected:
 	/// <summary>The type of this world, e.g. infinite or toric.</summary>
 	const Type type_;
 
+	/// <summary>The integration mode of this world, e.g. Semi-Implicit Euler, RK4 or SI.</summary>
+	Integration_Mode mode_;
+
+	/// <summary>A list containing the path vector maps associated with this world.</summary>
+	std::vector<vectorMap*> maps_;
+
+	/// <summary>A list containing all obstacles that are currently in the world.</summary>
 	std::vector<Polygon2D> obstacles_;
 
 	/// <summary>A list containing all agents that are currently in the crowd.</summary>
@@ -127,11 +146,50 @@ protected:
 	/// <summary>A kd-tree of agent positions, used for nearest-neighbor queries.</summary>
 	AgentKDTree* agentKDTree;
 
-	/// <summary>The length (in seconds) of a simulation step.</summary>
-	float delta_time_;
+	/// <summary>The length (in seconds) of a fine (physics) simulation step.</summary>
+	float fine_delta_time_ = 0.05; // lambda * radius / max_speed = 0.4 * 0.24 * 2 / 1.8 = 0.096 (CFL Stability Criteria)
+
+	/// <summary>The length (in seconds) of a coarse (regular) simulation step.</summary>
+	float coarse_delta_time_;
 
 	/// <summary>The simulation time (in seconds) that has passed so far.</summary>
 	double time_;
+
+	/// <summary>The simulation time (in seconds) that has passed since the previous coarse simulation step.</summary>
+	double coarse_time_;
+
+	/// <summary>The world coordinate offset.</summary>
+	Vector2D offset_ = Vector2D(0.0f,0.0f);
+
+	/// <summary>The world width.</summary>
+	int width_ = 0;
+
+	/// <summary>The world height.</summary>
+	int height_ = 0;
+
+	/// <summary>Boolean value indicating whether global navigation is to be used in this simulation.</summary>
+	bool isActiveGlobalNav_ = false;
+
+	/// <summary>Boolean value indicating whether global navigation to nearest goal is to be used in this simulation.</summary>
+	bool isActiveNearestNav_ = false;
+
+	/// <summary>Boolean value indicating whether dynamic navigation to goal with shortest time-to-goal is to be used in this simulation.</summary>
+	bool isActiveDynamicNav_ = false;
+
+	/// <summary>Float value indicating the size of the dynamic navigation distance penalty moving average window in seconds.</summary>
+	float dynamicNavTimeWindow_ = 5.0f;
+
+	/// <summary>The SPH instance attached to this world.</summary>
+	SPH sph_;
+
+	/// <summary>Boolean value indicating whether to use SPH in this simulation.</summary>
+	bool isActiveSPH_ = false;
+
+	/// <summary>Boolean value indicating whether to use density-based blending along with SPH in this simulation.</summary>
+	bool isActiveDensityBlending_ = false;
+
+	/// <summary>Float value indicating radius around goal point (as multiplier of agent radius) that results in deletion of agent provided agent.remove_at_goal_ is set.</summary>
+	float goalRadius_ = 1.0;
 	
 public:
 
@@ -139,6 +197,10 @@ public:
 	/// @name Basic getters
 	/// Methods that directly return a value stored in the world.
 	/// @{
+
+	/// <summary>Returns the list of maps. Use this to iterate all maps in arbitrary order.</summary>
+	/// <returns>A non-mutable reference to the list of Map objects.</returns>
+	inline const std::vector<vectorMap*>& GetMaps() const { return maps_; }
 
 	/// <summary>Returns the list of agents. Use this if you want to retrieve information from all agents in an arbitrary order.</summary>
 	/// <returns>A non-mutable reference to the list of Agent objects.</returns>
@@ -152,13 +214,69 @@ public:
 	/// <returns>The time (in seconds) that has been simulated since the simulation started.</returns>
 	inline double GetCurrentTime() const { return time_; }
 
-	/// <summary>Returns the duration of a single simulation time step (in seconds), i.e. the time that is simulated in a single execution of DoStep().</summary>
-	/// <returns>The durection of a single simulation time step (in seconds).</summary>
-	inline float GetDeltaTime() const { return delta_time_; }
+	/// <summary>Returns the current simulation time since previous coarse step(in seconds).</summary>
+	/// <returns>The time (in seconds) that has been simulated since the previous coarse step.</returns>
+	inline double GetCurrentCoarseTime() const { return coarse_time_; }
+
+	/// <summary>Returns the duration of a single fine simulation time step (in seconds), i.e. the time that is simulated in a single execution of DoStep().</summary>
+	/// <returns>The duration of a single fine simulation time step (in seconds).</returns>
+	inline float GetFineDeltaTime() const { return fine_delta_time_; }
+
+	/// <summary>Returns the duration of a single coarse simulation time step (in seconds), i.e. the time that is simulated in a single execution of ComputeNeighbours() and some RVO calculations.</summary>
+	/// <returns>The duration of a single coarse simulation time step (in seconds).</returns>
+	inline float GetCoarseDeltaTime() const { return coarse_delta_time_; }
 
 	/// <summary>Returns the type of this world, i.e. infinite or toric.</summary>
 	/// <returns>The value of the Type enum describing the type of this world.</returns>
 	inline Type GetType() { return type_; }
+
+	/// <summary>Returns the integration mode of this world, i.e. Semi-Implicit Euler, RK4 or SI.</summary>
+	/// <returns>The value of the Integration_Mode enum describing the integration mode.</returns>
+	inline Integration_Mode GetMode() { return mode_; }
+
+	/// <summary>Returns the offset of this world.</summary>
+	/// <returns>A Vector2D referencing the offset of this world with respect to global Geo-coordinates.</returns>
+	inline Vector2D* GetOffset() { return &offset_; }
+
+	/// <summary>Returns the width of this world.</summary>
+	/// <returns>An int referencing the width of this world.</returns>
+	inline int GetWidth() const { return width_; }
+
+	/// <summary>Returns the width of this world.</summary>
+	/// <returns>An int referencing the width of this world.</returns>
+	inline int GetHeight() const { return height_; }
+
+	/// <summary>Returns the boolean isActiveGlobalNav that indicates whether global navigation is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether global navigation is used.</returns>
+	inline bool GetIsActiveGlobalNav() { return isActiveGlobalNav_; }
+
+	/// <summary>Returns the boolean isActiveNearestNav that indicates whether global navigation to nearest goal is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether global navigation to nearest goal is used.</returns>
+	inline bool GetIsActiveNearestNav() { return isActiveNearestNav_; }
+
+	/// <summary>Returns the boolean isActiveDynamicNav that indicates whether dynamic navigation is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether dynamic navigation is used.</returns>
+	inline bool GetIsActiveDynamicNav() { return isActiveDynamicNav_; }
+
+	/// <summary>Returns the float value denoting the size of the dynamic navigation distance penalty moving average window in seconds.</summary>
+	/// <returns>A float denoting the size of dynamic navigation distance penalty moving average window in seconds.</returns>
+	inline float GetDynamicNavTimeWindow() { return dynamicNavTimeWindow_; }
+
+	/// <summary>Returns the SPH instance attached to this world.</summary>
+	/// <returns>A reference to the SPH instance.</returns>
+	inline SPH* GetSPH() { return &sph_; }
+
+	/// <summary>Returns the boolean isActiveSPH that indicates whether SPH is used in this simulation.</summary>
+	/// <returns>A boolean denoting whether SPH is to be used.</returns>
+	inline bool GetIsActiveSPH() { return isActiveSPH_; }
+
+	/// <summary>Returns the boolean isActiveDensityBlending that indicates whether density-based blending is used along with SPH in this simulation.</summary>
+	/// <returns>A boolean denoting whether density-based blending is to be used.</returns>
+	inline bool GetIsActiveDensityBlending() { return isActiveDensityBlending_; }
+
+	/// <summary>Returns the goal radius of this world.</summary>
+	/// <returns>A float value indicating the radius around the goal point (as a multiplier of agent radius) where agent will be removed upon arriving at.</returns>
+	inline float GetGoalRadius() { return goalRadius_; }
 
 	/// @}
 #pragma endregion
@@ -173,9 +291,53 @@ public:
 	/// <param name="nrThreads">The desired number of threads to use.</param>
 	void SetNumberOfThreads(int nrThreads);
 
-	/// <summary>Sets the length of simulation time steps.</summary>
-	/// <param name="delta_time">The desired length (in seconds) of a single simulation frame.</param>
-	inline void SetDeltaTime(float delta_time) { delta_time_ = delta_time; }
+	/// <summary>Sets the length of fine simulation time steps.</summary>
+	/// <param name="fine_delta_time">The desired length (in seconds) of a single fine simulation frame.</param>
+	inline void SetFineDeltaTime(float fine_delta_time) { fine_delta_time_ = fine_delta_time; }
+	
+	/// <summary>Sets the length of coarse simulation time steps.</summary>
+	/// <param name="coarse_delta_time">The desired length (in seconds) of a single coarse simulation frame.</param>
+	inline void SetCoarseDeltaTime(float coarse_delta_time) { coarse_delta_time_ = coarse_delta_time; }
+
+	/// <summary>Sets the integration mode of this world, i.e. Semi-Implicit Euler, RK4 or SI.</summary>
+	/// <maram name="mode">The value of the Integration_Mode enum describing the integration mode.</returns>
+	inline void SetMode(Integration_Mode mode) { mode_ = mode; }
+
+	/// <summary>Sets the offset of this world from Geo-coordinates.</summary>
+	/// <maram name="offset">The value to offset all objects in this world by.</returns>
+	inline void SetOffset(Vector2D offset) { offset_ = offset; }
+
+	/// <summary>Sets the width of this world.</summary>
+	/// <maram name="width">The value representing the width of the world.</returns>
+	inline void SetWidth(int width) { width_ = width; }
+
+	/// <summary>Sets the height of this world.</summary>
+	/// <maram name="height">The value representing the height of the world.</returns>
+	inline void SetHeight(int height) { height_ = height; }
+
+	/// <summary>Sets whether global navigation is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether global navigation is used.</param>
+	inline void SetIsActiveGlobalNav(bool b) { isActiveGlobalNav_ = b; }
+
+	/// <summary>Sets whether global navigation to nearest goal is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether global navigation to nearest goal is used.</param>
+	inline void SetIsActiveNearestNav(bool b) { isActiveNearestNav_ = b; }
+
+	/// <summary>Sets whether dynamic navigation is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether dynamic navigation is used.</param>
+	inline void SetIsActiveDynamicNav(bool b) { isActiveDynamicNav_ = b; }
+
+	/// <summary>Sets whether SPH is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether SPH is used.</param>
+	inline void SetIsActiveSPH(bool b) { isActiveSPH_ = b; }
+
+	/// <summary>Sets whether density-based blending is used in the simulation.</summary>
+	/// <param name="b">The boolean indicating whether density-based blending is used.</param>
+	inline void SetIsActiveDensityBlending(bool b) { isActiveDensityBlending_ = b; }
+
+	/// <summary>Sets the goal radius of this world.</summary>
+	/// <param name="b">The radius around goal point (as a multiplier of agent radius) where agent will be removed upon arriving at.</param>
+	inline void SetGoalRadius(float radius) { goalRadius_ = radius; }
 
 	/// @}
 #pragma endregion
@@ -224,6 +386,10 @@ public:
 
 	/// @}
 #pragma endregion
+
+	/// <summary>Adds a map to the world.</summary>
+	/// <param name="m">A vectorMap containing information on global path to a goal for this world.</param>
+	virtual void AddMap(vectorMap* m);
 
 	/// <summary>Adds an obstacle with the given vertices to the world.</summary>
 	/// <param name="points">A sequence of 2D points defining the obstacle's boundary vertices.</param>

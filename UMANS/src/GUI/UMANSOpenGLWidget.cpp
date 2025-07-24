@@ -132,7 +132,7 @@ void UMANSOpenGLWidget::startNewSimulation(const std::string& scenarioFilename)
 	bool firstTime = simulator == nullptr;
 
 	// try to load a new simulation
-	CrowdSimulator* newSimulator = CrowdSimulator::FromConfigFile(scenarioFilename);
+	CrowdSimulator* newSimulator = CrowdSimulator::FromConfigFile(scenarioFilename, 16);
 	if (newSimulator != nullptr)
 	{
 		// delete the current simulation, if applicable
@@ -142,7 +142,7 @@ void UMANSOpenGLWidget::startNewSimulation(const std::string& scenarioFilename)
 		setActiveAgent(nullptr);
 
 		simulator = newSimulator;
-		simulator->GetWorld()->SetNumberOfThreads(15);
+		simulator->GetWorld()->SetNumberOfThreads(16);
 
 		// Prepare a timer for update events, using the current value of playbackMultiplier.
 		// This works for the very first simulation, because playbackMultiplier=1 by default.
@@ -229,7 +229,7 @@ void UMANSOpenGLWidget::SetPlaybackMultiplier(int value)
 	}
 
 	// determine how many milliseconds should be between two simulation updates
-	int desiredRefreshTime = (int)(1000 * simulator->GetWorld()->GetDeltaTime() / playbackMultiplier);
+	int desiredRefreshTime = (int)(1000 * simulator->GetWorld()->GetFineDeltaTime() / playbackMultiplier);
 
 	// schedule a Qt timer for periodically updating the simulation
 	simulationTimer->setInterval(desiredRefreshTime);
@@ -266,7 +266,10 @@ void UMANSOpenGLWidget::ZoomToFit()
 	if (simulator->GetWorld()->GetType() == WorldBase::Type::TORIC_WORLD)
 		bbox = dynamic_cast<const WorldToric*>(simulator->GetWorld())->GetBoundingBox();
 	else
-		bbox = { {-10, -10}, {10, 10} };
+		if (simulator->GetWorld()->GetWidth() == 0 || simulator->GetWorld()->GetHeight() == 0)
+			bbox = { {-10,-10}, {10, 10} };
+		else
+			bbox = { {0,0}, {(float)simulator->GetWorld()->GetWidth(), (float)simulator->GetWorld()->GetHeight()} };
 
 	double width_environment = bbox.second.x - bbox.first.x;
 	double height_environment = bbox.second.y - bbox.first.y;
@@ -321,7 +324,7 @@ void UMANSOpenGLWidget::ToggleCSVOutput()
 	if (writeCSVOutput)
 	{
 		const auto& scenarioName = getScenarioNameFromFullPath(simulator->GetScenarioFilename());
-		simulator->StartCSVOutput("../output/" + scenarioName + "/", true); // true = write output continuously
+		simulator->StartCSVOutput("../output/" + scenarioName + "/", true, true); // true = write output continuously
 	}
 	else
 		simulator->StopCSVOutput();
@@ -597,7 +600,8 @@ void UMANSOpenGLWidget::drawEnvironment(const bool refresh)
 	// - draw the interior of all obstacles
 	for (const auto& ob : world->GetObstacles())
 		for (const auto& t : ob.GetTriangles())
-			addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			//addPointsToBuffer(t, QColor(195, 195, 195), Target_Environment_Solid, Depth_Obstacles);
+			addPointsToBuffer(t, QColor(0, 0, 0), Target_Environment_Solid, Depth_Obstacles);
 
 	// - draw a grid
 	drawGrid(refresh);
@@ -632,8 +636,13 @@ void UMANSOpenGLWidget::drawGrid(bool refresh)
 	}
 	// - otherwise, use a default range of -100 to +100
 	else
-		bbox = { {-100,-100}, {100, 100} };
-
+	{
+		if (world->GetWidth() == 0 || world->GetHeight() == 0)
+			bbox = { {-100,-100}, {100, 100} };
+		else
+			bbox = { {0,0}, {(float)world->GetWidth(), (float)world->GetHeight()} };
+	}
+		
 	std::vector<LineSegment2D> grid, grid_major;
 	const int majorSteps = 10;
 

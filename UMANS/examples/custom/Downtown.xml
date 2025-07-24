@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.05" write_interval="1.0" end_time="600">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" nearest_nav="false" dynamic_nav="false">
+		<Obstacles file="../obstacles/Downtown.xml"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/Downtown_300000.xml" />
+	<Map goal_x="771.4325109999991" goal_y="22.45035899999857" vector="../maps/Downtown_MB_vector.txt" distance="../maps/Downtown_MB_distance.txt"/>
+	<Map goal_x="301.10251100000096" goal_y="221.1603589999977" vector="../maps/Downtown_SW_vector.txt" distance="../maps/Downtown_SW_distance.txt"/>
+	<Map goal_x="516.7225109999999" goal_y="409.7903589999987" vector="../maps/Downtown_DT_vector.txt" distance="../maps/Downtown_DT_distance.txt"/>
+	<Map goal_x="51.35251100000096" goal_y="722.5203589999983" vector="../maps/Downtown_TA_vector.txt" distance="../maps/Downtown_TA_distance.txt"/>
+	<Map goal_x="401.0025109999988" goal_y="1031.5203589999983" vector="../maps/Downtown_RP_vector.txt" distance="../maps/Downtown_RP_distance.txt"/>
+	<Map goal_x="408.91251099999863" goal_y="1921.6203590000005" vector="../maps/Downtown_CH_vector.txt" distance="../maps/Downtown_CH_distance.txt"/>
+	<Map goal_x="749.8725110000014" goal_y="2024.6203590000005" vector="../maps/Downtown_EN_vector.txt" distance="../maps/Downtown_EN_distance.txt"/>
+	<Map goal_x="1348.342510999999" goal_y="2029.5803589999996" vector="../maps/Downtown_PN_vector.txt" distance="../maps/Downtown_PN_distance.txt"/>
+	<Map goal_x="1197.8725110000014" goal_y="623.2403589999994" vector="../maps/Downtown_BF_vector.txt" distance="../maps/Downtown_BF_distance.txt"/>
+</Simulation>

@@ -1,0 +1,10 @@
+^C:\USERS\IMJON\DOCUMENTS\SCHOOL\FYP\CROWDSIM\VISIBILITY-BASED-MARCHING\BUILD\CMAKEFILES\AB07554A87397E8E3942C82EAC5685A7\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching -BC:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/imjon/Documents/School/FYP/CrowdSim/visibility-based-marching/build/vbm.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

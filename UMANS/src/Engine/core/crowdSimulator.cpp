@@ -30,27 +30,34 @@
 
 #include <tools/HelperFunctions.h>
 #include <tools/TrajectoryCSVWriter.h>
+#include <tools/heatmapPNGWriter.h>
+#include <3rd-party/lodepng/lodepng.h>
 #include <core/worldInfinite.h>
 #include <core/worldToric.h>
 #include <core/costFunctionFactory.h>
+#include <core/sph.h>
 #include <memory>
 #include <clocale>
 #include <filesystem>
 
 #include <omp.h>
+#include <stdexcept>
+
+#include <fstream>
 
 CrowdSimulator::CrowdSimulator()
 {
 	CostFunctionFactory::RegisterAllCostFunctions();
 	writer_ = nullptr;
+	pngWriter_ = nullptr;
 	end_time_ = MaxFloat;
 }
 
-void CrowdSimulator::StartCSVOutput(const std::string &dirname, bool flushImmediately)
+void CrowdSimulator::StartCSVOutput(const std::string &dirname, bool byAgent, bool flushImmediately)
 {
 	// create the CSV writer if it did not exist yet
 	if (writer_ == nullptr)
-		writer_ = new TrajectoryCSVWriter(flushImmediately);
+		writer_ = new TrajectoryCSVWriter(byAgent, flushImmediately);
 
 	// try to set the directory
 	if (!writer_->SetOutputDirectory(dirname))
@@ -71,11 +78,40 @@ void CrowdSimulator::StopCSVOutput()
 	}
 }
 
+void CrowdSimulator::StartPNGOutput(const std::string& dirname)
+{
+	// create the PNG writer if it did not exist yet
+	if (pngWriter_ == nullptr)
+		pngWriter_ = new heatmapPNGWriter();
+
+	// try to set the directory
+	if (!pngWriter_->SetOutputDirectory(dirname))
+	{
+		std::cerr << "Error: Could not set PNG output directory to " << dirname << "." << std::endl
+			<< "The program will be unable to write PNG output." << std::endl;
+		delete pngWriter_;
+		pngWriter_ = nullptr;
+	}
+}
+
+void CrowdSimulator::StopPNGOutput()
+{
+	if (pngWriter_ != nullptr)
+	{
+		delete pngWriter_;
+		pngWriter_ = nullptr;
+	}
+}
+
 CrowdSimulator::~CrowdSimulator()
 {
-	// delete the CSV writer?
+	// delete the CSV writer
 	if (writer_ != nullptr)
 		delete writer_;
+
+	// delete the PNG writer
+	if (pngWriter_ != nullptr)
+		delete pngWriter_;
 
 	// delete all policies
 	for (auto& policy : policies_)
@@ -92,7 +128,17 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 	{
 		world_->DoStep();
 
-		if (writer_ != nullptr)
+		write_time_ += world_->GetFineDeltaTime();
+		if (write_time_ >= write_interval_)
+			write_time_ = 0.0f;
+
+		png_write_time_ += world_->GetFineDeltaTime();
+		if (png_write_time_ >= png_write_interval_)
+		{
+			png_write_time_ = 0.0f;
+		}
+
+		if (writer_ != nullptr && write_time_ == 0.0f)
 		{
 			double t = world_->GetCurrentTime();
 			const auto& agents = world_->GetAgents();
@@ -105,10 +151,41 @@ void CrowdSimulator::RunSimulationSteps(int nrSteps)
 			//	data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
 			//}
 
-			for (const Agent* agent : agents)
-				data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection());
+			//for (const Agent* agent : agents)
+			//	data[agent->getID()] = TrajectoryPoint(t, agent->getPosition(), agent->getViewingDirection(), agent->getColor());
 
-			writer_->AppendAgentData(data);
+			for (const Agent* agent : agents)
+			{
+				float x = agent->getPosition().x + world_->GetOffset()->x;
+				float y = agent->getPosition().y + world_->GetOffset()->y;
+				data[agent->getID()] = TrajectoryPoint(t, Vector2D(x, y), agent->getViewingDirection(), agent->getColor());
+			}
+
+			if (writer_->GetByAgent())
+			{
+				writer_->AppendAgentData(data);
+			}
+			else
+			{
+				writer_->FlushByTimeStep(data, flushCount_);
+				flushCount_ += 1;
+			}
+		}
+
+		if (pngWriter_ != nullptr && obstaclesSuccess_ && png_write_time_ == 0.0f)
+		{
+			double t = world_->GetCurrentTime();
+			const auto& agents = world_->GetAgents();
+		
+			densityArray_ = std::unique_ptr<int[]>(new int[world_->GetWidth() * world_->GetHeight()]());
+
+			for (const Agent* agent : agents)
+				densityArray_[std::floor(agent->getPosition().y) * world_->GetWidth() + std::floor(agent->getPosition().x)] += 1;
+
+			if (pngWriter_->writePNG(densityArray_, obstaclesArray_, world_->GetWidth(), world_->GetHeight(), pngCount_))
+			{
+				pngCount_ += 1;
+			}
 		}
 	}
 }
@@ -122,10 +199,51 @@ void CrowdSimulator::RunSimulationUntilEnd(bool showProgressBar, bool measureTim
 		return;
 	}
 
-	const int nrIterations_ = (int)ceilf(end_time_ / world_->GetDeltaTime());
+	const int nrIterations_ = (int)ceilf(end_time_ / world_->GetFineDeltaTime());
 
 	// get the current system time; useful for time measurements later on
 	const auto& startTime = HelperFunctions::GetCurrentTime();
+
+	// In preparation for writing to files
+	double t = world_->GetCurrentTime();
+	const auto& agents = world_->GetAgents();
+
+	// Write initial agent positions
+	if (writer_ != nullptr)
+	{
+		AgentTrajectoryPoints data;
+
+		for (const Agent* agent : agents)
+		{
+			float x = agent->getPosition().x + world_->GetOffset()->x;
+			float y = agent->getPosition().y + world_->GetOffset()->y;
+			data[agent->getID()] = TrajectoryPoint(t, Vector2D(x, y), agent->getViewingDirection(), agent->getColor());
+		}
+
+		if (writer_->GetByAgent())
+		{
+			writer_->AppendAgentData(data);
+		}
+		else
+		{
+			writer_->FlushByTimeStep(data, flushCount_);
+			flushCount_ += 1;
+		}
+	}
+
+	// Write initial heatmap
+	if (pngWriter_ != nullptr && obstaclesSuccess_)
+	{
+		densityArray_ = std::unique_ptr<int[]>(new int[world_->GetWidth() * world_->GetHeight()]());
+
+		for (const Agent* agent : agents)
+			densityArray_[std::floor(agent->getPosition().y) * world_->GetWidth() + std::floor(agent->getPosition().x)] += 1;
+
+		if (pngWriter_->writePNG(densityArray_, obstaclesArray_, world_->GetWidth(), world_->GetHeight(), pngCount_))
+		{
+			pngCount_ += 1;
+		}
+	}
 
 	if (showProgressBar)
 	{
@@ -224,7 +342,137 @@ bool CrowdSimulator::FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldE
 		}
 	}
 
+	WorldBase::Integration_Mode intMode = WorldBase::Integration_Mode::UNKNOWN;
+	const char* mode = worldElement->Attribute("integration_mode");
+	if (mode != nullptr)
+		intMode = WorldBase::StringToIntegrationMode(mode);
+
+	if (intMode == WorldBase::Integration_Mode::UNKNOWN)
+	{
+		std::cerr << "Warning: No valid integration mode specified in the XML file. Selecting default type (Semi-Implicit Euler)." << std::endl;
+		intMode = WorldBase::Integration_Mode::EULER;
+	}
+	if (intMode == WorldBase::Integration_Mode::EULER)
+	{
+		std::cout << "World Integration Mode set to Semi-Implicit Euler." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::RK4)
+	{
+		std::cout << "World Integration Mode set to Rugge-Kutta 4." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::VERLET2)
+	{
+		std::cout << "World Integration Mode set to Velocity-Verlet." << std::endl;
+	}
+	else if (intMode == WorldBase::Integration_Mode::LEAPFROG2)
+	{
+		std::cout << "World Integration Mode set to Leapfrog." << std::endl;
+	}
+	world_->SetMode(intMode);
+
+	const char* goalRadius = worldElement->Attribute("goal_radius");
+	std::string goalRadius_str;
+	float goalRadius_float = 1.0;
+
+	if (goalRadius != nullptr)
+	{
+		goalRadius_str = (std::string) goalRadius;
+		try
+		{
+			goalRadius_float = stof(goalRadius_str);
+		}
+		catch (std::logic_error& e)
+		{
+			std::cerr << "Error initializing goal radius. Default value of 1.0 will be initialized." << std::endl;
+		}
+
+		if (goalRadius_float <= 0.0f)
+		{
+			goalRadius_float = 1.0;
+			std::cerr << "Error initializing goal radius. Ensure a goal radius larger than 0. Default value of 1.0 will be initialized." << std::endl;
+		}
+	}
+	
+	world_->SetGoalRadius(goalRadius_float);
+
+	const char* isNearestNav = worldElement->Attribute("nearest_nav");
+	std::string isNearestNav_str;
+	if (isNearestNav != nullptr)
+		isNearestNav_str = (std::string)isNearestNav;
+	if (isNearestNav_str == "true")
+	{
+		world_->SetIsActiveNearestNav(true);
+		std::cout << "Nearest navigation initialized. Will only work if more than one map is specified." << std::endl;
+	}
+
+	const char* isDynamicNav = worldElement->Attribute("dynamic_nav");
+	std::string isDynamicNav_str;
+	if (isDynamicNav != nullptr)
+		isDynamicNav_str = (std::string) isDynamicNav;
+	if (isDynamicNav_str == "true")
+	{
+		world_->SetIsActiveDynamicNav(true);
+		std::cout << "Dynamic navigation initialized. Will only work if more than one map is specified and nearest navigation is also active." << std::endl;
+	}
+
 	return true;
+}
+
+bool CrowdSimulator::FromConfigFile_loadSPH(const tinyxml2::XMLElement* SPHElement)
+{
+	// load SPH settings if specified
+	const char* maxDensity = SPHElement->Attribute("max_density");
+	std::string maxDensity_str(maxDensity);
+	float maxDensity_float = 0.0;
+
+	try 
+	{
+		 maxDensity_float = stof(maxDensity_str);
+	}
+	catch (std::logic_error& e)
+	{
+		std::cerr << "Error initializing SPH max density. Ensure a float value between 0.0 and 100.0 is entered." << std::endl;
+		return false;
+	}
+	
+	if (maxDensity_float < 0.0f || maxDensity_float > 100.0f)
+	{
+		std::cerr << "Error initializing SPH max density. Ensure a float value between 0.0 and 100.0 is entered." << std::endl;
+		return false;
+	}
+
+	if (maxDensity_float == 0.0f)
+	{
+		std::cout << "Initialized simulation without SPH." << std::endl;
+		return true;
+	}
+
+	if (maxDensity_float != 0.0f)
+	{
+		world_->GetSPH()->setMaxRestDensity(maxDensity_float);
+		world_->SetIsActiveSPH(true);
+		std::cout << "Successfully initialized SPH with SPH max density of " << maxDensity_str << "." << std::endl;
+		const char* useDensityBlending = SPHElement->Attribute("density_blending");
+		std::string useDensityBlending_str(useDensityBlending);
+		if (useDensityBlending_str == "true")
+		{
+			world_->SetIsActiveDensityBlending(true);
+			std::cout << "Initialized SPH with density-based blending active." << std::endl;
+			return true;
+		}
+		else if (useDensityBlending_str == "false")
+		{
+			world_->SetIsActiveDensityBlending(false);
+			std::cout << "Initialized SPH without density-based blending active." << std::endl;
+			return true;
+		}
+		else
+		{
+			world_->SetIsActiveDensityBlending(false);
+			std::cerr << "\'density_blending\' parameter expects either true or false. Initializing SPH without density-based blending." << std::endl;
+			return false;
+		}
+	}
 }
 
 bool CrowdSimulator::FromConfigFile_loadPoliciesBlock_ExternallyOrNot(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)
@@ -293,6 +541,138 @@ bool CrowdSimulator::FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tin
 	return FromConfigFile_loadObstaclesBlock(xmlBlock);
 }
 
+bool CrowdSimulator::FromConfigFile_loadObstaclesPNG(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder)
+{
+	// - if this block refers to another file, read it
+	const char* externalFilename = xmlBlock->Attribute("file");
+	if (externalFilename != nullptr)
+	{
+		// Decode the PNG file
+		unsigned width, height;
+		unsigned error = lodepng::decode(obstaclesArray_, width, height, fileFolder + externalFilename);
+		if (error)
+		{
+			std::cerr << lodepng_error_text(error) << std::endl;
+			std::cout << "Heatmaps will not be displayed." << std::endl;
+			obstaclesSuccess_ = false;
+			return false;
+		}
+		else
+		{
+			std::cout << "Successfully loaded obstacles PNG file. Heatmaps can be displayed." << std::endl;
+			obstaclesSuccess_ = true;
+			return true;
+		}
+	}
+	else
+	{
+		std::cout << "Failed to load obstacles PNG file. Heatmaps will not be displayed." << std::endl;
+		return false;
+	}
+	
+}
+
+bool CrowdSimulator::FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* xmlBlock, const std::string& fileFolder, const int num_threads)
+{
+	const char* goal_x = xmlBlock->Attribute("goal_x");
+	std::string goal_x_str(goal_x);
+	const char* goal_y = xmlBlock->Attribute("goal_y");
+	std::string goal_y_str(goal_y);
+
+	int width = world_->GetWidth();
+	int height = world_->GetHeight();
+	vectorMap* m = new vectorMap(width, height, num_threads);
+	m->setGoal(Vector2D(stof(goal_x_str), stof(goal_y_str)));
+
+	// - if this block refers to another file, read it
+	const char* externalFilename = xmlBlock->Attribute("vector");
+	if (externalFilename != nullptr)
+	{
+		std::ifstream f(fileFolder + externalFilename);
+		if (!f.is_open())
+		{
+			std::cerr << "Could not load or parse Map vector txt file at " << (fileFolder + externalFilename) << "." << std::endl
+				<< "Please check this file location." << std::endl;
+			return false;
+		}
+		
+		std::string s;
+		float x_val = 0;
+		float y_val = 0;
+		std::string temp = "";
+		int i;
+		for (int j = 0; j < height; ++j)
+		{
+			i = 0;
+			getline(f, s);
+			for (char c : s)
+			{
+				if (c == ' ')
+				{
+					if (i % 2 == 0)
+					{
+						x_val = stof(temp);
+					}
+					else
+					{
+						y_val = stof(temp);
+						m->setVector((int)std::floor(i / 2), j, Vector2D(x_val - i / 2, y_val - j - 0.5f).getnormalized());
+					}
+					temp = "";
+					++i;
+				}
+				else
+				{
+					temp += c;
+				}
+			}
+		}
+		f.close();
+
+		const char* externalFilename = xmlBlock->Attribute("distance");
+		if (externalFilename != nullptr)
+		{
+			std::ifstream f(fileFolder + externalFilename);
+			if (!f.is_open())
+			{
+				std::cerr << "Could not load or parse Map distance txt file at " << (fileFolder + externalFilename) << "." << std::endl
+					<< "Please check this file location." << std::endl;
+				return false;
+			}
+
+			std::string s;
+			float dist = 0;
+			std::string temp = "";
+			int i;
+			for (int j = 0; j < height; ++j)
+			{
+				i = 0;
+				getline(f, s);
+				for (char c : s)
+				{
+					if (c == ' ')
+					{
+						dist = stof(temp);
+						m->setDistance(i, j, dist);
+						temp = "";
+						++i;
+					}
+					else
+					{
+						temp += c;
+					}
+				}
+			}
+			f.close();
+		}
+		world_->AddMap(m);
+		world_->SetIsActiveGlobalNav(true);
+		std::cout << "Loaded " << externalFilename << " as map." << std::endl;
+		return true;
+	}
+	return false;
+}
+
 bool CrowdSimulator::FromConfigFile_loadPoliciesBlock(const tinyxml2::XMLElement* xmlBlock)
 {
 	// load the elements one by one
@@ -330,7 +710,27 @@ bool CrowdSimulator::FromConfigFile_loadAgentsBlock(const tinyxml2::XMLElement* 
 bool CrowdSimulator::FromConfigFile_loadObstaclesBlock(const tinyxml2::XMLElement* xmlBlock)
 {
 	// load the elements one by one
-	const tinyxml2::XMLElement* element = xmlBlock->FirstChildElement();
+	float offset_x = 0.0f;
+	float offset_y = 0.0f;
+	const tinyxml2::XMLElement* element = xmlBlock->FirstChildElement("Offset");
+	if (element != nullptr)
+	{
+		element->QueryFloatAttribute("x", &offset_x);
+		element->QueryFloatAttribute("y", &offset_y);
+		world_->SetOffset(Vector2D(offset_x, offset_y));
+	}
+	int width = 0;
+	int height = 0;
+	element = xmlBlock->FirstChildElement("Dimension");
+	if (element != nullptr)
+	{
+		element->QueryIntAttribute("width", &width);
+		element->QueryIntAttribute("height", &height);
+		world_->SetWidth(width);
+		world_->SetHeight(height);
+	}
+	
+	element = xmlBlock->FirstChildElement("Obstacle");
 	while (element != nullptr)
 	{
 		// load a single element
@@ -351,6 +751,8 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 	// Unique policy ID
 	int policyID;
 	policyElement->QueryIntAttribute("id", &policyID);
+
+	auto name = policyElement->Attribute("name");
 
 	// Optimization method
 	auto methodName = policyElement->Attribute("OptimizationMethod");
@@ -394,7 +796,7 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 
 	// --- Create the policy
 
-	Policy* pl = new Policy(method, params);
+	Policy* pl = new Policy(name, method, params);
 
 	// --- Read optional parameters
 
@@ -404,9 +806,9 @@ bool CrowdSimulator::FromConfigFile_loadSinglePolicy(const tinyxml2::XMLElement*
 		pl->setRelaxationTime(relaxationTime);
 
 	// Force scale
-	float contactForceScale = 0;
-	if (policyElement->QueryFloatAttribute("ContactForceScale", &contactForceScale) == tinyxml2::XMLError::XML_SUCCESS)
-		pl->setContactForceScale(contactForceScale);
+	//float contactForceScale = 0;
+	//if (policyElement->QueryFloatAttribute("ContactForceScale", &contactForceScale) == tinyxml2::XMLError::XML_SUCCESS)
+	//	pl->setContactForceScale(contactForceScale);
 
 	// --- Read and create cost functions
 
@@ -453,7 +855,8 @@ bool CrowdSimulator::FromConfigFile_loadSingleAgent(const tinyxml2::XMLElement* 
 	agentElement->QueryFloatAttribute("pref_speed", &settings.preferred_speed_);
 	agentElement->QueryFloatAttribute("max_speed", &settings.max_speed_);
 	agentElement->QueryFloatAttribute("max_acceleration", &settings.max_acceleration_);
-	agentElement->QueryFloatAttribute("mass", &settings.mass_);
+	//agentElement->QueryFloatAttribute("mass", &settings.mass_);
+	settings.mass_ = pow(settings.radius_ / 0.24, 2); // Set mass based on radius with a mean radius of 0.24
 	agentElement->QueryBoolAttribute("remove_at_goal", &settings.remove_at_goal_);
 
 	// optional color
@@ -537,7 +940,8 @@ bool CrowdSimulator::FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElemen
 		pointElement->QueryFloatAttribute("x", &x);
 		pointElement->QueryFloatAttribute("y", &y);
 		pointElement = pointElement->NextSiblingElement("Point");
-		points.push_back(Vector2D(x, y));
+		points.push_back(Vector2D(x-world_->GetOffset()->x, y-world_->GetOffset()->y));
+		//points.push_back(Vector2D(x, y));
 	}
 
 	// add obstacle to world
@@ -545,7 +949,7 @@ bool CrowdSimulator::FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElemen
 	return true;
 }
 
-CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
+CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename, int num_threads)
 {
 	std::setlocale(LC_NUMERIC, "en_US.UTF-8");
 
@@ -568,7 +972,7 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 	{
 		// Location of the config file should be relative to the location of the *main* config file.
 		// Check if the main config file lies in a subfolder.
-		return CrowdSimulator::FromConfigFile(fileFolder + simConfigPathElement->Attribute("path"));
+		return CrowdSimulator::FromConfigFile(fileFolder + simConfigPathElement->Attribute("path"), num_threads);
 	}
 
 	// --- Otherwise, we assume that this is a "regular" config file that contains the simulation itself.
@@ -602,6 +1006,25 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 	}
 
 	//
+	// --- Read the SPH parameters
+	//
+
+	tinyxml2::XMLElement* SPHElement = simulationElement->FirstChildElement("SPH");
+	if (SPHElement == nullptr)
+	{
+		std::cerr << "Error: No SPH element in the XML file. Initializing simulation without SPH." << std::endl;
+		//delete crowdsimulator;
+		//return nullptr;
+	}
+	else if (!crowdsimulator->FromConfigFile_loadSPH(SPHElement))
+	{
+		std::cerr << "Error in loading SPH. Initializing simulation without SPH." << std::endl;
+		//delete crowdsimulator;
+		//return nullptr;
+	}
+
+
+	//
 	// --- Read the simulation parameters
 	//
 
@@ -615,7 +1038,17 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 		delete crowdsimulator;
 		return nullptr;
 	}
-	crowdsimulator->GetWorld()->SetDeltaTime(delta_time);
+	crowdsimulator->GetWorld()->SetCoarseDeltaTime(delta_time);
+	crowdsimulator->GetWorld()->SetFineDeltaTime(delta_time); // temporary setting for unified delta_time
+
+	float write_interval = -1;
+	simulationElement->QueryFloatAttribute("write_interval", &write_interval);
+	if (write_interval <= 0)
+	{
+		std::cerr << "Error: No valid value for write_interval found in the XML file." << std::endl
+			<< "This attribute of Simulation is mandatory and should be positive. Default value of 0.2 will be used." << std::endl;
+	}
+	crowdsimulator->write_interval_ = write_interval;
 
 	// the total simulation time (optional)
 	float end_time = -1;
@@ -675,6 +1108,40 @@ CrowdSimulator* CrowdSimulator::FromConfigFile(const std::string& filename)
 		std::cerr << "Error while loading obstacles. The simulation cannot be loaded." << std::endl;
 		delete crowdsimulator;
 		return nullptr;
+	}
+
+	//
+	// --- Read obstacles png
+	//
+
+	tinyxml2::XMLElement* obstaclesPNGElement = worldElement->FirstChildElement("PNG");
+	if (obstaclesPNGElement != nullptr && !crowdsimulator->FromConfigFile_loadObstaclesPNG(obstaclesPNGElement, fileFolder))
+	{
+		std::cerr << "Error while loading obstacles PNG. The simulation will not output heatmaps." << std::endl;
+	}
+	else if (obstaclesPNGElement == nullptr)
+	{
+		std::cout << "No Obstacles PNG file detected. The simulation will not output heatmaps." << std::endl;
+	}
+
+	// 
+	// --- Read map
+	//
+
+	// read the block with map array
+	tinyxml2::XMLElement* mapElement = simulationElement->FirstChildElement("Map");
+	while (mapElement != nullptr)
+	{
+		if (!crowdsimulator->FromConfigFile_loadMapBlock(mapElement, fileFolder, num_threads))
+		{
+			std::cerr << "Error while loading map." << std::endl;
+		}
+		mapElement = mapElement->NextSiblingElement("Map");
+	}
+	
+	if (!crowdsimulator->GetWorld()->GetIsActiveGlobalNav())
+	{
+		std::cout << "Warning: Initializing simulation without global navigation." << std::endl;
 	}
 
 	return crowdsimulator;

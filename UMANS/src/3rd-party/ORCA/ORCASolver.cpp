@@ -93,6 +93,41 @@ namespace ORCALibrary
 		result.currentSimulationTime = currentTime;
 	}
 
+	void Solver::solveOrcaProgram_RK4(const Agent& agent, Vector2D velocity,
+		const float timeHorizon, const float currentTime, const float simulationTimeStep, const NeighborList& neighbors, const float maxDistance,
+		Solution& result) const
+	{
+		const Vector2D& prefVelocity_ = agent.getPreferredVelocity();
+		const float maxSpeed_ = agent.getMaximumSpeed();
+
+		// in RVO library's example:
+		// sim->setAgentDefaults(15.0f, 10, 5.0f, 5.0f, 2.0f, 2.0f);
+		// neighborDist = 15.0f;
+		// maxNeighbors = 10;
+		// timeHorizon = 5.0f;
+		// timeHorizonObst = 5.0f;
+		// radius = 2.0f;
+		// maxSpeed = 2.0f;
+
+		result = Solution();
+
+		createAgentOrcaLines_RK4(agent, velocity, result.orcaLines, timeHorizon, simulationTimeStep, neighbors.first, maxDistance);
+
+		// TODO: include obstacle lines
+		// ...
+
+		// solve linear program
+		size_t lineFail = linearProgram2(result.orcaLines, maxSpeed_, prefVelocity_, false, result.velocity);
+		result.isFeasible = lineFail == result.orcaLines.size();
+
+		// if the linear program is not feasible, compute the "least bad" velocity via another linear program
+		if (!result.isFeasible)
+			linearProgram3(result.orcaLines, result.numObstLines, lineFail, maxSpeed_, result.velocity);
+
+		// store the simulation time
+		result.currentSimulationTime = currentTime;
+	}
+
 	void Solver::createAgentOrcaLines(const Agent& agent, std::vector<Line>& orcaLines_, const float timeHorizon_, const float simulationTimeStep,
 		const AgentNeighborList& agentNeighbors_, const float maxDistance) const
 	{
@@ -127,6 +162,83 @@ namespace ORCALibrary
 				const float dotProduct1 = w.dot(relativePosition);
 
 				if (dotProduct1 < 0.0f && dotProduct1*dotProduct1 > combinedRadiusSq * wLengthSq) {
+					/* Project on cut-off circle. */
+					const float wLength = std::sqrt(wLengthSq);
+					const Vector2D& unitW = w / wLength;
+
+					line.direction = Vector2D(unitW.y, -unitW.x);
+					u = unitW * (combinedRadius / timeHorizon_ - wLength);
+				}
+				else {
+					/* Project on legs. */
+					const float leg = std::sqrt(distSq - combinedRadiusSq);
+
+					if (det(relativePosition, w) > 0.0f) {
+						/* Project on left leg. */
+						line.direction = Vector2D(relativePosition.x * leg - relativePosition.y * combinedRadius, relativePosition.x * combinedRadius + relativePosition.y * leg) / distSq;
+					}
+					else {
+						/* Project on right leg. */
+						line.direction = Vector2D(relativePosition.x * leg + relativePosition.y * combinedRadius, -relativePosition.x * combinedRadius + relativePosition.y * leg) * -1 / distSq;
+					}
+
+					const float dotProduct2 = relativeVelocity.dot(line.direction);
+
+					u = (line.direction * dotProduct2) - relativeVelocity;
+				}
+			}
+			else {
+				/* Collision. Project on cut-off circle of time timeStep. */
+
+				/* Vector from cutoff center to relative velocity. */
+				const Vector2D w = relativeVelocity - (relativePosition / simulationTimeStep);
+
+				const float wLength = w.sqrMagnitude();
+				const Vector2D unitW = w / wLength;
+
+				line.direction = Vector2D(unitW.y, -unitW.x);
+				u = unitW * (combinedRadius / simulationTimeStep - wLength);
+			}
+
+			line.point = velocity_ + (u * 0.5f);
+			orcaLines_.push_back(line);
+		}
+	}
+
+	void Solver::createAgentOrcaLines_RK4(const Agent& agent, Vector2D velocity, std::vector<Line>& orcaLines_, const float timeHorizon_, const float simulationTimeStep,
+		const AgentNeighborList& agentNeighbors_, const float maxDistance) const
+	{
+		const Vector2D& position_ = agent.getPosition();
+		const Vector2D& velocity_ = velocity;
+		const float maxSpeed_ = agent.getMaximumSpeed();
+		const float radius_ = agent.getRadius();
+		const float radiusSq = radius_ * radius_;
+		const float maxDistSq = maxDistance * maxDistance;
+
+		/* Create agent ORCA lines. */
+		for (const PhantomAgent& other : agentNeighbors_)
+		{
+			if (other.GetDistanceSquared() > maxDistSq)
+				continue;
+
+			const Vector2D& relativePosition = other.GetPosition() - position_;
+			const Vector2D& relativeVelocity = velocity_ - other.GetVelocity();
+			const float distSq = relativePosition.sqrMagnitude();
+			const float combinedRadius = radius_ + other.realAgent->getRadius();
+			const float combinedRadiusSq = combinedRadius * combinedRadius;
+
+			Line line;
+			Vector2D u;
+
+			if (distSq > combinedRadiusSq) {
+				/* No collision. */
+				const Vector2D& w = relativeVelocity - (relativePosition / timeHorizon_);
+				/* Vector from cutoff center to relative velocity. */
+				const float wLengthSq = w.sqrMagnitude();
+
+				const float dotProduct1 = w.dot(relativePosition);
+
+				if (dotProduct1 < 0.0f && dotProduct1 * dotProduct1 > combinedRadiusSq * wLengthSq) {
 					/* Project on cut-off circle. */
 					const float wLength = std::sqrt(wLengthSq);
 					const Vector2D& unitW = w / wLength;

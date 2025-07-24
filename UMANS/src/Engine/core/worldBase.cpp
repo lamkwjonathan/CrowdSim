@@ -42,9 +42,24 @@ WorldBase::Type WorldBase::StringToWorldType(const std::string& type)
 		return Type::UNKNOWN_WORLD_TYPE;
 }
 
+WorldBase::Integration_Mode WorldBase::StringToIntegrationMode(const std::string& mode)
+{
+	if (mode == "Euler")
+		return Integration_Mode::EULER;
+	else if (mode == "RK4")
+		return Integration_Mode::RK4;
+	else if (mode == "Verlet")
+		return Integration_Mode::VERLET2;
+	else if (mode == "Leapfrog")
+		return Integration_Mode::LEAPFROG2;
+	else
+		return Integration_Mode::UNKNOWN;
+}
+
 WorldBase::WorldBase(WorldBase::Type type) : type_(type)
 {
 	time_ = 0;
+	coarse_time_ = 0;
 	agentKDTree = nullptr;
 	SetNumberOfThreads(1);
 	nextUnusedAgentID = 0;
@@ -85,32 +100,55 @@ void WorldBase::computeNeighboringObstacles_Flat(const Vector2D& position, float
 
 void WorldBase::DoStep()
 {
-	// Before the simulation frame begins, add agents that need to be added now
-	while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
+	int n;
+	if (coarse_time_ == 0.0f)
 	{
-		addAgentToList(agentsToAdd.top().first);
-		agentsToAdd.pop();
+		// Before the simulation frame begins, add agents that need to be added now (once every coarse time step)
+		while (!agentsToAdd.empty() && agentsToAdd.top().second <= time_)
+		{
+			addAgentToList(agentsToAdd.top().first);
+			agentsToAdd.pop();
+		}
+		n = (int)agents_.size();
+
+		// --- Main simulation tasks:
+		// 1. build the KD tree for nearest-neighbor computations (once every coarse time step)
+		if (agentKDTree != nullptr)
+			delete agentKDTree;
+		agentKDTree = new AgentKDTree(agents_);
+
+		// 2. compute nearest neighbors for each agent (once every coarse time step)
+		// Seems to be inefficient to step into agent only to step out again (might want to refactor)
+		#pragma omp parallel for 
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeNeighbors(this);
+	}
+	else
+	{
+		n = (int)agents_.size();
+		#pragma omp parallel for 
+		for (int i = 0; i < n; ++i)
+			agents_[i]->UpdateNeighbors(this);
+	}
+
+	// compute SPH parameters if required
+	if (GetIsActiveSPH()) 
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeBaseSPH(this);
+
+		#pragma omp parallel for 
+		for (int i = 0; i < n; ++i)
+			agents_[i]->ComputeDerivedSPH(this);
 	}
 	
-	// --- Main simulation tasks:
-	// 1. build the KD tree for nearest-neighbor computations
-	if (agentKDTree != nullptr)
-		delete agentKDTree;
-	agentKDTree = new AgentKDTree(agents_);
-
-	int n = (int)agents_.size();
-
-	// 2. compute nearest neighbors for each agent
-	#pragma omp parallel for 
-	for (int i = 0; i < n; ++i)
-		agents_[i]->ComputeNeighbors(this);
-
 	// 3. compute a preferred velocity for each agent
 	#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
-		agents_[i]->ComputePreferredVelocity();
+		agents_[i]->ComputePreferredVelocity(this);
 
-	// 4. perform local navigation for each agent, to compute an acceleration vector for them
+	// 4. perform local navigation for each agent, to compute an acceleration vector for them (once every coarse time step for velocity-based methods)
 	#pragma omp parallel for 
 	for (int i = 0; i < n; ++i)
 		agents_[i]->ComputeAcceleration(this);
@@ -123,23 +161,92 @@ void WorldBase::DoStep()
 	// 6. move all agents to their new positions
 	DoStep_MoveAllAgents();
 
+	// update map parameters if required
+	if (isActiveGlobalNav_ && isActiveNearestNav_ && isActiveDynamicNav_)
+	{
+		// Parallelized with buckets
+		#pragma omp parallel for 
+		for (int i = 0; i < n; i++)
+		{
+			agents_[i]->UpdateMapParameters(this);
+		}
+		float ratio = fine_delta_time_ / GetDynamicNavTimeWindow();
+		for (int i = 0; i < maps_.size(); ++i)
+		{
+			// Collate thread-local parameters
+			maps_[i]->collateThreadLocalVariables();
+
+			// For using congestion value only with exponential moving average
+			//maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount()));
+			
+			// For using congestion value only without exponential moving average
+			//maps_[i]->setDistanceMultiplier(vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount()));
+
+			// For using speed value only with exponential moving average
+			maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue());
+			
+			// For using speed value only without exponential moving average
+			//maps_[i]->setDistanceMultiplier(maps_[i]->getAgentCount() / maps_[i]->getSpeedValue());
+
+			// For using congestion value + speed value with exponential moving average
+			//maps_[i]->setDistanceMultiplier((1 - ratio) * maps_[i]->getDistanceMultiplier() + ratio * 0.5 * (1.4 * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue() + vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount())));
+			
+			// For using congestion value + speed value with exponential moving average
+			//maps_[i]->setDistanceMultiplier(0.5 * (1.4 * maps_[i]->getAgentCount() / maps_[i]->getSpeedValue() + vectorMap::multiplierFromCongestionValue(maps_[i]->getCongestionValue() / maps_[i]->getWeightedCount())));
+
+			maps_[i]->setWeightedCount(1.0f);
+			maps_[i]->setCongestionValue(1.0f);
+			maps_[i]->setAgentCount(1);
+			maps_[i]->setSpeedValue(1.4f);
+		}
+	}
 	// --- End of main simulation tasks.	
 
 	// increase the time that has passed
-	time_ += delta_time_;
+	time_ += fine_delta_time_;
+	coarse_time_ += fine_delta_time_;
+	if (coarse_time_ >= coarse_delta_time_)
+		coarse_time_ = 0.0f;
 
 	// remove agents who have reached their goal
 	// cannot parallelize without causing loop error
 	for (int i = n - 1; i >= 0; --i)
-		if (agents_[i]->getRemoveAtGoal() && agents_[i]->hasReachedGoal())
+		if (agents_[i]->getRemoveAtGoal() && agents_[i]->hasReachedGoal(GetGoalRadius()))
 			removeAgentAtListIndex(i);
 }
 
 void WorldBase::DoStep_MoveAllAgents()
 {
-	#pragma omp parallel for 
-	for (int i = 0; i < (int)agents_.size(); i++)
-		agents_[i]->UpdateVelocityAndPosition(this);
+	if (mode_ == WorldBase::Integration_Mode::EULER)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::RK4)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_RK4(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::VERLET2)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_Verlet2(this);
+	}
+	else if (mode_ == WorldBase::Integration_Mode::LEAPFROG2)
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition_Leapfrog2(this);
+	}
+	else
+	{
+		#pragma omp parallel for 
+		for (int i = 0; i < (int)agents_.size(); ++i)
+			agents_[i]->UpdateVelocityAndPosition(this);
+	}
 }
 
 #pragma region [Finding, adding, and removing agents]
@@ -244,6 +351,11 @@ void WorldBase::removeAgentAtListIndex(size_t index)
 
 #pragma endregion
 
+void WorldBase::AddMap(vectorMap* m)
+{
+	maps_.push_back(m);
+}
+
 void WorldBase::AddObstacle(const std::vector<Vector2D>& points)
 {
 	obstacles_.push_back(Polygon2D(points));
@@ -254,6 +366,11 @@ WorldBase::~WorldBase()
 	// delete the KD tree
 	if (agentKDTree != nullptr)
 		delete agentKDTree;
+
+	// delete all agents
+	for (vectorMap* m : maps_)
+		delete m;
+	maps_.clear();
 
 	// delete all agents
 	for (Agent* agent : agents_)

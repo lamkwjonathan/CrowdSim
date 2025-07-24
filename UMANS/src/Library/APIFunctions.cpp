@@ -81,7 +81,7 @@ extern "C"
 		if (cs == nullptr)
 			return false;
 
-		result_dt = cs->GetWorld()->GetDeltaTime();
+		result_dt = cs->GetWorld()->GetFineDeltaTime();
 		return true;
 	}
 
@@ -90,7 +90,7 @@ extern "C"
 		if (cs == nullptr)
 			return false;
 
-		cs->GetWorld()->SetDeltaTime(dt);	
+		cs->GetWorld()->SetFineDeltaTime(dt);	
 		return true;	
 	}
 

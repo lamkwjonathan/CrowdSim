@@ -50,7 +50,7 @@ float Policy::getInteractionRange() const
 Vector2D Policy::ComputeAcceleration(Agent* agent, WorldBase * world)
 {
 	const Vector2D& currentVelocity = agent->getVelocity();
-	float dt = world->GetDeltaTime();
+	float dt = agent->getDeltaTime(world);
 
 	// if the agent does not want to move, return a deceleration vector
 	if (agent->getPreferredVelocity().isZero())
@@ -119,19 +119,35 @@ Vector2D Policy::ComputeContactForces(Agent* agent, WorldBase * world)
 	const Vector2D& position = agent->getPosition();
 	const float radius = agent->getRadius();
 
-	if (contactForceScale_ > 0)
+	float contactForceAgsScale;
+	float contactForceObsScale;
+	if (world->GetIsActiveSPH()) 
 	{
-		const auto& neighbors = agent->getNeighbors();
+		contactForceAgsScale = contactForceAgsSPHScale_;
+		contactForceObsScale = contactForceObsSPHScale_;
+	}
+	else
+	{
+		contactForceAgsScale = contactForceAgsScale_;
+		contactForceObsScale = contactForceObsScale_;
+	}
 
+	const auto& neighbors = agent->getNeighbors();
+
+	if (contactForceAgsScale > 0)
+	{
 		// check all colliding agents
 		for (const auto& neighborAgent : neighbors.first)
 		{
 			const auto& diff = position - neighborAgent.GetPosition();
 			const float intersectionDistance = radius + neighborAgent.realAgent->getRadius() - diff.magnitude();
 			if (intersectionDistance > 0)
-				totalForce += diff.getnormalized() * (contactForceScale_ * intersectionDistance);
+				totalForce += diff.getnormalized() * (contactForceAgsScale * intersectionDistance);
 		}
+	}
 
+	if (contactForceObsScale > 0)
+	{
 		// check all colliding obstacles
 		for (const auto& neighborObstacle : neighbors.second)
 		{
@@ -140,7 +156,7 @@ Vector2D Policy::ComputeContactForces(Agent* agent, WorldBase * world)
 			const float intersectionDistance = radius - diff.magnitude();
 			if (intersectionDistance > 0)
 			{
-				const auto& F = diff.getnormalized() * (contactForceScale_ * intersectionDistance);
+				const auto& F = diff.getnormalized() * (contactForceObsScale * intersectionDistance);
 				totalForce = totalForce + F;
 			}
 		}

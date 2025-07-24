@@ -35,6 +35,7 @@
 #include <memory>
 
 class TrajectoryCSVWriter;
+class heatmapPNGWriter;
 
 /// <summary>Wrapper object that manages the overall crowd simulation.</summary>
 class CrowdSimulator
@@ -46,6 +47,36 @@ private:
 
   /// <summary>A pointer to an optional TrajectoryCSVWriter that can write the simulation output to CSV files.</summary>
   TrajectoryCSVWriter* writer_;
+
+  /// <summary>The time interval (in seconds) in which agent positions are recorded for writing to csv. Defaults to 0.2 if unspecified.</summary>
+  float write_interval_ = 0.2;
+
+  /// <summary>The time (in seconds) that has passed since the previous agent position record.</summary>
+  float write_time_ = 0.0f;
+
+  /// <summary>The number of times the data points have been written to CSV./// </summary>
+  int flushCount_ = 0;
+
+  /// <summary>A pointer to an optional heatmapPNGWriter that can write the simulation heatmap output to PNG files.</summary>
+  heatmapPNGWriter* pngWriter_;
+
+  /// <summary>The time interval (in seconds) in which heatmaps are recorded for writing to PNG. Defaults to 30.0 if unspecified.</summary>
+  float png_write_interval_ = 5.0;
+
+  /// <summary>The time (in seconds) that has passed since the previous PNG record.</summary>
+  float png_write_time_ = 0.0f;
+
+  /// <summary>The counter keeping track of the number of PNG files written./// </summary>
+  int pngCount_ = 0;
+
+  /// <summary>The array keeping track of the number of agents per grid square./// </summary>
+  std::unique_ptr<int[]> densityArray_;
+
+  /// <summary>The array storing obstacles PNG data./// </summary>
+  std::vector<unsigned char> obstaclesArray_;
+
+  /// <summary>The boolean indicating whether obstaclesArray_ was successfully instantiated./// </summary>
+  bool obstaclesSuccess_ = false;
 
   /// <summary>An optional time at which the simulation should end.
   /// Only used if this number is set in a configuration file.</summary>
@@ -62,8 +93,9 @@ public:
   /// <summary>Creates a new CrowdSimulator object by loading a given configuration file.</summary>
   /// <remarks>Note: The caller of this method is responsible for deleting the resulting CrowdSimulator object.</remarks>
   /// <param name="filename">The name of the configuration file to load.</param>
+  /// <param name="num_threads">The number of threads initialized for this simulation.</param>
   /// <returns>A pointer to new CrowdSimulator object, or nullptr if the loading failed for any reason.</returns>
-  static CrowdSimulator* FromConfigFile(const std::string& filename);
+  static CrowdSimulator* FromConfigFile(const std::string& filename, int num_threads);
   
   /// <summary>Destroys this CrowdSimulator object.</summary>
   ~CrowdSimulator();
@@ -72,12 +104,19 @@ public:
 
   /// <summary>Prepares this CrowdSimulator for writing simulation output (as CSV files) to the given directory.</summary>
   /// <param name="dirname">The name of the directory to use for output.</param>
+  /// <param name="byAgent">Whether to save CSV input by agent or by timestep.</param>
   /// <param name="flushImmediately">Whether or not the CSV writer should write its output files as fast as possible. 
   /// If it is true, the output files will be updated after each simulation frame.
   /// If it is false, the data to write will be cached, and files will be written when the CrowdSimulator gets destroyed.</param>
-  void StartCSVOutput(const std::string& dirname, bool flushImmediately);
+  void StartCSVOutput(const std::string& dirname, bool byAgent, bool flushImmediately);
 
   void StopCSVOutput();
+
+  /// <summary>Prepares this CrowdSimulator for writing simulation heatmap output (as PNG files) to the given directory.</summary>
+  /// <param name="dirname">The name of the directory to use for output.</param>
+  void StartPNGOutput(const std::string& dirname);
+
+  void StopPNGOutput();
 
   /// <summary>Runs the given number of simulation steps.</summary>
   /// <param name="nrSteps">The number of simulation steps to run; should be at least 1, otherwise nothing happens.</param>
@@ -105,10 +144,25 @@ public:
 
   inline bool HasPolicies() const { return !policies_.empty(); }
 
+  ///// <summary>Returns the csv output time interval (in seconds).</summary>
+  ///// <returns>The csv output time interval (in seconds).</summary>
+  //inline float GetWriteInterval() const { return write_interval_; }
+
+  ///// <summary>Returns the time (in seconds) since the last agent position for csv output was stored.</summary>
+  ///// <returns>The time since last agent position was stored.</summary>
+  //inline float GetWriteTime() const { return write_time_; }
+
+  ///// <summary>Sets the csv output time interval (in seconds).</summary>
+  //inline void SetWriteInterval(float write_interval) { write_interval_ = write_interval; }
+
+  ///// <summary>Sets the time (in seconds) since the last agent position for csv output was stored.</summary>
+  //inline void SetWriteTime(float write_time) { write_time_ = write_time; }
+
 private:
 	CrowdSimulator();
 
 	bool FromConfigFile_loadWorld(const tinyxml2::XMLElement* worldElement);
+	bool FromConfigFile_loadSPH(const tinyxml2::XMLElement* SPHElement);
 
 	bool FromConfigFile_loadPoliciesBlock_ExternallyOrNot(const tinyxml2::XMLElement* policiesBlock, const std::string& fileFolder);
 	bool FromConfigFile_loadPoliciesBlock(const tinyxml2::XMLElement* policiesBlock);
@@ -121,6 +175,9 @@ private:
 	bool FromConfigFile_loadObstaclesBlock_ExternallyOrNot(const tinyxml2::XMLElement* obstaclesBlock, const std::string& fileFolder);
 	bool FromConfigFile_loadObstaclesBlock(const tinyxml2::XMLElement* obstaclesBlock);
 	bool FromConfigFile_loadSingleObstacle(const tinyxml2::XMLElement* obstacleElement);
+
+	bool FromConfigFile_loadObstaclesPNG(const tinyxml2::XMLElement* obstaclesPNG, const std::string& fileFolder);
+	bool FromConfigFile_loadMapBlock(const tinyxml2::XMLElement* mapBlock, const std::string& fileFolder, int num_threads);
 };
 
 #endif

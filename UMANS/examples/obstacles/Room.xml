@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Obstacles>
+	<Offset x="0.0" y="0.0"/>
+	<Dimension width="0" height="0"/>
 	<Obstacle>
 		<Point x="-11" y="10"/>
 		<Point x="11" y="10"/>

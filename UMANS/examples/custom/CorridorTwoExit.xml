@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.05" write_interval="1.0" end_time="200">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" nearest_nav="true" dynamic_nav="true">
+		<Obstacles file="../obstacles/CorridorTwoExit.xml"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/CorridorTwoExit1600.xml" />
+	<Map goal_x="70.0" goal_y="15.0" vector="../maps/CorridorTwoExit_exit1_vector.txt" distance="../maps/CorridorTwoExit_exit1_distance.txt"/>
+	<Map goal_x="70.0" goal_y="25.0" vector="../maps/CorridorTwoExit_exit2_vector.txt" distance="../maps/CorridorTwoExit_exit2_distance.txt"/>
+</Simulation>

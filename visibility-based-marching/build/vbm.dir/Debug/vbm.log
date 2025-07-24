@@ -1,0 +1,135 @@
+﻿cl : command line warning D9002: ignoring unknown option '-O0'
+cl : command line warning D9002: ignoring unknown option '-g'
+cl : command line warning D9002: ignoring unknown option '-std=c++20'
+  main.cpp
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+  environment.cpp
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(57,17): warning C4244: '=': conversion from '_Rep' to 'int', possible loss of data
+          with
+          [
+              _Rep=__int64
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(65,80): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(72,76): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(202,50): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(203,57): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(203,24): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\environment.cpp(252,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  solver.cpp
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(44,1): warning C4267: 'return': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(47,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\include\solver/solver.hpp(48,1): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(20,31): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(20,25): warning C4244: 'initializing': conversion from 'double' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(60,56): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(66,55): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(68,55): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(129,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(156,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(196,61): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(262,45): warning C4244: '=': conversion from 'vbm::size_t' to 'T', possible loss of data
+          with
+          [
+              T=double
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(285,47): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(315,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(339,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(469,53): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(469,53): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(505,43): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(629,38): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(630,38): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+          with
+          [
+              _Ty=int
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(648,55): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(685,50): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(775,38): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(777,76): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(780,71): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(803,38): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(805,76): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(809,74): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(825,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(864,50): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(875,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(881,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(889,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(895,53): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(904,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(911,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(919,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(930,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(937,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(945,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(956,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(963,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(971,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(982,57): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(989,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(997,68): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1008,45): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1019,12): warning C4244: 'initializing': conversion from 'T' to 'double', possible loss of data
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1025,25): warning C4244: 'argument': conversion from 'double' to 'size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1026,25): warning C4244: 'argument': conversion from 'double' to 'size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1028,30): warning C4244: 'argument': conversion from 'double' to 'const vbm::size_t', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1032,18): warning C4244: '=': conversion from 'T' to 'double', possible loss of data
+          with
+          [
+              T=vbm::size_t
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1095,55): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1106,40): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1124,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1124,24): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1125,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1125,25): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1166,58): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1208,24): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1208,24): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1209,25): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1209,25): warning C4267: 'initializing': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1298,7): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1319,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1339,7): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1421,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(1442,5): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Tools\MSVC\14.29.30133\include\utility(186,48): warning C4267: 'initializing': conversion from 'size_t' to '_Ty2', possible loss of data
+          with
+          [
+              _Ty2=int
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(783): message : see reference to function template instantiation 'std::pair<double,int>::pair<double&,vbm::size_t&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=vbm::size_t &
+          ]
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\solver.cpp(782): message : see reference to function template instantiation 'std::pair<double,int>::pair<double&,vbm::size_t&,0>(_Other1,_Other2) noexcept' being compiled
+          with
+          [
+              _Other1=double &,
+              _Other2=vbm::size_t &
+          ]
+  parser.cpp
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\parser.cpp(243,48): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\src\parser.cpp(257,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
+LINK : warning LNK4300: ignoring '/INCREMENTAL' because input module contains ASAN metadata
+  vbm.vcxproj -> C:\Users\imjon\Documents\School\FYP\CrowdSim\visibility-based-marching\Debug\vbm.exe

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Simulation delta_time="0.05" write_interval="1.0" end_time="30">
+	<World type="Infinite" integration_mode="Euler" goal_radius="5.0" dynamic_nav="true">
+		<Obstacles file="../obstacles/UTownConcert.xml"/>
+	</World>
+	<SPH max_density="6.0" density_blending="true"/>
+	<Policies file="../policies/SocialForces.xml" />
+	<Agents file="../agents/UTownConcert10000.xml" />
+</Simulation>
