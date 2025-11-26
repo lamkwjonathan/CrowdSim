@@ -1,5 +1,10 @@
 # Crowd Simulation for Digital Twin Applications
 
+<p align ="center">
+	<img width="360" height="480" src="Images/Simulation%20System%20Capabilities.png">
+	<img width="360" height="480" src="Images/2D%20Heatmap%20of%20NUS%20UTown%20Scenario.png">
+</p>
+
 This is a final year project focusing on the development of crowd simulation functionality for large-scale crowds. It heavily references the methods in [SPH crowds: Agent-based crowd simulation up to
 extreme densities using fluid dynamics](https://inria.hal.science/hal-03270915/file/CAG2021-SPHCrowds%20-%20Author%20version.pdf) and [Exact Wavefront Propagation for Globally Optimal One-to-All Path Planning on 2D Cartesian Grids](https://arxiv.org/abs/2409.11545).
 
@@ -61,7 +66,7 @@ For more details on the functions, visit the respective python files in `CrowdSi
 
 ## Usage
 
-![Simulation Pipeline](https://github.com/user-attachments/assets/83e2cfa1-203d-4a77-958b-cd84b08700df)
+![Simulation Pipeline](Images/Simulation%20Pipeline.png)
 
 The UMANS system takes in `obstacles.xml`, `agents.xml`, `distance.txt` and `vector.txt` files linked together by a `simulation.xml` file and outputs either a 2D simulation or a folder containing `.csv` files that store agent coordinates. QGIS, Environment Toolkit, Agent Toolkit and the VBM solver can be used to generate the respective files. 
 
